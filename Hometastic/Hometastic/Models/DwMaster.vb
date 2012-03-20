@@ -42,15 +42,7 @@
     Sub New()
       m_TableName = "DWMASTER"
       m_AccountName = "AsiAr"
-
-      m_ColumnNames = ""
-
-      For Each column As Columns In [Enum].GetValues(GetType(Columns))
-        m_ColumnNames += column.ToString() + " "
-      Next
-
-      Dim charsToTrim() As Char = {" "c, ","c}
-      m_ColumnNames = m_ColumnNames.Trim(charsToTrim)
+      ParseColumns([Enum].GetValues(GetType(Columns)))
     End Sub
   End Class
 End Namespace

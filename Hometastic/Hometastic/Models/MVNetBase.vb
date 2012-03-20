@@ -10,6 +10,17 @@ Namespace Models
     Protected Friend m_Dirty As Boolean = True
     Protected m_mvItem As mvItem = New mvItem()
 
+    Sub ParseColumns(ByVal ColumnTypes)
+      m_ColumnNames = ""
+
+      For Each column In ColumnTypes
+        m_ColumnNames += column.ToString() + " "
+      Next
+
+      Dim charsToTrim() As Char = {" "c, ","c}
+      m_ColumnNames = m_ColumnNames.Trim(charsToTrim)
+    End Sub
+
     Sub Connect()
       m_mvAccount = New mvAccount(m_AccountName)
     End Sub
