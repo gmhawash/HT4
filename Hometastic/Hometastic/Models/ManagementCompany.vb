@@ -1,5 +1,5 @@
 ﻿Namespace Models
-  Public Class DwMaster
+  Public Class ManagementCompany
     Inherits MVNetBase
 
     Public Enum Columns

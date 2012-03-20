@@ -99,7 +99,8 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DwMaster.vb" />
+    <Compile Include="Models\HoaUser.vb" />
+    <Compile Include="Models\ManagementCompany.vb" />
     <Compile Include="Models\MVNetBase.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

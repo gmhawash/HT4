@@ -37,7 +37,10 @@ Namespace Models
       Dim file As mvFile = m_mvAccount.FileOpen(m_TableName)
       m_mvItem = file.Read(record, m_ColumnNames)
       Disconnect()
+
+      m_Dirty = False
       Return m_mvItem
     End Function
   End Class
+
 End Namespace
