@@ -1,0 +1,94 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body{
+margin:0;
+padding:0;
+line-height: 1.5em;
+}
+
+#container 
+{
+margin:auto;
+width: 960px;
+}
+
+#menu-container #left
+{
+display:block;
+float: left;
+}
+#menu-container #left img.corner
+{
+  width: 230px;
+  height: 20px;
+  border: 0px;
+}
+
+#menu-container #left img.logo
+{
+  width: 166px;
+  height: 53px;
+  border: 0px;
+  display:block;
+  clear: both;
+}
+
+#menu-container #right
+{
+  background-color: #47A2DA;
+  width: 70%;
+  display :block;
+  float: left;
+}
+  
+#menu-container #menu li
+{
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 3px;
+}
+
+#menu-container #menu li a
+{
+  border-left: 1px white solid;
+  padding-left: 3px;
+}
+
+#menu-container #menu li:first-child a
+{
+  border: 0px;
+}
+
+#menu-container ul#menu 
+{
+  margin-top: 4em;
+}
+
+#menu-container ul#menu .account:before
+{
+  content: url("/Images/myacc_icon.gif") 
+}
+
+#footer{
+clear: left;
+width: 100%;
+background: black;
+color: #FFF;
+text-align: center;
+padding: 4px 0;
+}
+
+#footer a{
+color: #FFFF80;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+}
+
+

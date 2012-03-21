@@ -1,17 +1,13 @@
-﻿Imports Hometastic.Models
-Imports BlueFinity.mvNET.CoreObjects
-
+﻿Imports System.Collections
 Public Class HomeController
   Inherits System.Web.Mvc.Controller
 
   Function Index() As ActionResult
-    ViewData("Message") = "Welcome to ASP.NET MVC!"
+    ViewBag.Menu = {({"Account", "Index", "Home"}),
+                    ({"Something", "Else", "Home"})}
 
-    Dim mgmt As MVNetBase = New ManagementCompany()
-    Dim item As mvItem = mgmt.Read("6400")
 
-    Dim hoa As MVNetBase = New HoaUser()
-    Dim hoaUser As mvItem = hoa.Read("605")
+
     Return View()
   End Function
 
