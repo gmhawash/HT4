@@ -1,0 +1,5 @@
+﻿.normal { font: verdana,sans-serif; }
+.small { font: 70% verdana,sans-serif; }
+.bold {font-weight: bold; }
+.clear {clear: both;}
+.spacer {display:block; min-height: 0.5em;}

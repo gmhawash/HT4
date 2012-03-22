@@ -140,6 +140,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Content\Fonts.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -169,8 +170,10 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="packages.config" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
-    <Content Include="Views\Shared\_Header.vbhtml" />
+    <Content Include="Views\Home\_Menu.vbhtml" />
     <Content Include="Views\Home\Copy of Index.vbhtml" />
+    <Content Include="Views\Home\_Left.vbhtml" />
+    <Content Include="Views\Shared\_Footer.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
