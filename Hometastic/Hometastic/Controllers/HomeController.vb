@@ -17,4 +17,11 @@ Public Class HomeController
     Return View()
 
   End Function
+
+  <HttpPost()> _
+  Public Function LogOn(ByVal collection As FormCollection) As ActionResult
+
+    Return View()
+  End Function
+
 End Class
