@@ -1,12 +1,7 @@
 *.suo
-hometast3info*
-hometast3/Web/Bin/db*.*
-hometast3/db*/*/bin/Debug/*
-Hometast3Info/banner/*
-Hometast3Info/logos/*
 *Debug*
 /*.rar
 *TemporaryPreview*
 *publish*
 *.zip
-bin/*
+*/*/bin

@@ -3,8 +3,10 @@ Public Class HomeController
   Inherits System.Web.Mvc.Controller
 
   Function Index() As ActionResult
-    ViewBag.Menu = {({"Account", "Index", "Home"}),
-                    ({"Something", "Else", "Home"})}
+    ViewBag.Menu = {({"MY ACCOUNT", "Index", "Home"}),
+                    ({"SERVICES", "Else", "Home"}),
+                    ({"CONTACT US", "Else", "Home"})
+                   }
 
 
 

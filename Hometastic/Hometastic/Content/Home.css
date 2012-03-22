@@ -19,7 +19,13 @@ width: 960px;
 {
 display:block;
 float: left;
+width:30%;
 }
+#menu-container #left img
+{
+  float:right;
+}
+
 #menu-container #left img.corner
 {
   width: 230px;
@@ -50,12 +56,17 @@ float: left;
   float: left;
   list-style-type: none;
   padding: 3px;
+  color: White;
 }
 
-#menu-container #menu li a
+#menu-container a.menu
 {
   border-left: 1px white solid;
   padding-left: 3px;
+  color: White;
+  font-weight: bold;
+  font: 75% veranda, sans-serif;
+  vertical-align: top;
 }
 
 #menu-container #menu li:first-child a
@@ -72,6 +83,40 @@ float: left;
 {
   content: url("/Images/myacc_icon.gif") 
 }
+
+#menu-container #left #wave
+{
+  margin-top: 3em;
+  display :block;
+  text-align: right;
+}
+
+#menu-container #left #wave  img
+{
+width: 233px;
+height: 36px;
+
+padding-top: 3em;
+}
+
+#menu-container #left #message 
+{
+  display: block;
+  clear: both;  
+  text-align : right;
+  padding-right: 1em;
+  padding-top: 3em;
+  padding-left: 6em;
+line-height: 1.7em;
+  
+
+}
+
+.small
+{
+font: 70% verdana,sans-serif;
+}
+
 
 #footer{
 clear: left;
