@@ -1,21 +1,29 @@
 ﻿Imports System.Collections
 Public Class HomeController
   Inherits System.Web.Mvc.Controller
-
-  Function Index() As ActionResult
+  Sub SetupMenu()
     ViewBag.Menu = {({"MY ACCOUNT", "Index", "Home"}),
-                    ({"SERVICES", "Else", "Home"}),
-                    ({"CONTACT US", "Else", "Home"})
+                    ({"SERVICES", "Services", "Home"}),
+                    ({"CONTACT US", "ContactUs", "Home"})
                    }
-
-
-
+  End Sub
+  Function Index() As ActionResult
+    SetupMenu()
     Return View()
   End Function
 
   Function About() As ActionResult
     Return View()
+  End Function
 
+  Function Services() As ActionResult
+    SetupMenu()
+    Return View()
+  End Function
+
+  Function ContactUs() As ActionResult
+    SetupMenu()
+    Return View()
   End Function
 
   <HttpPost()> _

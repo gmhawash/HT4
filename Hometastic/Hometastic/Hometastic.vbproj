@@ -171,12 +171,13 @@
     <Content Include="packages.config" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
     <Content Include="Views\Home\_Menu.vbhtml" />
-    <Content Include="Views\Home\Copy of Index.vbhtml" />
+    <Content Include="Views\Home\ContactUs.vbhtml" />
     <Content Include="Views\Home\_Left.vbhtml" />
     <Content Include="Views\Shared\_Footer.vbhtml" />
     <Content Include="Views\Home\_Login.vbhtml" />
     <Content Include="Views\Home\_Body.vbhtml" />
     <Content Include="Views\Home\_Right.vbhtml" />
+    <Content Include="Views\Home\Services.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
