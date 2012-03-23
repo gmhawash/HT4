@@ -7,13 +7,12 @@ to use a different color start by replacing all instances of
 body{
 margin:0;
 padding:0;
-line-height: 1.5em;
 }
 
 #container 
 {
 margin:auto;
-width: 960px;
+width: 760px;
 }
 
 #menu-container #left
@@ -45,12 +44,21 @@ width:30%;
 
 #menu-container #right
 {
-  background-color: #47A2DA;
   width: 70%;
   display :block;
   float: left;
 }
   
+#menu-container #menu 
+{
+  background-color: #47A2DA;
+  margin-top: -1em;
+  height: 6em;
+}
+#menu-container #menu ul
+{
+  padding-top: 4.2em;
+}
 #menu-container #menu li
 {
   display: block;
@@ -75,12 +83,8 @@ width:30%;
   border: 0px;
 }
 
-#menu-container ul#menu 
-{
-  margin: 4em 0 0 -30px; 
-}
 
-#menu-container ul#menu .account:before
+#menu-container #menu ul .account:before
 {
   content: url("/Images/myacc_icon.gif") 
 }
@@ -105,12 +109,8 @@ padding-top: 3em;
   display: block;
   clear: both;  
   text-align : right;
-  padding-right: 1em;
-  padding-top: 3em;
-  padding-left: 6em;
-line-height: 1.7em;
-  
-
+  padding: 3em 2em 0 4em;
+  line-height: 1.7em;
 }
 
 #footer{
@@ -133,18 +133,19 @@ color: #FFFF80;
   height: 7em;  
   background-color: #ecf5fc;
   display:block;
-clear:both;
+  clear:both;
+  line-height: 1em;
 }
 
-#login > div
+#login form
 {
-  padding-left: 1em;
+  padding-left: 1.5em;
 }
 
 #login ul 
 {
-padding: 0;
-margin: 0;
+ margin-top: 0px;
+margin-left: -3em;
 }
 
 #login ul li
@@ -157,6 +158,7 @@ margin: 0;
 {
   display: block;
   float: left;
+  padding-left: 0.5em;
 }
 
 #login .input label
@@ -174,4 +176,50 @@ display: block;
 #login .clientNumber
 {
   display: none;
+}
+
+.service 
+{
+  width: 60%;
+  background-color: White;
+  display: block;
+  float: left;
+}
+.service .right span 
+{
+display: block;
+clear: both;
+font-size: 70%;
+line-height: 1.2em;
+}
+
+.service .left 
+{
+  width: 3em;
+ vertical-align : top;
+}
+
+#right-sidebar
+{
+  width: 206px;
+  background-color: White;
+  min-height: 100%;
+  display: block;
+  float: left;
+  border-left: 3px solid #ECF5FC;
+  border-right: 3px solid #ECF5FC;
+}
+
+
+#right-sidebar .description
+{
+  display: block;
+  clear: both;  
+  margin: 1.8em 0 1em 0;
+  padding: 0 0.5em;
+}
+
+.left-pad 
+{
+  padding-left: 0.5em;
 }

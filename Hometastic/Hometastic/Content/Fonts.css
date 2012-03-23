@@ -1,5 +1,7 @@
-﻿.normal { font: verdana,sans-serif; }
-.small { font: 70% verdana,sans-serif; }
+﻿body { font-family: Verdana, Sans-Serif; }
 .bold {font-weight: bold; }
 .clear {clear: both;}
 .spacer {display:block; min-height: 0.5em;}
+.title-large {color: #C60; font-size: 95%; font-weight: bold;}
+.title-green {color: #7CB326; font-size: 80%; font-weight: bold;}
+.small { font-size: 70%; }

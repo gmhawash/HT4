@@ -1,4 +1,5 @@
-﻿<ul id="menu">
+﻿<div id="menu">
+<ul>
   @For Each item As String() In ViewBag.Menu
     Dim klass = item(0).ToLower() + " menu"
     @<li>
@@ -6,3 +7,4 @@
     </li>
   Next
 </ul>
+</div>
