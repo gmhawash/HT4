@@ -5,4 +5,4 @@
     Inc.</a> 
     <a href="/Home/TOS">Terms of Service</a> and <a href="/Home/Privacy">Privacy Statement</a>
 </div>
-  @Html.Partial("_Menu", New With {.capitalize = False} )
+@Html.Partial("_Menu", New With {.capitalize = False} )

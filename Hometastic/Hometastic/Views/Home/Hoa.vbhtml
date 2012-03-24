@@ -2,10 +2,6 @@
   ViewData("Title") = "Hoa"
   Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
-@Code
-  ViewData("Title") = "Services"
-  Layout = "~/Views/Shared/_Layout.vbhtml"
-End Code
 <div id="services-menu">
   <ul>
     <li><a href="/Home/HOA" class="active">HOAs</a></li>

@@ -182,6 +182,8 @@
     <Content Include="Views\Home\MgmtCompany.vbhtml" />
     <Content Include="Views\Home\Vendors.vbhtml" />
     <Content Include="Views\Home\_ContactFooter.vbhtml" />
+    <Content Include="Views\Home\TOS.vbhtml" />
+    <Content Include="Views\Home\Privacy.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

@@ -47,6 +47,7 @@ width:30%;
   width: 70%;
   display :block;
   float: left;
+    margin-bottom: 1em;
 }
   
 #menu-container .menu 
@@ -227,9 +228,10 @@ padding-top: 3em;
 {
 padding-top: 1em;
 border-top: 3px solid  #47a2d9;
-position:absolute;
-bottom: 0;
-width: 760px
+width: 760px;
+display: block;
+clear: both;
+min-height: 4em;
 }
 
 
