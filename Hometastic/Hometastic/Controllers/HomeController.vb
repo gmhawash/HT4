@@ -18,17 +18,14 @@ Public Class HomeController
     Return View(s)
   End Function
 
-  Function About() As ActionResult
-    Return View()
-  End Function
+  <HttpPost()> _
+  Public Function LogOn(ByVal collection As FormCollection) As ActionResult
 
-  Function ContactUs() As ActionResult
-    SetupMenu()
     Return View()
   End Function
 
   <HttpPost()> _
-  Public Function LogOn(ByVal collection As FormCollection) As ActionResult
+  Public Function ContactUs(ByVal collection As FormCollection) As ActionResult
 
     Return View()
   End Function

@@ -386,7 +386,19 @@ line-height: 1.2em;
 }
 
 
-h2 
+h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
+
+#contact-us  { display: block; float: left; width: 55%; }
+#contact-us * { display: block; float: left; }
+#contact-us label {width: 6em; clear: both; text-align: right; padding-right: 1em;}
+#contact-us input { width: 13em;  }
+#contact-us textarea { width: 13em; height: 5em; }
+#contact-us input[type=submit] {width: 6em; }
+#contact-info  
 {
-  color: #C60; font-size: 1.3m; font-weight: bold   
+  display: block; 
+  float: left; 
+  width: 42%; 
+  border-left: 2px solid #ECF5FC;
+  padding-left: 1em;
 }
