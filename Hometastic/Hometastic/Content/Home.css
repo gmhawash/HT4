@@ -49,17 +49,17 @@ width:30%;
   float: left;
 }
   
-#menu-container #menu 
+#menu-container .menu 
 {
   background-color: #47A2DA;
   margin-top: -1em;
   height: 6em;
 }
-#menu-container #menu ul
+#menu-container .menu ul
 {
   padding-top: 4.2em;
 }
-#menu-container #menu li
+#menu-container .menu li
 {
   display: block;
   float: left;
@@ -78,7 +78,15 @@ width:30%;
   vertical-align: top;
 }
 
-#menu-container #menu li:first-child a
+#menu-container a.menu.active
+{
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  background-color: White;
+  color: #47A2DA;
+}
+#menu-container .menu li:first-child a
 {
   border: 0px;
 }
@@ -186,7 +194,7 @@ width:30%;
   color: #c60; 
 }
 
-#menu-container #menu ul .my_account:before
+#menu-container .menu ul .my_account:before
 {
   content: url("/Images/myacc_icon.gif") 
 }
@@ -215,23 +223,28 @@ padding-top: 3em;
   line-height: 1.7em;
 }
 
-#footer{
-clear: left;
-width: 100%;
-text-align: center;
-padding: 4px 0;
+#footer
+{
+padding-top: 1em;
+border-top: 3px solid  #47a2d9;
+position:absolute;
+bottom: 0;
+width: 760px
+}
+
+
+#footer div
+{
+  width: 50%;
+  display: block;
+  float: left;
 }
 
 #footer .menu 
 {
-  background-color: #47A2DA;
   margin-top: -1em;
-  height: 6em;
 }
-#footer .menu ul
-{
-  padding-top: 4.2em;
-}
+
 #footer .menu li
 {
   display: block;
@@ -242,7 +255,7 @@ padding: 4px 0;
 
 #footer a.menu
 {
-  border-left: 1px white solid;
+  border-left: 1px black solid;
   padding-left: 3px;
   font-weight: bold;
   font: 75% veranda, sans-serif;
@@ -252,6 +265,14 @@ padding: 4px 0;
 #footer .menu li:first-child a
 {
   border: 0px;
+}
+
+#footer .menu a.menu.active
+{
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: Black;
 }
 
 #login 

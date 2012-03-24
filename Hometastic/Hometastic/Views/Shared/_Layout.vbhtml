@@ -13,7 +13,7 @@
         @Html.Partial("_Left")
       </div>
       <div id="right">
-        @Html.Partial("_Menu")
+        @Html.Partial("_Menu", New With {.capitalize = True})
 
         <div id="main">
           @RenderBody()
