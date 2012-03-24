@@ -15,13 +15,13 @@ Public Class MvcApplication
         ' (1) Route name
         ' (2) URL with parameters
         ' (3) Parameter defaults
-        routes.MapRoute( _
-            "Default", _
-            "{controller}/{action}/{id}", _
-            New With {.controller = "Home", .action = "Index", .id = UrlParameter.Optional} _
-        )
+    routes.MapRoute( _
+        "Default", _
+        "{controller}/{path}", _
+        New With {.controller = "Home", .action = "Index", .path = UrlParameter.Optional} _
+    )
 
-    End Sub
+  End Sub
 
     Sub Application_Start()
         AreaRegistration.RegisterAllAreas()

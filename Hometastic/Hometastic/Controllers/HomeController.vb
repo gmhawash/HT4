@@ -2,22 +2,23 @@
 Public Class HomeController
   Inherits System.Web.Mvc.Controller
   Sub SetupMenu()
-    ViewBag.Menu = {({"MY ACCOUNT", "Index", "Home"}),
-                    ({"SERVICES", "Services", "Home"}),
-                    ({"CONTACT US", "ContactUs", "Home"})
+    ViewBag.Menu = {({"My Account", "/Home/Index"}),
+                    ({"Services", "/Home/Services"}),
+                    ({"Contact Us", "/Home/ContactUs"})
                    }
   End Sub
-  Function Index() As ActionResult
+
+  Function Index(ByVal query As String) As ActionResult
+    Dim s As String = HttpContext.Request.RequestContext.RouteData.Values("path")
+    If s Is Nothing Then
+      s = "Index"
+    End If
+
     SetupMenu()
-    Return View()
+    Return View(s)
   End Function
 
   Function About() As ActionResult
-    Return View()
-  End Function
-
-  Function Services() As ActionResult
-    SetupMenu()
     Return View()
   End Function
 

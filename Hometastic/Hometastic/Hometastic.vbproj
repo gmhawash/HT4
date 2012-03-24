@@ -178,6 +178,10 @@
     <Content Include="Views\Home\_Body.vbhtml" />
     <Content Include="Views\Home\_Right.vbhtml" />
     <Content Include="Views\Home\Services.vbhtml" />
+    <Content Include="Views\Home\Hoa.vbhtml" />
+    <Content Include="Views\Home\MgmtCompany.vbhtml" />
+    <Content Include="Views\Home\Vendors.vbhtml" />
+    <Content Include="Views\Home\_ContactFooter.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

@@ -83,8 +83,110 @@ width:30%;
   border: 0px;
 }
 
+  
 
-#menu-container #menu ul .account:before
+#services-menu ul
+{
+  background-color: #ecf5fc;
+  min-height: 1.3em;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#services-menu li
+{
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 3px;
+  color: black;
+}
+
+#services-menu a
+{
+  border-left: 3px white solid;
+  padding-left: 3px;
+  color: black;
+  font-weight: bold;
+  font: 75% veranda, sans-serif;
+  vertical-align: top;
+  text-decoration: none;  
+}
+
+#services-menu a:hover
+{
+   color: #C60;   
+}
+
+#services-menu li:first-child a
+{
+  border: 0px;
+}
+
+#services-menu a.active
+{
+  font-weight: bold;
+  color: #C60;
+}
+
+#main-body p 
+{
+  display: block;
+  clear: both;
+  margin-top: 1em;
+}
+
+#main-body p img
+{
+  float: left;    
+  padding: 0 1em 1em 0;
+}
+
+
+#main-body div span
+{
+  display: block;
+  float: left;
+  padding-right: 1em;
+  margin-top: 1em;  
+}
+
+#main-body div span:last-child
+{
+  width: 80%;
+}
+
+#main-body #contact-us span
+{
+  padding: 1em;
+  display: block;
+  background-color: #ecf5fc;   
+  float:left;
+  font-weight: bold;
+}
+
+#main-body #contact-us span:first-child
+{
+  display: block;
+  background-color:   #47a2d9;
+}
+#main-body #contact-us span:first-child a
+{
+  color: White;  
+  text-decoration: none;
+}
+
+#main-body #contact-us span:last-child
+{
+  width: 55%; 
+}
+
+#main-body #contact-us span:first-child a:hover
+{
+  color: #c60; 
+}
+
+#menu-container #menu ul .my_account:before
 {
   content: url("/Images/myacc_icon.gif") 
 }
@@ -116,16 +218,41 @@ padding-top: 3em;
 #footer{
 clear: left;
 width: 100%;
-background: black;
-color: #FFF;
 text-align: center;
 padding: 4px 0;
 }
 
-#footer a{
-color: #FFFF80;
+#footer .menu 
+{
+  background-color: #47A2DA;
+  margin-top: -1em;
+  height: 6em;
+}
+#footer .menu ul
+{
+  padding-top: 4.2em;
+}
+#footer .menu li
+{
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 3px;
 }
 
+#footer a.menu
+{
+  border-left: 1px white solid;
+  padding-left: 3px;
+  font-weight: bold;
+  font: 75% veranda, sans-serif;
+  vertical-align: top;
+}
+
+#footer .menu li:first-child a
+{
+  border: 0px;
+}
 
 #login 
 {
@@ -222,4 +349,21 @@ line-height: 1.2em;
 .left-pad 
 {
   padding-left: 0.5em;
+}
+
+#main 
+{
+  margin-top: -1em;
+}
+
+#main-body 
+{
+  padding-left: 1em;
+  font-size: 75%;
+}
+
+
+h2 
+{
+  color: #C60; font-size: 1.3m; font-weight: bold   
 }
