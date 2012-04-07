@@ -18,10 +18,20 @@ Public Class HomeController
     Return View(s)
   End Function
 
+  Public Function LogOn() As ActionResult
+
+    SetupMenu()
+    Return View("Index")
+  End Function
   <HttpPost()> _
   Public Function LogOn(ByVal collection As FormCollection) As ActionResult
 
-    Return View()
+    If Models.Account.Authenticate(collection("mgmtCoId"), collection("password"), collection("clientNumber"), collection("userType")) Then
+      Return RedirectToAction("Index", "ManagementCompany")
+    End If
+
+    ' TODO: Show flash error
+    Return RedirectToAction("LogOn")
   End Function
 
   <HttpPost()> _

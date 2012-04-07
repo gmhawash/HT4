@@ -1,6 +1,6 @@
 ﻿
 <div id="login" class="small">
-@Using Html.BeginForm("LogOn", "Home")
+@Using Html.BeginForm()
   @<div>
     <label class="bold">
       Login As:</label>
