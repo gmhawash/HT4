@@ -8,7 +8,8 @@ Public Class MvcApplication
   Shared Sub RegisterGlobalFilters(ByVal filters As GlobalFilterCollection)
     filters.Add(New HandleErrorAttribute())
     Dim provider As New ActionFilterProvider
-    provider.Add("*", "Index", New ManagementUserFilter)
+    provider.Add("ManagementCompany", "*", New ManagementUserFilter)
+    provider.Add("HOA", "*", New HoaUserFilter)
     FilterProviders.Providers.Add(provider)
 
   End Sub
