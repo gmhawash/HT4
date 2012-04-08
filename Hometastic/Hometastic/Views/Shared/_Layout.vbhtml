@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="container">
+    @Html.Flash()
     <div id="menu-container">
       <div id="left">
         @Html.Partial("_Left")
