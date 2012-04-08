@@ -9,11 +9,11 @@ Namespace Hometastic
     ' GET: /ManagementCompany
 
     Function Index() As ActionResult
-      Dim mgmt As MVNetBase = New ManagementCompany()
-      Dim item As mvItem = mgmt.Read("6400")
+      Dim mgmt As MVNetBase = New ManagementCompanyUser()
+      mgmt.Read("6400")
 
       Dim hoa As MVNetBase = New HoaUser()
-      Dim hoaUser As mvItem = hoa.Read("605")
+      hoa.Read("605")
       Return View()
     End Function
 

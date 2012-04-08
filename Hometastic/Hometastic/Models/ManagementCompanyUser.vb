@@ -1,5 +1,5 @@
 ﻿Namespace Models
-  Public Class ManagementCompany
+  Public Class ManagementCompanyUser
     Inherits MVNetBase
 
     Public Enum Columns

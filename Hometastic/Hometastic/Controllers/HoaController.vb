@@ -2,7 +2,7 @@
 Imports BlueFinity.mvNET.CoreObjects
 
 Namespace Hometastic
-  Public Class Hoa
+  Public Class HoaController
     Inherits System.Web.Mvc.Controller
 
     '

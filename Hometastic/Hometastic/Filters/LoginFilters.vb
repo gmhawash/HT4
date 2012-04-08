@@ -9,8 +9,7 @@
   Public Class ManagementUserFilter
     Inherits AuthorizeAttribute
     Public Overrides Sub OnAuthorization(ByVal filterContext As AuthorizationContext)
-      MyBase.OnAuthorization(filterContext)
-      If (Not Account.ManagmnetCompany()) Then
+      If (Not Account.IsManagmnetCompanyUser()) Then
         filterContext.Result = New HttpUnauthorizedResult()
       End If
     End Sub
@@ -21,8 +20,7 @@
   Public Class HoaUserFilter
     Inherits AuthorizeAttribute
     Public Overrides Sub OnAuthorization(ByVal filterContext As AuthorizationContext)
-      MyBase.OnAuthorization(filterContext)
-      If (Not Account.Hoa()) Then
+      If (Not (Account.IsHoaUser() Or Account.IsManagmnetCompanyUser)) Then
         filterContext.Result = New HttpUnauthorizedResult()
       End If
     End Sub

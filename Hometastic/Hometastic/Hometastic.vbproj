@@ -99,7 +99,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Hoa.vb" />
+    <Compile Include="Controllers\HoaController.vb" />
     <Compile Include="Controllers\ManagementCompanyController.vb" />
     <Compile Include="Filters\ActionFilterProvider.vb" />
     <Compile Include="Filters\LoginFilters.vb" />
@@ -108,7 +108,7 @@
     </Compile>
     <Compile Include="Models\Account.vb" />
     <Compile Include="Models\HoaUser.vb" />
-    <Compile Include="Models\ManagementCompany.vb" />
+    <Compile Include="Models\ManagementCompanyUser.vb" />
     <Compile Include="Models\MVNetBase.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

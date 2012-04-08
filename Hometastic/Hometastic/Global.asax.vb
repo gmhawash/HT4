@@ -9,7 +9,7 @@ Public Class MvcApplication
     filters.Add(New HandleErrorAttribute())
     Dim provider As New ActionFilterProvider
     provider.Add("ManagementCompany", "*", New ManagementUserFilter)
-    provider.Add("HOA", "*", New HoaUserFilter)
+    provider.Add("Hoa", "*", New HoaUserFilter)
     FilterProviders.Providers.Add(provider)
 
   End Sub
