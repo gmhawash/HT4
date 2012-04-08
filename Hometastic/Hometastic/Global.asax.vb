@@ -14,6 +14,10 @@ Public Class MvcApplication
 
   End Sub
 
+  Shared Sub MapResource(ByVal resource As String)
+    RouteTable.Routes.MapRoute(resource, resource & "/{action}", New With {.controller = resource})
+  End Sub
+
   Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
     routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
 
@@ -21,11 +25,9 @@ Public Class MvcApplication
     ' (1) Route name
     ' (2) URL with parameters
     ' (3) Parameter defaults
-    routes.MapRoute( _
-        "LogOn", _
-        "", _
-        New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional} _
-    )
+    routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
+    MapResource("ManagementCompany")
+    MapResource("Hoa")
 
     routes.MapRoute( _
         "Default", _

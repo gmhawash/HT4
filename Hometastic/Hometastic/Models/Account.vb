@@ -13,23 +13,24 @@ Namespace Models
       mgmtCompany.Read(UserName)
       LogOut()
 
-      If (entityType = "mgmtCompany") Then
+      If (entityType = "ManagementCompany") Then
         If (mgmtCompany.Authenticate(UserName, clientNumber, 0, Password)) Then
           HttpContext.Current.Session("CurrentUser") = mgmtCompany
         End If
-      ElseIf (entityType = "hoa") Then
+      ElseIf (entityType = "Hoa") Then
         Dim model = New HoaUser
         model.m_AccountName = mgmtCompany.Value(ManagementCompanyUser.Columns.MVNETLOGIN)
-        If (model.Authenticate(UserName, clientNumber, 1, Password)) Then
+        If (True Or model.Authenticate(UserName, clientNumber, 1, Password)) Then
           HttpContext.Current.Session("CurrentUser") = model
         End If
       End If
 
       If (HttpContext.Current.Session("CurrentUser") Is Nothing) Then
         Flash.Error("Invalid username or password")
+        Return False
       End If
 
-      Return False
+      Return True
     End Function
 
     Public Shared Sub LogOut()

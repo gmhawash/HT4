@@ -5,9 +5,9 @@
     <label class="bold">
       Login As:</label>
     <ul>
-      <li>@Html.RadioButton("userType", "mgmtCompany", True, New With {.id = "userType_mgmtCompany"})<label for="userType_mgmtCompany">Managment
+      <li>@Html.RadioButton("userType", "ManagementCompany", True, New With {.id = "userType_mgmtCompany"})<label for="userType_mgmtCompany">Managment
         Company</label></li>
-      <li>@Html.RadioButton("userType", "hoa", false, New With {.id = "userType_hoa"})<label for="userType_hoa">HOA</label></li>
+      <li>@Html.RadioButton("userType", "Hoa", false, New With {.id = "userType_hoa"})<label for="userType_hoa">HOA</label></li>
     </ul>
     <div class="clear spacer">
     </div>

@@ -25,15 +25,23 @@ Namespace Models
     End Sub
 
     Sub Connect()
-      m_mvAccount = New mvAccount(m_AccountName)
+      If m_AccountName Then
+        m_mvAccount = New mvAccount(m_AccountName)
+      End If
     End Sub
 
     Sub Disconnect()
-      m_mvAccount.Disconnect()
+      If Not m_mvAccount Is Nothing Then
+        m_mvAccount.Disconnect()
+      End If
     End Sub
 
     Function Value(ByVal key As Integer) As String
-      Return m_mvItem(m_ColumnNamesList(key))
+      Try
+        Return m_mvItem(m_ColumnNamesList(key))
+      Catch ex As Exception
+        Return Nothing
+      End Try
     End Function
 
     Function Valid()

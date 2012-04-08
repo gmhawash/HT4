@@ -1,4 +1,6 @@
 ﻿Imports System.Collections
+Imports Hometastic.Models
+
 Public Class HomeController
   Inherits System.Web.Mvc.Controller
   Sub SetupMenu()
@@ -26,11 +28,10 @@ Public Class HomeController
   <HttpPost()> _
   Public Function LogOn(ByVal collection As FormCollection) As ActionResult
 
-    If Models.Account.Authenticate(collection("mgmtCoId"), collection("password"), collection("clientNumber"), collection("userType")) Then
-      Return RedirectToAction("Index", "ManagementCompany")
+    If Account.Authenticate(collection("mgmtCoId"), collection("password"), collection("clientNumber"), collection("userType")) Then
+      Return RedirectToAction("Index", collection("userType"))
     End If
 
-    ' TODO: Show flash error
     Return RedirectToAction("LogOn")
   End Function
 
