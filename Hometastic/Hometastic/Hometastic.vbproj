@@ -203,6 +203,7 @@
     <Content Include="Views\Home\TOS.vbhtml" />
     <Content Include="Views\Home\Privacy.vbhtml" />
     <Content Include="Views\Shared\_ManagementCompanyLayout.vbhtml" />
+    <Content Include="Views\Hoa\Index.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
   </ItemGroup>

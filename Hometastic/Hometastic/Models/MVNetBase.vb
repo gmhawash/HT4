@@ -4,9 +4,9 @@ Namespace Models
 
   Public Class MVNetBase
     Protected Friend m_mvAccount As mvAccount
-    Protected Friend m_TableName As String = vbNull
+    Protected Friend m_TableName As String = Nothing
     Protected Friend m_AccountName As String = "AsiAr"
-    Protected Friend m_ColumnNames As String = vbNull
+    Protected Friend m_ColumnNames As String = Nothing
     Protected m_ColumnNamesList As List(Of String) = New List(Of String)
     Protected Friend m_Dirty As Boolean = True
     Protected Friend m_Valid As Boolean = True
@@ -25,7 +25,7 @@ Namespace Models
     End Sub
 
     Sub Connect()
-      If m_AccountName Then
+      If Not m_AccountName Is Nothing Then
         m_mvAccount = New mvAccount(m_AccountName)
       End If
     End Sub

@@ -20,7 +20,7 @@ Namespace Models
       ElseIf (entityType = "Hoa") Then
         Dim model = New HoaUser
         model.m_AccountName = mgmtCompany.Value(ManagementCompanyUser.Columns.MVNETLOGIN)
-        If (True Or model.Authenticate(UserName, clientNumber, 1, Password)) Then
+        If (model.Authenticate(UserName, clientNumber, 1, Password)) Then
           HttpContext.Current.Session("CurrentUser") = model
         End If
       End If

@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Hometastic.Models.ManagementCompany)
+﻿@ModelType Hometastic.Models.ManagementCompanyUser
 
 @Code
     ViewData("Title") = "Index"
