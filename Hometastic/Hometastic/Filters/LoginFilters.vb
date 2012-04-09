@@ -14,7 +14,9 @@ Namespace Models
       If (Not Account.IsManagmnetCompanyUser()) Then
         filterContext.Result = New HttpUnauthorizedResult()
         Flash.Error("Insufficent Privilages.  You must login to access this area.")
+        Return
       End If
+
     End Sub
   End Class
 
@@ -26,6 +28,7 @@ Namespace Models
       If (Not (Account.IsHoaUser() Or Account.IsManagmnetCompanyUser)) Then
         filterContext.Result = New HttpUnauthorizedResult()
         Flash.Error("Insufficent Privilages.  You must login to access this area.")
+        Return
       End If
     End Sub
   End Class

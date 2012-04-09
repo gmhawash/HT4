@@ -188,7 +188,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="packages.config" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
-    <Content Include="Views\Home\_Menu.vbhtml" />
+    <Content Include="Views\Shared\_Menu.vbhtml" />
     <Content Include="Views\Home\ContactUs.vbhtml" />
     <Content Include="Views\Home\_Left.vbhtml" />
     <Content Include="Views\Shared\_Footer.vbhtml" />
@@ -273,7 +273,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49405</DevelopmentServerPort>
+          <DevelopmentServerPort>56591</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

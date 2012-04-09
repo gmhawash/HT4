@@ -70,6 +70,25 @@ Namespace Models
       End Try
     End Sub
 
+    Function Find(ByVal selectionClause As String, ByVal sortClause As String) As mvItemList
+      Try
+        Connect()
+        Dim query = New mvSelect
+        Dim file As mvFile = m_mvAccount.FileOpen(m_TableName)
+
+        query.SelectionClause = selectionClause
+        query.SortClause = sortClause
+        query.DictionaryList = m_ColumnNames
+        Return file.Select(query)
+      Catch ex As Exception
+        ' TODO: Exception Handling
+        Return Nothing
+      Finally
+        Disconnect()
+      End Try
+    End Function
+
+
     '******
     ' Calls the MV.NET database requesting authentication of mgmtCompany or Hoa User.
     ' A mgmtCompany and a password are needed to authenticate a management company

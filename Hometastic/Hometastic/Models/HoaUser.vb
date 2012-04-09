@@ -1,4 +1,5 @@
-﻿Namespace Models
+﻿Imports BlueFinity.mvNET.CoreObjects
+Namespace Models
   Public Class HoaUser
     Inherits MVNetBase
 
@@ -41,11 +42,28 @@
       TEXTWELCOME
     End Enum
 
-    Sub New()
+    Sub New(ByVal accountName As String)
       m_TableName = "DWMASTER"
-      m_AccountName = "AsiDbDemo"
+      m_AccountName = accountName
       ParseColumns([Enum].GetValues(GetType(Columns)))
     End Sub
+
+    Sub New(ByVal item As mvItem)
+      m_mvItem = item
+      ParseColumns([Enum].GetValues(GetType(Columns)))
+    End Sub
+
+    Function name()
+      Return Value(Columns.HOANAME)
+    End Function
+
+    Function formattedAddress()
+      Return String.Format("{0} {1}", Value(Columns.HOAADD1), Value(Columns.HOACSZ))
+    End Function
+
+    Function id()
+      Return Value(Columns.HOANO)
+    End Function
   End Class
 End Namespace
 

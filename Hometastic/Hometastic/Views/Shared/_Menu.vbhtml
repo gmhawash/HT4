@@ -1,7 +1,7 @@
 ﻿<div class="menu">
   <ul>
     @For Each item As String() In ViewBag.Menu
-      Dim klass = item(0).ToLower().Replace(" "c, "_"c) + " footer"
+      Dim klass = item(0).ToLower().Replace(" "c, "_"c) + Model.cssClass
       If (item(1) = Request.Path) Then klass += " active"
       Dim text = If(Model.capitalize = True, item(0).ToUpper(), item(0))
          

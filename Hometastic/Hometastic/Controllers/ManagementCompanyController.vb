@@ -5,15 +5,24 @@ Namespace Hometastic
   Public Class ManagementCompanyController
     Inherits System.Web.Mvc.Controller
 
+    Dim CurrentUser As ManagementCompanyUser
+
+    Sub SetupMenu()
+      ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
+                      ({"Manage Site", "/ManagementCompany/Manage"}),
+                      ({"News", "/ManagementCompany/News"}),
+                      ({"Q&A", "/ManagementCompany/Survey"})
+                     }
+
+      CurrentUser = Session("CurrentUser")
+    End Sub
     '
     ' GET: /ManagementCompany
 
     Function Index() As ActionResult
-      Dim mgmt As MVNetBase = New ManagementCompanyUser()
-      mgmt.Read("6400")
-
-      Dim hoa As MVNetBase = New HoaUser()
-      hoa.Read("605")
+      SetupMenu()
+      ViewBag.HoaList = CurrentUser.HoaList()
+      'ViewBag.BannerVendors = 
       Return View()
     End Function
 
