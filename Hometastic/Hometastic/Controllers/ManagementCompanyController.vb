@@ -9,7 +9,7 @@ Namespace Hometastic
 
     Sub SetupMenu()
       ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
-                      ({"Manage Site", "/ManagementCompany/Manage"}),
+                      ({"Manage Site", "/ManagementCompany/Edit"}),
                       ({"News", "/ManagementCompany/News"}),
                       ({"Q&A", "/ManagementCompany/Survey"})
                      }
@@ -56,15 +56,17 @@ Namespace Hometastic
     '
     ' GET: /ManagementCompany/Edit/5
 
-    Function Edit(ByVal id As Integer) As ActionResult
-      Return View()
+    Function Edit() As ActionResult
+      Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
+      SetupMenu()
+      Return View(CurrentUser)
     End Function
 
     '
     ' POST: /ManagementCompany/Edit/5
 
     <HttpPost()> _
-    Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
+    Function Edit(ByVal collection As FormCollection) As ActionResult
       Try
         ' TODO: Add update logic here
 

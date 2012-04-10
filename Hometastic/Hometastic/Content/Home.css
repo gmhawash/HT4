@@ -156,8 +156,6 @@ width:30%;
 {
   display: block;
   float: left;
-  padding-right: 1em;
-  margin-top: 1em;  
 }
 
 #main-body div span:last-child
@@ -402,3 +400,6 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
   border-left: 2px solid #ECF5FC;
   padding-left: 1em;
 }
+
+.edit .field textarea {width: 80%; height: 8em; margin-bottom: 1em; display: block; clear: both;}
+.edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em;}

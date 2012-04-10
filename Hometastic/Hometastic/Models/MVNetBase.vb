@@ -36,12 +36,16 @@ Namespace Models
       End If
     End Sub
 
-    Function Value(ByVal key As Integer) As String
+    Function Value(ByVal key As String) As String
       Try
-        Return m_mvItem(m_ColumnNamesList(key))
+        Return m_mvItem(key)
       Catch ex As Exception
         Return Nothing
       End Try
+    End Function
+
+    Function Value(ByVal key As Integer) As String
+      Return Value(m_ColumnNamesList(key))
     End Function
 
     Function Valid()

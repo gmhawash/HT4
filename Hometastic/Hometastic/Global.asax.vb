@@ -7,10 +7,10 @@ Public Class MvcApplication
 
   Shared Sub RegisterGlobalFilters(ByVal filters As GlobalFilterCollection)
     filters.Add(New HandleErrorAttribute())
-    Dim provider As New ActionFilterProvider
-    provider.Add("ManagementCompany", "*", New ManagementUserFilter)
-    provider.Add("Hoa", "*", New HoaUserFilter)
-    FilterProviders.Providers.Add(provider)
+    'Dim provider As New ActionFilterProvider
+    'provider.Add("ManagementCompany", "*", New ManagementUserFilter)
+    'provider.Add("Hoa", "*", New HoaUserFilter)
+    'FilterProviders.Providers.Add(provider)
 
   End Sub
 
@@ -25,7 +25,8 @@ Public Class MvcApplication
     ' (1) Route name
     ' (2) URL with parameters
     ' (3) Parameter defaults
-    routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
+    'routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
+    routes.MapRoute("LogOn", "", New With {.controller = "ManagementCompany", .action = "Edit", .path = UrlParameter.Optional})
     MapResource("ManagementCompany")
     MapResource("Hoa")
     MapResource("Vendor")
