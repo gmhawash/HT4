@@ -21,7 +21,6 @@ Public Class HomeController
   End Function
 
   Public Function LogOn() As ActionResult
-
     SetupMenu()
     Return View("Index")
   End Function

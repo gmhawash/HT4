@@ -1,9 +1,24 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html
+
 <html>
 <head>
   <title>@ViewData("Title")</title>
   <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
-  <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+  <link href="@Url.Content("~/Content/demo_page.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/demo_table_jui.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/jquery.dataTables_themeroller.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/jquery-ui-1.8.4.custom.css")" rel="stylesheet" type="text/css" />
+  <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+  <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('table.dataTable').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+
+      });
+    });  
+  </script>
   @RenderSection("JavaScript", False)
 </head>
 <body>
@@ -28,5 +43,3 @@
   </div>
 </body>
 </html>
-<!DOCTYPE html>
-<html>

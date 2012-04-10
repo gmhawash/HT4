@@ -2,46 +2,38 @@
 Imports BlueFinity.mvNET.CoreObjects
 
 Namespace Hometastic
-  Public Class ManagementCompanyController
+  Public Class VendorController
     Inherits System.Web.Mvc.Controller
 
-    Dim CurrentUser As ManagementCompanyUser
-
     Sub SetupMenu()
-      ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
-                      ({"Manage Site", "/ManagementCompany/Manage"}),
-                      ({"News", "/ManagementCompany/News"}),
-                      ({"Q&A", "/ManagementCompany/Survey"})
+      ViewBag.Menu = {({"My Account", "/Home/Index"}),
+                      ({"Services", "/Home/Services"}),
+                      ({"Contact Us", "/Home/ContactUs"})
                      }
-
-      CurrentUser = Session("CurrentUser")
     End Sub
     '
-    ' GET: /ManagementCompany
+    ' GET: /Hoa
 
     Function Index() As ActionResult
-      SetupMenu()
-      ViewBag.VendorList = CurrentUser.VendorList()
-      ViewBag.HoaList = CurrentUser.HoaList()
       Return View()
     End Function
 
     '
-    ' GET: /ManagementCompany/Details/5
+    ' GET: /Hoa/Details/5
 
     Function Details(ByVal id As Integer) As ActionResult
       Return View()
     End Function
 
     '
-    ' GET: /ManagementCompany/Create
+    ' GET: /Hoa/Create
 
     Function Create() As ActionResult
       Return View()
     End Function
 
     '
-    ' POST: /ManagementCompany/Create
+    ' POST: /Hoa/Create
 
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
@@ -54,14 +46,15 @@ Namespace Hometastic
     End Function
 
     '
-    ' GET: /ManagementCompany/Edit/5
+    ' GET: /Hoa/Edit/5
 
     Function Edit(ByVal id As Integer) As ActionResult
+      SetupMenu()
       Return View()
     End Function
 
     '
-    ' POST: /ManagementCompany/Edit/5
+    ' POST: /Hoa/Edit/5
 
     <HttpPost()> _
     Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
@@ -75,14 +68,14 @@ Namespace Hometastic
     End Function
 
     '
-    ' GET: /ManagementCompany/Delete/5
+    ' GET: /Hoa/Delete/5
 
     Function Delete(ByVal id As Integer) As ActionResult
       Return View()
     End Function
 
     '
-    ' POST: /ManagementCompany/Delete/5
+    ' POST: /Hoa/Delete/5
 
     <HttpPost()> _
     Function Delete(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult

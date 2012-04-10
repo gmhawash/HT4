@@ -82,6 +82,7 @@ Namespace Models
         Return file.Select(query)
       Catch ex As Exception
         ' TODO: Exception Handling
+        Throw ex
         Return Nothing
       Finally
         Disconnect()

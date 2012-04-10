@@ -103,6 +103,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\VendorController.vb" />
     <Compile Include="Controllers\HoaController.vb" />
     <Compile Include="Controllers\ManagementCompanyController.vb" />
     <Compile Include="Filters\ActionFilterProvider.vb" />
@@ -111,6 +112,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\VendorUser.vb" />
     <Compile Include="Models\HoaUser.vb" />
     <Compile Include="Models\ManagementCompanyUser.vb" />
     <Compile Include="Models\MVNetBase.vb" />
@@ -152,6 +154,8 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="Content\demo_page.css" />
+    <Content Include="Content\demo_table_jui.css" />
     <Content Include="Content\flash\custom.png" />
     <Content Include="Content\flash\error.png" />
     <Content Include="Content\flash\notice.png" />
@@ -159,6 +163,8 @@
     <Content Include="Content\flash\success.png" />
     <Content Include="Content\flash\warning.png" />
     <Content Include="Content\Fonts.css" />
+    <Content Include="Content\jquery-ui-1.8.4.custom.css" />
+    <Content Include="Content\jquery.dataTables_themeroller.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -204,8 +210,10 @@
     <Content Include="Views\Home\Privacy.vbhtml" />
     <Content Include="Views\Shared\_ManagementCompanyLayout.vbhtml" />
     <Content Include="Views\Hoa\Index.vbhtml" />
+    <Content Include="Views\Hoa\Edit.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
+    <Content Include="Views\Vendor\Edit.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

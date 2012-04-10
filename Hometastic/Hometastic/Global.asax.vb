@@ -15,7 +15,7 @@ Public Class MvcApplication
   End Sub
 
   Shared Sub MapResource(ByVal resource As String)
-    RouteTable.Routes.MapRoute(resource, resource & "/{action}", New With {.controller = resource})
+    RouteTable.Routes.MapRoute(resource, resource & "/{action}/{id}", New With {.controller = resource, .id = UrlParameter.Optional})
   End Sub
 
   Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
@@ -28,6 +28,7 @@ Public Class MvcApplication
     routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
     MapResource("ManagementCompany")
     MapResource("Hoa")
+    MapResource("Vendor")
 
     routes.MapRoute( _
         "Default", _
@@ -42,5 +43,6 @@ Public Class MvcApplication
 
     RegisterGlobalFilters(GlobalFilters.Filters)
     RegisterRoutes(RouteTable.Routes)
+
   End Sub
 End Class

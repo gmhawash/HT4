@@ -4,6 +4,7 @@ Namespace Models
     Inherits MVNetBase
 
     Dim m_hoaUsers As List(Of HoaUser) = Nothing
+    Dim m_vendorUsers As List(Of VendorUser) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -63,6 +64,19 @@ Namespace Models
       Return m_hoaUsers
     End Function
 
+    Function VendorList()
+      If Not m_vendorUsers Is Nothing Then Return m_vendorUsers
+
+      ' Find list of HOA Users
+      Dim finder = New VendorUser(Value(ManagementCompanyUser.Columns.MVNETLOGIN))
+      Dim itemList = finder.Find("", "BY VNAME")
+      m_vendorUsers = New List(Of VendorUser)
+      For Each item As mvItem In itemList
+        m_vendorUsers.Add(New VendorUser(item))
+      Next
+
+      Return m_vendorUsers
+    End Function
   End Class
 End Namespace
 
