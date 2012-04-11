@@ -5,7 +5,7 @@
     site (Introduction) and on the page with your management company information (About
     Us).
   </p>
-  @Using Html.BeginForm()
+  @Code
     @<div class="management_company edit">
       <div class="field">
         @Html.Label("Introduction")
@@ -16,5 +16,5 @@
         @Html.TextArea("TEXTIABOUT", Model.Value("TEXTABOUT"))
       </div>
     </div>
-  End Using
+  End Code
 </div>

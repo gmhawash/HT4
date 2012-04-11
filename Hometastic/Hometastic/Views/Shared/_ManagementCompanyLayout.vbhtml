@@ -5,9 +5,9 @@
   <title>@ViewData("Title")</title>
   <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/demo_page.css")" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/Content/demo_table_jui.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery.dataTables_themeroller.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery-ui-1.8.18.custom.css")" rel="stylesheet" type="text/css" />
+
   <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
@@ -15,8 +15,8 @@
     $(document).ready(function () {
       $('table.dataTable').dataTable({
         "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-
+        "sPaginationType": "full_numbers",
+        "bSort": false
       });
     });  
   </script>

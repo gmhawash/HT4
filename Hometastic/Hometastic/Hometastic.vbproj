@@ -163,8 +163,22 @@
     <Content Include="Content\flash\success.png" />
     <Content Include="Content\flash\warning.png" />
     <Content Include="Content\Fonts.css" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\jquery-ui-1.8.18.custom.css" />
-    <Content Include="Content\jquery-ui-1.8.4.custom.css" />
     <Content Include="Content\jquery.dataTables_themeroller.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -193,6 +207,29 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Images\about.gif" />
+    <Content Include="Images\corner.gif" />
+    <Content Include="Images\hoa01.gif" />
+    <Content Include="Images\hoa02.gif" />
+    <Content Include="Images\hoa03.gif" />
+    <Content Include="Images\hoa04.gif" />
+    <Content Include="Images\hoa05.gif" />
+    <Content Include="Images\i_hoa.gif" />
+    <Content Include="Images\i_homeowners.gif" />
+    <Content Include="Images\i_letter.gif" />
+    <Content Include="Images\i_mgmt.gif" />
+    <Content Include="Images\i_phone.gif" />
+    <Content Include="Images\i_vendors.gif" />
+    <Content Include="Images\logo.gif" />
+    <Content Include="Images\mgmt01.gif" />
+    <Content Include="Images\mgmt02.gif" />
+    <Content Include="Images\mgmt03.gif" />
+    <Content Include="Images\mgmt04.gif" />
+    <Content Include="Images\myacc_icon.gif" />
+    <Content Include="Images\site1.gif" />
+    <Content Include="Images\site2.gif" />
+    <Content Include="Images\ven.jpg" />
+    <Content Include="Images\waves.gif" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
@@ -268,7 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

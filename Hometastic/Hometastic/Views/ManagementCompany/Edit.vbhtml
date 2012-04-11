@@ -26,10 +26,14 @@ End Section
 <div id="main-body">
   <p>
   </p>
-  <div id="accordion">
-    <h3><a href="#">Introduction & About Us</a></h3>
-    @Html.Partial("_edit_introduction")
-    <h3> <a href="#">Contact Information</a></h3>
-    @Html.Partial("_edit_contact_info")
-  </div>
+  @Using Html.BeginForm()
+    @<div id="accordion"> 
+        <h3><a href="#">Introduction & About Us</a></h3>
+        @Html.Partial("_edit_introduction") 
+        <h3><a href="#">Contact Information</a></h3>
+        @Html.Partial("_edit_contact_info")
+    </div>
+    @<div></div>
+    @<input type="submit" value="Update" />
+  End Using
 </div>

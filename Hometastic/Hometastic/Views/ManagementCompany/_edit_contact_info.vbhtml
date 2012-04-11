@@ -6,8 +6,8 @@
     Us).
   </p>
   <div class="management_company edit">
-  @Using Html.BeginForm()
-    Dim items = {({"Address 1", "CONTACTADDR1"}), _
+    @Code 
+      Dim items = {({"Address 1", "CONTACTADDR1"}), _
                  ({"Address 2", "CONTACTADDR2"}), _
                  ({"City", "CCITY"}), _
                  ({"State", "CST"}), _
@@ -23,6 +23,6 @@
           @Html.TextBox(item(1), Model.Value(item(1)))
         </div>
       Next
-  End Using
-    </div>
+    End Code
+  </div>
 </div>

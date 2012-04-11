@@ -402,4 +402,5 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 }
 
 .edit .field textarea {width: 80%; height: 8em; margin-bottom: 1em; display: block; clear: both;}
-.edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em;}
+.edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em; width: 10em; display:block; clear: both; float: left;}
+.edit .field input {width: 20em; display:block; float: left;}
