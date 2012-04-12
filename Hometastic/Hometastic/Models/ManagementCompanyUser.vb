@@ -41,6 +41,7 @@ Namespace Models
       LASTLOGINDATETIME
       MVNETLOGIN
       WEBSITECREATEDATE
+      THEMENAME
     End Enum
 
     Sub New(ByVal id As String)
@@ -76,6 +77,27 @@ Namespace Models
       Next
 
       Return m_vendorUsers
+    End Function
+
+    Function Address1()
+      Return Value(Columns.CONTACTADD1)
+    End Function
+
+    Function Address2()
+      Return Value(Columns.CONTACTADD2)
+    End Function
+
+    Function WebsitePath()
+      Return String.Format("{0}Sites/{1}", HttpContext.Current.Request.Url.AbsoluteUri, Value(Columns.WEBSITEPATH))
+    End Function
+
+    Function Themes() As List(Of SelectListItem)
+      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
+      For Each item In {"Default", "Antiquity", "Grayscale", "Mocha", "Seafoam", "Zeitgeist"}
+        Dim selected As Boolean = Value(Columns.THEMENAME) = item
+        list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
+      Next
+      Return list
     End Function
   End Class
 End Namespace

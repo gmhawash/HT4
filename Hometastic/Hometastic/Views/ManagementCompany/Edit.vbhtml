@@ -12,13 +12,17 @@ End Code
       headerSelected: "ui-icon-circle-arrow-s"
     };
     $("#accordion").accordion({
-      icons: icons
+      icons: icons,
+      active: 1,
+      autoHeight: false
     });
 
     $('#accordion').click(function () {
       $(this).next().toggle('slow');
       return false;
     }).next().hide();
+
+//    setTimeout(function () { $('#accordion a').first().click(); }, 1000);
   });
 </script>
 End Section

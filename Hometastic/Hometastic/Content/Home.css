@@ -401,6 +401,9 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
   padding-left: 1em;
 }
 
+.edit .field {display:block; clear: both;}
 .edit .field textarea {width: 80%; height: 8em; margin-bottom: 1em; display: block; clear: both;}
 .edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em; width: 10em; display:block; clear: both; float: left;}
 .edit .field input {width: 20em; display:block; float: left;}
+.edit .field.checkbox input {margin-left: 12em; width:10px;}
+#main-body form .edit .field span {width: 30em; display:block; float: left;}

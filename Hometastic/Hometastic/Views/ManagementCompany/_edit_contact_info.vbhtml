@@ -6,16 +6,26 @@
     Us).
   </p>
   <div class="management_company edit">
+    <div class="field">
+      @Html.Label("Address 1")
+      @Html.TextBox("CADD1", Model.Address1)
+    </div>
+
+    <div class="field">
+      @Html.Label("Address 1")
+      @Html.TextBox("CADD1", Model.Address2)
+    </div>
+
     @Code 
-      Dim items = {({"Address 1", "CONTACTADDR1"}), _
-                 ({"Address 2", "CONTACTADDR2"}), _
-                 ({"City", "CCITY"}), _
+      Dim items = {({"City", "CCITY"}), _
                  ({"State", "CST"}), _
                  ({"Zip", "CONTACTZIPCODE"}), _
                  ({"Contact E-Mail", "CONTACTEMAIL"}), _
                  ({"Webmaster E-Mail", "WEBMASTEREMAIL"}), _
                  ({"Phone", "CONTACTPHONE"}), _
-                 ({"Fax", "MGMTCOFAX"})
+                 ({"Fax", "MGMTCOFAX"}), _
+                 ({"Emergency Contact", "CONTACTNAME"}), _
+                 ({"Redirect Override URL", "WEBSITEURL"})
                  }
       For Each item As String() In items
         @<div class="field">
@@ -24,5 +34,30 @@
         </div>
       Next
     End Code
+
+    <div class="field">
+      @Html.Label("Path:")
+      <span>@Model.WebsitePath</span>
+    </div>
+
+    <div class="field">
+      @Html.Label("Theme")
+      @Html.DropDownList("THEMENAME", Model.Themes)
+    </div>
+
+    <div class="field checkbox">
+      @Html.CheckBox("PASSPROTECTPROPERTIES", Model.Value("PASSPROTECTPROPERTIES"))
+      <span>Require user to enter property name for access</span>
+    </div>
+
+    <div class="field checkbox">
+      @Html.CheckBox("SHOWEMAIL", Model.Value("SHOWEMAIL"))
+      <span>Show email address of Vendor and Service Providers</span>
+    </div>
+
+    <div class="field">
+      @Html.Label("Disk Quota:")
+      <span>@Model.Value("DISKQUOTA") MB</span>
+    </div>
   </div>
 </div>
