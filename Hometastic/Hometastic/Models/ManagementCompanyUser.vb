@@ -49,6 +49,12 @@ Namespace Models
       m_AccountName = "AsiAr"
       ParseColumns([Enum].GetValues(GetType(Columns)))
       Read(id)
+
+      m_WriteableColumnList = New List(Of String)(New String() _
+        {"TEXTINTRO", "TEXTINTRO", "CCITY", "CST", "CONTACTZIPCODE", _
+         "CONTACTEMAIL", "WEBMASTEREMAIL", "CONTACTPHONE", _
+         "MGMTCOFAX", "CONTACTNAME", "WEBSITEURL", "CADD1", _
+         "CADD1", "THEMENAME", "SHOWEMAIL", "PASSPROTECTPROPERTIES"})
     End Sub
 
     Function HoaList()
@@ -88,7 +94,16 @@ Namespace Models
     End Function
 
     Function WebsitePath()
-      Return String.Format("{0}Sites/{1}", HttpContext.Current.Request.Url.AbsoluteUri, Value(Columns.WEBSITEPATH))
+      Dim url = HttpContext.Current.Request.Url
+      Return String.Format("{0}{1}{2}/sites/{3}", url.Scheme, url.SchemeDelimiter, url.Host, Value(Columns.WEBSITEPATH))
+    End Function
+
+    Function ShowEmail() As Boolean
+      Return Value(Columns.SHOWEMAIL) = "1"
+    End Function
+
+    Function PasswordProtect() As Boolean
+      Return Value(Columns.PASSPROTECTPROPERTIES) = "1"
     End Function
 
     Function Themes() As List(Of SelectListItem)

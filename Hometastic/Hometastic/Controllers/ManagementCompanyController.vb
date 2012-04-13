@@ -1,5 +1,8 @@
 ﻿Imports Hometastic.Models
 Imports BlueFinity.mvNET.CoreObjects
+Imports System
+Imports System.IO
+Imports System.Text
 
 Namespace Hometastic
   Public Class ManagementCompanyController
@@ -14,6 +17,7 @@ Namespace Hometastic
                       ({"Q&A", "/ManagementCompany/Survey"})
                      }
 
+      Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
       CurrentUser = Session("CurrentUser")
     End Sub
     '
@@ -68,14 +72,36 @@ Namespace Hometastic
     <HttpPost()> _
     Function Edit(ByVal collection As FormCollection) As ActionResult
       Try
-        ' TODO: Add update logic here
-
+        SetupMenu()
+        CurrentUser.Write(collection)
         Return RedirectToAction("Index")
       Catch
         Return View()
       End Try
     End Function
 
+    <HttpPost()> _
+    Function Upload(ByVal collection As FormCollection) As ActionResult
+      Dim writer As FileStream
+      Dim path As String = String.Format("c:\\{0}-{1}", Request.Params("purpose"), Request.Headers("X-File-Name"))
+      writer = System.IO.File.Open(path, FileMode.Create, FileAccess.Write)
+
+      Using inputStream As Stream = Request.InputStream
+        Dim bufSize = 1024 * 1024
+        Dim buff() As Byte = New Byte(bufSize) {}
+        Dim count = 0
+
+        Do
+          count = inputStream.Read(buff, 0, bufSize)
+          writer.Write(buff, 0, count)
+        Loop While (count > 0)
+
+        writer.Close()
+      End Using
+      Response.StatusCode = 200
+      Response.ContentType = "text/html"
+      Return Json(New With {.id = 10, .success = True})
+    End Function
     '
     ' GET: /ManagementCompany/Delete/5
 

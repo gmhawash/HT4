@@ -3,9 +3,13 @@
   ViewData("Title") = "Index"
   Layout = "~/Views/Shared/_ManagementCompanyLayout.vbhtml"
 End Code
+
 <div id="main-body">
-  <h2>
-    Manage Clients</h2>
+  @Html.Partial("_edit_images", New With {.purpose = "logo"})
+  @Html.Partial("_edit_images", New With {.purpose = "front-image"})
+  <h2>Site Images</h2>
+  
+  <h2> Manage Clients</h2>
   <p>
     This profile page provides you with all the necessary tools and information to build
     and control your management company web site as well as sites for your Homeowner

@@ -17,6 +17,12 @@ End Code
       autoHeight: false
     });
 
+    // This fixes an issue with accordion and checkboxes.
+    // http://stackoverflow.com/questions/7426425/jqueryui-accordion-question
+    $("#accordion input[type='checkbox']").click(function (evt) {
+      evt.stopPropagation();
+    }); 
+
     $('#accordion').click(function () {
       $(this).next().toggle('slow');
       return false;

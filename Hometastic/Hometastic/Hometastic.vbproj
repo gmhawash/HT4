@@ -156,6 +156,7 @@
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Content\demo_page.css" />
     <Content Include="Content\demo_table_jui.css" />
+    <Content Include="Content\fileuploader.css" />
     <Content Include="Content\flash\custom.png" />
     <Content Include="Content\flash\error.png" />
     <Content Include="Content\flash\notice.png" />
@@ -231,9 +232,11 @@
     <Content Include="Images\ven.jpg" />
     <Content Include="Images\waves.gif" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
+    <Content Include="Views\ManagementCompany\_edit_contact_info.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_introduction.vbhtml" />
     <Content Include="Views\Shared\_Menu.vbhtml" />
     <Content Include="Views\Home\ContactUs.vbhtml" />
@@ -253,7 +256,7 @@
     <Content Include="Views\Hoa\Index.vbhtml" />
     <Content Include="Views\Hoa\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\Edit.vbhtml" />
-    <Content Include="Views\ManagementCompany\_edit_contact_info.vbhtml" />
+    <Content Include="Views\ManagementCompany\_edit_images.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />

@@ -12,8 +12,8 @@
     </div>
 
     <div class="field">
-      @Html.Label("Address 1")
-      @Html.TextBox("CADD1", Model.Address2)
+      @Html.Label("Address 2")
+      @Html.TextBox("CADD2", Model.Address2)
     </div>
 
     @Code 
@@ -46,12 +46,12 @@
     </div>
 
     <div class="field checkbox">
-      @Html.CheckBox("PASSPROTECTPROPERTIES", Model.Value("PASSPROTECTPROPERTIES"))
+      @Html.CheckBox("PASSPROTECTPROPERTIES", Model.PasswordProtect)
       <span>Require user to enter property name for access</span>
     </div>
 
     <div class="field checkbox">
-      @Html.CheckBox("SHOWEMAIL", Model.Value("SHOWEMAIL"))
+      @Html.CheckBox("SHOWEMAIL", Model.ShowEmail)
       <span>Show email address of Vendor and Service Providers</span>
     </div>
 

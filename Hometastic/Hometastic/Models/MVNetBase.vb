@@ -8,6 +8,7 @@ Namespace Models
     Protected Friend m_AccountName As String = "AsiAr"
     Protected Friend m_ColumnNames As String = Nothing
     Protected m_ColumnNamesList As List(Of String) = New List(Of String)
+    Protected m_WriteableColumnList As List(Of String)
     Protected Friend m_Dirty As Boolean = True
     Protected Friend m_Valid As Boolean = True
     Protected m_mvItem As mvItem = New mvItem()
@@ -73,6 +74,34 @@ Namespace Models
         Disconnect()
       End Try
     End Sub
+
+
+    '********
+    ' Writes a record to the database.
+    ' Marks the record as dirty so it can be read again next time.
+    '
+    Sub Write(ByVal record As FormCollection)
+      For Each item In m_WriteableColumnList
+        ' Handle boolean values.
+        If record(item) = "true,false" Then record(item) = "1"
+        If record(item) = "false" Then record(item) = "0"
+        m_mvItem(item) = record(item)
+      Next
+
+      Try
+        Connect()
+        Dim file As mvFile = m_mvAccount.FileOpen(m_TableName)
+        file.Write(m_mvItem)
+        ' What happens if this fails?
+      Catch ex As Exception
+        ' TODO: Exception Handling
+        m_Valid = False
+      Finally
+        m_Dirty = True
+        Disconnect()
+      End Try
+    End Sub
+
 
     Function Find(ByVal selectionClause As String, ByVal sortClause As String) As mvItemList
       Try

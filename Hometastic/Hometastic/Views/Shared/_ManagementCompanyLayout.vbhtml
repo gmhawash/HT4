@@ -7,10 +7,13 @@
   <link href="@Url.Content("~/Content/demo_page.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery.dataTables_themeroller.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery-ui-1.8.18.custom.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
 
   <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
+  <script src="@Url.Content("~/Scripts/fileuploader.js")" type="text/javascript"></script>
+
   <script type="text/javascript">
     $(document).ready(function () {
       $('table.dataTable').dataTable({
