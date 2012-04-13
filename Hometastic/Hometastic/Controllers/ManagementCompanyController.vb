@@ -100,7 +100,10 @@ Namespace Hometastic
       End Using
       Response.StatusCode = 200
       Response.ContentType = "text/html"
-      Return Json(New With {.id = 10, .success = True})
+      Return Json(New With {.success = True})
+
+      'TODO: What if it failed to upload ???
+
     End Function
     '
     ' GET: /ManagementCompany/Delete/5

@@ -5,8 +5,8 @@
 End Code
 
 <div id="main-body">
-  @Html.Partial("_edit_images", New With {.purpose = "logo"})
-  @Html.Partial("_edit_images", New With {.purpose = "front-image"})
+  @Html.Partial("_edit_images", New With {.purpose = "logo", .title = "Upload Logo"})
+  @Html.Partial("_edit_images", New With {.purpose = "front-image", .title = "Upload Front Image"})
   <h2>Site Images</h2>
   
   <h2> Manage Clients</h2>
