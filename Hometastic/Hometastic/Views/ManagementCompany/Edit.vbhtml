@@ -28,7 +28,7 @@ End Code
       return false;
     }).next().hide();
 
-//    setTimeout(function () { $('#accordion a').first().click(); }, 1000);
+    setTimeout(function () { $('#accordion a').first().click(); }, 1000);
   });
 </script>
 End Section

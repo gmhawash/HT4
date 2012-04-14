@@ -71,6 +71,20 @@ Namespace Models
       Return m_hoaUsers
     End Function
 
+    Overloads Sub Write(ByVal record As FormCollection)
+      record("TEXTINTRO") = record("TEXTINTRO").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      record("TEXTABOUT") = record("TEXTABOUT").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      MyBase.Write(record)
+    End Sub
+
+    Function Introduction() As String
+      Return Value(Columns.TEXTINTRO).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
+    Function AboutUs() As String
+      Return Value(Columns.TEXTABOUT).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
     Function VendorList()
       If Not m_vendorUsers Is Nothing Then Return m_vendorUsers
 
