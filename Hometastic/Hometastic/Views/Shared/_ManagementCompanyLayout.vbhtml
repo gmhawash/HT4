@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>@ViewData("Title")</title>
-  <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/ManagementCompany.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/demo_page.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery.dataTables_themeroller.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery-ui-1.8.18.custom.css")" rel="stylesheet" type="text/css" />

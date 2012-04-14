@@ -1,4 +1,7 @@
 ﻿Imports BlueFinity.mvNET.CoreObjects
+Imports System.IO
+Imports System.IO.Path
+
 Namespace Models
   Public Class ManagementCompanyUser
     Inherits MVNetBase
@@ -38,12 +41,13 @@ Namespace Models
       MGMTCOFAX
       MGMTCOEMAIL
       WEBMASTEREMAIL
-      LASTLOGINDATETIME
       MVNETLOGIN
-      WEBSITECREATEDATE
       THEMENAME
     End Enum
 
+    ' Setup Management Company Database table name and account
+    ' Initialize list of writable fields
+    '
     Sub New(ByVal id As String)
       m_TableName = "DWMASTER"
       m_AccountName = "AsiAr"
@@ -57,6 +61,7 @@ Namespace Models
          "CADD1", "THEMENAME", "SHOWEMAIL", "PASSPROTECTPROPERTIES"})
     End Sub
 
+    ' Build list of HOA for this management company
     Function HoaList()
       If Not m_hoaUsers Is Nothing Then Return m_hoaUsers
 
@@ -71,20 +76,7 @@ Namespace Models
       Return m_hoaUsers
     End Function
 
-    Overloads Sub Write(ByVal record As FormCollection)
-      record("TEXTINTRO") = record("TEXTINTRO").Replace(DataBASIC.CRLF, DataBASIC.VM)
-      record("TEXTABOUT") = record("TEXTABOUT").Replace(DataBASIC.CRLF, DataBASIC.VM)
-      MyBase.Write(record)
-    End Sub
-
-    Function Introduction() As String
-      Return Value(Columns.TEXTINTRO).Replace(DataBASIC.VM, DataBASIC.CRLF)
-    End Function
-
-    Function AboutUs() As String
-      Return Value(Columns.TEXTABOUT).Replace(DataBASIC.VM, DataBASIC.CRLF)
-    End Function
-
+    ' Build list of vendors fro this managmeent company
     Function VendorList()
       If Not m_vendorUsers Is Nothing Then Return m_vendorUsers
 
@@ -99,6 +91,23 @@ Namespace Models
       Return m_vendorUsers
     End Function
 
+    ' Override Write to substitute special CRLF characters on save.
+    Overloads Sub Write(ByVal record As FormCollection)
+      record("TEXTINTRO") = record("TEXTINTRO").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      record("TEXTABOUT") = record("TEXTABOUT").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      MyBase.Write(record)
+    End Sub
+
+    ' Special case to substitute special CRLF character with normal CRLF for display
+    Function Introduction() As String
+      Return Value(Columns.TEXTINTRO).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
+    Function AboutUs() As String
+      Return Value(Columns.TEXTABOUT).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
+    ' Contact addresses are read and written to differnet columns in mv.net
     Function Address1()
       Return Value(Columns.CONTACTADD1)
     End Function
@@ -107,11 +116,15 @@ Namespace Models
       Return Value(Columns.CONTACTADD2)
     End Function
 
+
+    ' Build public website path to manamgent company.
+    ' TODO: Replace with Html.ActionLink
     Function WebsitePath()
       Dim url = HttpContext.Current.Request.Url
       Return String.Format("{0}{1}{2}/sites/{3}", url.Scheme, url.SchemeDelimiter, url.Host, Value(Columns.WEBSITEPATH))
     End Function
 
+    ' Boolean values of "1" and "0"
     Function ShowEmail() As Boolean
       Return Value(Columns.SHOWEMAIL) = "1"
     End Function
@@ -120,6 +133,7 @@ Namespace Models
       Return Value(Columns.PASSPROTECTPROPERTIES) = "1"
     End Function
 
+    ' List of supported themes.
     Function Themes() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
       For Each item In {"Default", "Antiquity", "Grayscale", "Mocha", "Seafoam", "Zeitgeist"}
@@ -127,6 +141,28 @@ Namespace Models
         list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
       Next
       Return list
+    End Function
+
+    Function GetFileName(ByVal filePattern As String)
+      Dim path = MyConfiguration.PhysicalAssetFolder("logo", Value("WEBSITEPATH"))
+      Dim dirInfo As System.IO.DirectoryInfo = New DirectoryInfo(path)
+
+      Dim files() = dirInfo.GetFiles(filePattern)
+      Dim filename = Nothing
+      If files.Length > 0 Then
+        Dim x As System.IO.FileInfo = files(0)
+        filename = x.Name
+      End If
+
+      Return filename
+    End Function
+
+    Function LogoPath()
+      Return MyConfiguration.AssetUrl("logo", Value(Columns.WEBSITEPATH), GetFileName(Id() & ".*"))
+    End Function
+
+    Function FrontPagePath()
+      Return MyConfiguration.AssetUrl("front-image", Value(Columns.WEBSITEPATH), GetFileName(Id() & "_front_image.*"))
     End Function
   End Class
 End Namespace

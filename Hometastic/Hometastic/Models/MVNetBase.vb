@@ -12,6 +12,11 @@ Namespace Models
     Protected Friend m_Dirty As Boolean = True
     Protected Friend m_Valid As Boolean = True
     Protected m_mvItem As mvItem = New mvItem()
+    Protected m_Id As String = Nothing
+
+    Function Id()
+      Return m_Id
+    End Function
 
     Sub ParseColumns(ByVal ColumnTypes)
       m_ColumnNames = ""
@@ -60,6 +65,8 @@ Namespace Models
     '
     Sub Read(ByVal record As String)
       If (Not m_Dirty) Then Return
+
+      m_Id = record
 
       Try
         Connect()

@@ -190,6 +190,7 @@
     <Content Include="Content\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\ManagementCompany.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -269,6 +270,7 @@
     <Content Include="Views\ManagementCompany\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_images.vbhtml" />
     <None Include="Support\YamlSerializer\YAML Serializer.chm" />
+    <Content Include="Views\Resources\Details.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />
@@ -294,7 +296,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Home.css" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

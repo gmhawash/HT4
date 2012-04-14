@@ -27,7 +27,7 @@ Namespace Hometastic
       SetupMenu()
       ViewBag.VendorList = CurrentUser.VendorList()
       ViewBag.HoaList = CurrentUser.HoaList()
-      Return View()
+      Return View(CurrentUser)
     End Function
 
     '
@@ -83,7 +83,12 @@ Namespace Hometastic
     <HttpPost()> _
     Function Upload(ByVal collection As FormCollection) As ActionResult
       Dim writer As FileStream
-      Dim path As String = String.Format("c:\\{0}-{1}", Request.Params("purpose"), Request.Headers("X-File-Name"))
+      SetupMenu()
+
+      ' TODO: Delete exisiting images of same pattern.
+
+      Dim extension = Request.Headers("X-File-Name").Split(".").Last()
+      Dim path = MyConfiguration.PhysicalAssetPath(Request.Params("purpose"), CurrentUser.Value("WEBSITEPATH"), CurrentUser.Id, extension)
       writer = System.IO.File.Open(path, FileMode.Create, FileAccess.Write)
 
       Using inputStream As Stream = Request.InputStream

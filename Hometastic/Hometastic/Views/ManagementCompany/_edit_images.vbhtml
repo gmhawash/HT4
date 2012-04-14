@@ -4,7 +4,7 @@
       // pass the dom node (ex. $(selector)[0] for jQuery users)
       element: document.getElementById('@Model.purpose'),
       // path to server-side upload script
-      action: '/ManagementCompany/Upload',
+      action: '@Url.Action("Upload", "ManagementCompany")',
       debug: true,
       params: {
         purpose: '@Model.purpose'
@@ -16,7 +16,6 @@
       template:  $('#@Model.purpose-Template').html()
     });
   });
-
 </script>
 
  <script type='text/template' id="@Model.purpose-Template">
@@ -27,8 +26,13 @@
   </div>
 </script>
 
+<div class="image @Model.purpose">
+  <img src="@Model.image_path" alt="@Model.title" />
+  
+</div>
+
 <div id="@Model.purpose">       
-    <noscript>          
+    <noscript>
         <p>Please enable JavaScript to use file uploader.</p>
         <!-- or put a simple form for upload here -->
     </noscript>         
