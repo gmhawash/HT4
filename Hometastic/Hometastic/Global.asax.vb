@@ -44,6 +44,6 @@ Public Class MvcApplication
 
     RegisterGlobalFilters(GlobalFilters.Filters)
     RegisterRoutes(RouteTable.Routes)
-
+    MyConfiguration.Load()
   End Sub
 End Class

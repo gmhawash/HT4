@@ -74,6 +74,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Yaml, Version=1.0.2350.27959, Culture=neutral, PublicKeyToken=0788fe92405bb6fa">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Yaml.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlSerializer">
+      <HintPath>Support\YamlSerializer\YamlSerializer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -112,6 +119,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Support\MyConfiguration.vb" />
     <Compile Include="Models\VendorUser.vb" />
     <Compile Include="Models\HoaUser.vb" />
     <Compile Include="Models\ManagementCompanyUser.vb" />
@@ -144,6 +152,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Configuration.Yaml" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -235,6 +244,8 @@
     <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
+    <Content Include="Support\YamlSerializer\YamlSerializer.dll" />
+    <Content Include="Support\YamlSerializer\YamlSerializer.XML" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_contact_info.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_introduction.vbhtml" />
@@ -257,6 +268,7 @@
     <Content Include="Views\Hoa\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_images.vbhtml" />
+    <None Include="Support\YamlSerializer\YAML Serializer.chm" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />
