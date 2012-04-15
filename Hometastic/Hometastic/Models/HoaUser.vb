@@ -61,7 +61,7 @@ Namespace Models
       Return String.Format("{0} {1}", Value(Columns.HOAADD1), Value(Columns.HOACSZ))
     End Function
 
-    Function id()
+    Overloads Function id()
       Return Value(Columns.HOANO)
     End Function
   End Class

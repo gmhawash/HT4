@@ -30,6 +30,7 @@ Public Class MvcApplication
     MapResource("ManagementCompany")
     MapResource("Hoa")
     MapResource("Vendor")
+    MapResource("News")
 
     routes.MapRoute( _
         "Default", _

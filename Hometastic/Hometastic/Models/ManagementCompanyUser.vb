@@ -8,6 +8,7 @@ Namespace Models
 
     Dim m_hoaUsers As List(Of HoaUser) = Nothing
     Dim m_vendorUsers As List(Of VendorUser) = Nothing
+    Dim m_NewsList As List(Of News) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -76,7 +77,7 @@ Namespace Models
       Return m_hoaUsers
     End Function
 
-    ' Build list of vendors fro this managmeent company
+    ' Build list of vendors for this managmeent company
     Function VendorList()
       If Not m_vendorUsers Is Nothing Then Return m_vendorUsers
 
@@ -89,6 +90,21 @@ Namespace Models
       Next
 
       Return m_vendorUsers
+    End Function
+
+    ' Build list of news for this management comapany
+    Function NewsList()
+      If Not m_NewsList Is Nothing Then Return m_NewsList
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim finder = New News(m_AccountName)
+      Dim itemList = finder.Find(String.Format("WITH MGMTCONO = ""{0}""", Id()), "BY CREATEDATE")
+      m_NewsList = New List(Of News)
+      For Each item As mvItem In itemList
+        m_NewsList.Add(New News(item))
+      Next
+
+      Return m_NewsList
     End Function
 
     ' Override Write to substitute special CRLF characters on save.
@@ -121,7 +137,7 @@ Namespace Models
     ' TODO: Replace with Html.ActionLink
     Function WebsitePath()
       Dim url = HttpContext.Current.Request.Url
-      Return String.Format("{0}{1}{2}/sites/{3}", url.Scheme, url.SchemeDelimiter, url.Host, Value(Columns.WEBSITEPATH))
+      Return String.Format("{0}{1}{2}/sites/{3}", url.Scheme, Uri.SchemeDelimiter, url.Host, Value(Columns.WEBSITEPATH))
     End Function
 
     ' Boolean values of "1" and "0"

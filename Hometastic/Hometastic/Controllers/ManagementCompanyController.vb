@@ -13,7 +13,7 @@ Namespace Hometastic
     Sub SetupMenu()
       ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
                       ({"Manage Site", "/ManagementCompany/Edit"}),
-                      ({"News", "/ManagementCompany/News"}),
+                      ({"News", "/News/Index"}),
                       ({"Q&A", "/ManagementCompany/Survey"})
                      }
 
@@ -28,33 +28,6 @@ Namespace Hometastic
       ViewBag.VendorList = CurrentUser.VendorList()
       ViewBag.HoaList = CurrentUser.HoaList()
       Return View(CurrentUser)
-    End Function
-
-    '
-    ' GET: /ManagementCompany/Details/5
-
-    Function Details(ByVal id As Integer) As ActionResult
-      Return View()
-    End Function
-
-    '
-    ' GET: /ManagementCompany/Create
-
-    Function Create() As ActionResult
-      Return View()
-    End Function
-
-    '
-    ' POST: /ManagementCompany/Create
-
-    <HttpPost()> _
-    Function Create(ByVal collection As FormCollection) As ActionResult
-      Try
-        ' TODO: Add insert logic here
-        Return RedirectToAction("Index")
-      Catch
-        Return View()
-      End Try
     End Function
 
     '
@@ -109,26 +82,6 @@ Namespace Hometastic
 
       'TODO: What if it failed to upload ???
 
-    End Function
-    '
-    ' GET: /ManagementCompany/Delete/5
-
-    Function Delete(ByVal id As Integer) As ActionResult
-      Return View()
-    End Function
-
-    '
-    ' POST: /ManagementCompany/Delete/5
-
-    <HttpPost()> _
-    Function Delete(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
-      Try
-        ' TODO: Add delete logic here
-
-        Return RedirectToAction("Index")
-      Catch
-        Return View()
-      End Try
     End Function
   End Class
 End Namespace

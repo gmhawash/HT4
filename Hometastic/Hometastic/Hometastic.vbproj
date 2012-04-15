@@ -110,6 +110,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\NewsController.vb" />
     <Compile Include="Controllers\VendorController.vb" />
     <Compile Include="Controllers\HoaController.vb" />
     <Compile Include="Controllers\ManagementCompanyController.vb" />
@@ -119,6 +120,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\News.vb" />
     <Compile Include="Support\MyConfiguration.vb" />
     <Compile Include="Models\VendorUser.vb" />
     <Compile Include="Models\HoaUser.vb" />
@@ -270,7 +272,9 @@
     <Content Include="Views\ManagementCompany\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_images.vbhtml" />
     <None Include="Support\YamlSerializer\YAML Serializer.chm" />
-    <Content Include="Views\Resources\Details.vbhtml" />
+    <Content Include="Views\ManagementCompany\News.vbhtml" />
+    <Content Include="Views\News\Index.vbhtml" />
+    <Content Include="Views\News\Create.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />

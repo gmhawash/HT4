@@ -37,7 +37,7 @@ Namespace Models
       Return String.Format("{0} {1}", Value(Columns.VADD1), Value(Columns.VCSZ))
     End Function
 
-    Function id()
+    Overloads Function id()
       Return m_mvItem.ID
     End Function
   End Class
