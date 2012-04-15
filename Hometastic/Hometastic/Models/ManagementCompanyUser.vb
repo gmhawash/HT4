@@ -93,11 +93,11 @@ Namespace Models
     End Function
 
     ' Build list of news for this management comapany
-    Function NewsList()
+    Overrides Function NewsList()
       If Not m_NewsList Is Nothing Then Return m_NewsList
 
       ' Find list of News Items  (This off the same server as the management company)
-      Dim finder = New News(m_AccountName)
+      Dim finder = New News(Me)
       Dim itemList = finder.Find(String.Format("WITH MGMTCONO = ""{0}""", Id()), "BY CREATEDATE")
       m_NewsList = New List(Of News)
       For Each item As mvItem In itemList

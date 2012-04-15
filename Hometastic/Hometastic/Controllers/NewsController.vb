@@ -4,7 +4,7 @@ Imports BlueFinity.mvNET.CoreObjects
 Namespace Hometastic
   Public Class NewsController
     Inherits System.Web.Mvc.Controller
-    Dim CurrentUser
+    Dim CurrentUser As MVNetBase
 
     Sub SetupMenu()
       ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
@@ -45,7 +45,9 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        'TODO: Need to write New Sequence to news since this is a new article.
+        SetupMenu()
+        Dim newsItem = New News(CurrentUser)
+        newsItem.Write(collection)
         Return RedirectToAction("Index")
       Catch
         Return View()

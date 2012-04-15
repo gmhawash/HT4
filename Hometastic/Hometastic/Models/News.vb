@@ -8,13 +8,30 @@ Namespace Models
       TITLE
       HEADLINE
       BODY
+      HNAME
+      HOANAME
+      HOANO
+      MNAME
+      MGMTCONAME
+      MGMTCONO
+      SEQ
     End Enum
 
-    Sub New(Optional ByVal accountName As String = "AsiAr")
+    Sub New(Optional ByRef CurrentUser As MVNetBase = Nothing)
       m_TableName = "DWNEWS"
-      m_AccountName = accountName
+      If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
+      m_CurrentUser = CurrentUser
       ParseColumns([Enum].GetValues(GetType(Columns)))
-      m_WriteableColumnList = New List(Of String)(New String() {"TITLE", "HEADLINE", "BODY"})
+      m_WriteableColumnList = New List(Of String)(New String() {"TITLE", "HEADLINE", "BODY", "MGMTCONO"})
+    End Sub
+
+    Overloads Function NextId()
+      Return NextId(String.Format("WITH MGMTCONO = ""{0}""", m_CurrentUser.Id))
+    End Function
+
+    Overloads Sub Write(ByVal record As FormCollection)
+      record("ID") = m_CurrentUser.Id & "*" & NextId()
+      MyBase.Write(record)
     End Sub
 
     Sub New(ByVal item As mvItem)

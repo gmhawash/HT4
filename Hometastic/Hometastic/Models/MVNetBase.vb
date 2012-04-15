@@ -11,8 +11,9 @@ Namespace Models
     Protected m_WriteableColumnList As List(Of String)
     Protected Friend m_Dirty As Boolean = True
     Protected Friend m_Valid As Boolean = True
-    Protected m_mvItem As mvItem = New mvItem()
+    Protected m_mvItem As mvItem = Nothing
     Protected m_Id As String = Nothing
+    Protected m_CurrentUser As MVNetBase = Nothing
 
     Function Id()
       Return m_Id
@@ -29,6 +30,10 @@ Namespace Models
       Dim charsToTrim() As Char = {" "c, ","c}
       m_ColumnNames = m_ColumnNames.Trim(charsToTrim)
     End Sub
+
+    Overridable Function NewsList()
+      Return Nothing
+    End Function
 
     Sub Connect()
       If Not m_AccountName Is Nothing Then
@@ -58,6 +63,23 @@ Namespace Models
       Return m_Valid
     End Function
 
+    Function NextId(Optional ByVal SelectClause As String = Nothing)
+      Dim count = 0
+      Try
+        Connect()
+        If SelectClause Is Nothing Then
+          count = m_mvAccount.FileCount(m_TableName)
+        Else
+          count = m_mvAccount.FileCount(m_TableName, SelectClause)
+        End If
+      Catch ex As Exception
+        ' TODO: Handle exceptions
+      Finally
+        Disconnect()
+      End Try
+      Return count + 1
+    End Function
+
     '********
     ' Reads a record from the database.
     ' If the record has been read during the request and has not been marked as dirty (by a write)
@@ -82,22 +104,31 @@ Namespace Models
       End Try
     End Sub
 
+    Sub TransformBoolean(ByRef record As FormCollection)
+      For Each item In m_WriteableColumnList
+        ' Microsoft has a strange way of handling checkboxes
+        ' true,false means it has been checked, false it is not checked.  They do this
+        ' to make sure that the "unchecking" of a checkbox is reported by putting
+        ' a hidden field with the same name of the checkbox.  That is why we get two 
+        ' values for a checked check box (the first comes from the checkbox, the second
+        ' from the hidden field.  Actually "false" always comes from the hidden field.
+        If record(item) = "true,false" Then record(item) = "1"
+        If record(item) = "false" Then record(item) = "0"
+        m_mvItem(item) = record(item)
+      Next
+    End Sub
 
     '********
     ' Writes a record to the database.
     ' Marks the record as dirty so it can be read again next time.
     '
     Sub Write(ByVal record As FormCollection)
-      For Each item In m_WriteableColumnList
-        ' Handle boolean values.
-        If record(item) = "true,false" Then record(item) = "1"
-        If record(item) = "false" Then record(item) = "0"
-        m_mvItem(item) = record(item)
-      Next
-
       Try
         Connect()
         Dim file As mvFile = m_mvAccount.FileOpen(m_TableName)
+        If m_mvItem Is Nothing Then m_mvItem = file.NewItem()
+        TransformBoolean(record)
+        If Not record("ID") Is Nothing Then m_mvItem.ID = record("ID")
         file.Write(m_mvItem)
         ' What happens if this fails?
       Catch ex As Exception
