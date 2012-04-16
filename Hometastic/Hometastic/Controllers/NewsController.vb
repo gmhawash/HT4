@@ -3,24 +3,10 @@ Imports BlueFinity.mvNET.CoreObjects
 
 Namespace Hometastic
   Public Class NewsController
-    Inherits System.Web.Mvc.Controller
-    Dim CurrentUser As MVNetBase
-
-    Sub SetupMenu()
-      ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
-                      ({"Manage Site", "/ManagementCompany/Edit"}),
-                      ({"News", "/News/Index"}),
-                      ({"Q&A", "/ManagementCompany/Survey"})
-                     }
-
-      Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
-      CurrentUser = Session("CurrentUser")
-    End Sub
+    Inherits ApplicationController
     '
     ' GET: /News
-
     Function Index() As ActionResult
-      SetupMenu()
       ViewBag.NewsList = CurrentUser.NewsList
       Return View()
     End Function
@@ -29,7 +15,6 @@ Namespace Hometastic
     ' GET: /News/Create
 
     Function Create() As ActionResult
-      SetupMenu()
       Return View(New News())
     End Function
 
@@ -39,8 +24,7 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        SetupMenu()
-        Dim newsItem = New News(CurrentUser)
+        Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
         newsItem.Write(collection)
         Return RedirectToAction("Index")
       Catch
@@ -52,8 +36,7 @@ Namespace Hometastic
     ' GET: /News/Edit/5
 
     Function Edit(ByVal id As String) As ActionResult
-      SetupMenu()
-      Dim newsItem = New News(CurrentUser)
+      Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
       newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
       Return View(newsItem)
     End Function
@@ -64,8 +47,7 @@ Namespace Hometastic
     <HttpPost()> _
     Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
       Try
-        SetupMenu()
-        Dim newsItem = New News(CurrentUser)
+        Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
         newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
         newsItem.Write(collection)
         Return RedirectToAction("Index")

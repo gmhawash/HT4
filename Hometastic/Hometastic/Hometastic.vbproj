@@ -110,12 +110,14 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApplicationController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
     <Compile Include="Controllers\VendorController.vb" />
     <Compile Include="Controllers\HoaController.vb" />
     <Compile Include="Controllers\ManagementCompanyController.vb" />
-    <Compile Include="Filters\ActionFilterProvider.vb" />
-    <Compile Include="Filters\LoginFilters.vb" />
+    <Compile Include="Filters\FilterProvider.vb" />
+    <Compile Include="Filters\InitializeFilters.vb" />
+    <Compile Include="Filters\AuthenticationFilters.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

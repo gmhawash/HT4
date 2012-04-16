@@ -6,25 +6,11 @@ Imports System.Text
 
 Namespace Hometastic
   Public Class ManagementCompanyController
-    Inherits System.Web.Mvc.Controller
-
-    Dim CurrentUser As ManagementCompanyUser
-
-    Sub SetupMenu()
-      ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
-                      ({"Manage Site", "/ManagementCompany/Edit"}),
-                      ({"News", "/News/Index"}),
-                      ({"Q&A", "/ManagementCompany/Survey"})
-                     }
-
-      Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
-      CurrentUser = Session("CurrentUser")
-    End Sub
+    Inherits ApplicationController
     '
     ' GET: /ManagementCompany
 
     Function Index() As ActionResult
-      SetupMenu()
       ViewBag.VendorList = CurrentUser.VendorList()
       ViewBag.HoaList = CurrentUser.HoaList()
       Return View(CurrentUser)
@@ -35,7 +21,6 @@ Namespace Hometastic
 
     Function Edit() As ActionResult
       Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
-      SetupMenu()
       Return View(CurrentUser)
     End Function
 
@@ -45,7 +30,6 @@ Namespace Hometastic
     <HttpPost()> _
     Function Edit(ByVal collection As FormCollection) As ActionResult
       Try
-        SetupMenu()
         CurrentUser.Write(collection)
         Return RedirectToAction("Index")
       Catch
@@ -56,7 +40,6 @@ Namespace Hometastic
     <HttpPost()> _
     Function Upload(ByVal collection As FormCollection) As ActionResult
       Dim writer As FileStream
-      SetupMenu()
 
       ' TODO: Delete exisiting images of same pattern.
 

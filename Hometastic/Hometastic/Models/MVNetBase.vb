@@ -1,7 +1,6 @@
 ﻿Imports BlueFinity.mvNET.CoreObjects
 
 Namespace Models
-
   Public Class MVNetBase
     Protected Friend m_mvAccount As mvAccount
     Protected Friend m_TableName As String = Nothing

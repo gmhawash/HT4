@@ -5,12 +5,12 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Hometastic.Models
 
-Public Class ActionFilterProvider
+Public Class FilterProvider
   Implements IFilterProvider
 
   Private actions As IList(Of ControllerAction) = New List(Of ControllerAction)
 
-  Public Sub Add(ByVal controllername As String, ByVal actionname As String, ByVal filter As AuthorizeAttribute)
+  Public Sub Add(ByVal controllername As String, ByVal actionname As String, ByVal filter As FilterAttribute)
     actions.Add(New ControllerAction With
                 {.ControllerName = controllername,
                  .ActionName = actionname,
@@ -38,8 +38,7 @@ Public Class ActionFilterProvider
 End Class
 
 Friend Class ControllerAction
-
   Friend Property ControllerName As String
   Friend Property ActionName As String
-  Friend Property filter As AuthorizeAttribute
+  Friend Property filter As FilterAttribute
 End Class

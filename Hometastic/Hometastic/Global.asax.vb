@@ -1,5 +1,6 @@
 ﻿' Note: For instructions on enabling IIS6 or IIS7 classic mode, 
 ' visit http://go.microsoft.com/?LinkId=9394802
+
 Imports Hometastic.Models
 
 Public Class MvcApplication
@@ -7,11 +8,15 @@ Public Class MvcApplication
 
   Shared Sub RegisterGlobalFilters(ByVal filters As GlobalFilterCollection)
     filters.Add(New HandleErrorAttribute())
-    'Dim provider As New ActionFilterProvider
+    Dim provider As New FilterProvider
     'provider.Add("ManagementCompany", "*", New ManagementUserFilter)
     'provider.Add("Hoa", "*", New HoaUserFilter)
-    'FilterProviders.Providers.Add(provider)
 
+    Provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("Home", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("News", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("Hoa", "*", New HoaInitializeFilter)
+    FilterProviders.Providers.Add(provider)
   End Sub
 
   Shared Sub MapResource(ByVal resource As String)

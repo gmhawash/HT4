@@ -5,13 +5,6 @@ Namespace Hometastic
   Public Class VendorController
     Inherits System.Web.Mvc.Controller
 
-    Sub SetupMenu()
-      ViewBag.Menu = {({"My Account", "/Home/Index"}),
-                      ({"Services", "/Home/Services"}),
-                      ({"Contact Us", "/Home/ContactUs"})
-                     }
-    End Sub
-    '
     ' GET: /Hoa
 
     Function Index() As ActionResult
@@ -49,7 +42,6 @@ Namespace Hometastic
     ' GET: /Hoa/Edit/5
 
     Function Edit(ByVal id As Integer) As ActionResult
-      SetupMenu()
       Return View()
     End Function
 
