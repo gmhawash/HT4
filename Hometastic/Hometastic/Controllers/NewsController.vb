@@ -26,12 +26,6 @@ Namespace Hometastic
     End Function
 
     '
-    ' GET: /News/Details/5
-    Function Details(ByVal id As Integer) As ActionResult
-      Return View()
-    End Function
-
-    '
     ' GET: /News/Create
 
     Function Create() As ActionResult
@@ -57,18 +51,23 @@ Namespace Hometastic
     '
     ' GET: /News/Edit/5
 
-    Function Edit(ByVal id As Integer) As ActionResult
-      Return View()
+    Function Edit(ByVal id As String) As ActionResult
+      SetupMenu()
+      Dim newsItem = New News(CurrentUser)
+      newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
+      Return View(newsItem)
     End Function
 
     '
     ' POST: /News/Edit/5
 
     <HttpPost()> _
-    Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
+    Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
       Try
-        ' TODO: Add update logic here
-
+        SetupMenu()
+        Dim newsItem = New News(CurrentUser)
+        newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
+        newsItem.Write(collection)
         Return RedirectToAction("Index")
       Catch
         Return View()

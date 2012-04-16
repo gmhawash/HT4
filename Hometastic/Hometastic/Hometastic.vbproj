@@ -275,6 +275,8 @@
     <Content Include="Views\ManagementCompany\News.vbhtml" />
     <Content Include="Views\News\Index.vbhtml" />
     <Content Include="Views\News\Create.vbhtml" />
+    <Content Include="Views\News\_Form.vbhtml" />
+    <Content Include="Views\News\Edit.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />

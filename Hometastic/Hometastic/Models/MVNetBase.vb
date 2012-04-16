@@ -141,7 +141,7 @@ Namespace Models
     End Sub
 
 
-    Function Find(ByVal selectionClause As String, ByVal sortClause As String) As mvItemList
+    Function Find(ByVal selectionClause As String, Optional ByVal sortClause As String = Nothing) As mvItemList
       Try
         Connect()
         Dim query = New mvSelect

@@ -31,7 +31,7 @@ End Code
           <td>@item.Value("TITLE") </td>
           <td>@item.Value("HEADLINE") </td>
           <td>@item.CreatedDate</td>
-          <td>@Html.ActionLink("Edit", "Edit", "News", New With {.id = item.Id}, vbNull)</td>
+          <td>@Html.ActionLink("Edit", "Edit", "News", New With {.id = item.ID}, vbNull)</td>
         </tr>
       Next
     </tbody>
