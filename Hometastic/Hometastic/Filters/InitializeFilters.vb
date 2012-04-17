@@ -14,7 +14,7 @@ Namespace Models
       filterContext.Controller.ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
                       ({"Manage Site", "/ManagementCompany/Edit"}),
                       ({"News", "/News/Index"}),
-                      ({"Q&A", "/ManagementCompany/Survey"})
+                      ({"Q&A", "/Survey/Index"})
                      }
       Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
     End Sub

@@ -15,6 +15,7 @@ Public Class MvcApplication
     Provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Home", "*", New ManagementCompanyInitializeFilter)
     provider.Add("News", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("Survey", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Hoa", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
@@ -36,6 +37,7 @@ Public Class MvcApplication
     MapResource("Hoa")
     MapResource("Vendor")
     MapResource("News")
+    MapResource("Survey")
 
     routes.MapRoute( _
         "Default", _

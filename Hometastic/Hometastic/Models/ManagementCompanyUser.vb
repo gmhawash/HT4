@@ -9,6 +9,7 @@ Namespace Models
     Dim m_hoaUsers As List(Of HoaUser) = Nothing
     Dim m_vendorUsers As List(Of VendorUser) = Nothing
     Dim m_NewsList As List(Of News) = Nothing
+    Dim m_SurveyList As List(Of Survey) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -105,6 +106,21 @@ Namespace Models
       Next
 
       Return m_NewsList
+    End Function
+
+    ' Build list of news for this management comapany
+    Overrides Function SurveyList()
+      If Not m_SurveyList Is Nothing Then Return m_SurveyList
+
+      ' Find list of Survey Items  (This off the same server as the management company)
+      Dim finder = New Survey(Me)
+      Dim itemList = finder.Find(String.Format("WITH MGMTCONO = ""{0}""", Id()), "BY @ID")
+      m_SurveyList = New List(Of Survey)
+      For Each item As mvItem In itemList
+        m_SurveyList.Add(New Survey(item))
+      Next
+
+      Return m_SurveyList
     End Function
 
     ' Override Write to substitute special CRLF characters on save.

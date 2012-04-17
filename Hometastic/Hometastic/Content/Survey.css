@@ -1,0 +1,14 @@
+﻿.question-group 
+{
+  padding: 1em;
+  margin-bottom: 0.5em;
+  border: 1px solid gray;
+}
+
+.question-group:hover
+{
+  background-color: #FDFCDC;
+}
+
+.question-group input.question {width: 30em;}
+#target .button span, .button span {padding: 2px; font-size: 0.8em;}

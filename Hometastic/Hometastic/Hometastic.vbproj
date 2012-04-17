@@ -51,6 +51,9 @@
       <HintPath>..\packages\MvcFlash.1.0.0\lib\MvcFlash.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -111,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.vb" />
+    <Compile Include="Controllers\SurveyController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
     <Compile Include="Controllers\VendorController.vb" />
     <Compile Include="Controllers\HoaController.vb" />
@@ -122,6 +126,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
     <Compile Include="Support\MyConfiguration.vb" />
     <Compile Include="Models\VendorUser.vb" />
@@ -167,6 +172,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="Content\Survey.css" />
     <Content Include="Content\demo_page.css" />
     <Content Include="Content\demo_table_jui.css" />
     <Content Include="Content\fileuploader.css" />
@@ -177,6 +183,7 @@
     <Content Include="Content\flash\success.png" />
     <Content Include="Content\flash\warning.png" />
     <Content Include="Content\Fonts.css" />
+    <Content Include="Content\Home.css" />
     <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -249,6 +256,7 @@
     <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
+    <Content Include="Scripts\mustache.js" />
     <Content Include="Support\YamlSerializer\YamlSerializer.dll" />
     <Content Include="Support\YamlSerializer\YamlSerializer.XML" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
@@ -281,7 +289,10 @@
     <Content Include="Views\News\Edit.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
+    <Content Include="Views\Survey\_checkbox.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />
+    <Content Include="Views\Survey\Index.vbhtml" />
+    <Content Include="Views\Survey\_templates.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -329,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

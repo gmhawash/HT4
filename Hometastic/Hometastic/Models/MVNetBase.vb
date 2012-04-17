@@ -34,6 +34,10 @@ Namespace Models
       Return Nothing
     End Function
 
+    Overridable Function SurveyList()
+      Return Nothing
+    End Function
+
     Sub Connect()
       If Not m_AccountName Is Nothing Then
         m_mvAccount = New mvAccount(m_AccountName)

@@ -407,3 +407,5 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 .edit .field input {width: 20em; display:block; float: left;}
 .edit .field.checkbox input {margin-left: 12em; width:10px;}
 #main-body form .edit .field span {width: 30em; display:block; float: left;}
+
+.hidden {display:none;}
