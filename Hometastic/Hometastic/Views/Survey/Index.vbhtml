@@ -34,21 +34,42 @@ End Code
       $("#target").append(html);
       LinkToButton();
     });
+
+    $('a.delete_question').live('click', function () {
+      if (confirm("Are you sure you want to delete this question? Click 'OK' to confirm, 'Cancel' otherwise."))
+        $(this).closest("div.question-group").remove();
+    });
+
+    $('input[type=submit]').click(function () {
+      var results = [];
+      $.each($('#target .question-group'), function () {
+        var me = $(this);
+        var result = {}
+        result.AnswerType = me.attr("type");
+        result.QuestionText = me.find(".question").val();
+        var answers = me.find(".target").find("input[type=text]");
+        result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();
+        result.Id = me.attr("id");
+        results.push(result);
+      });
+      $('#questions').val(JSON.stringify(results));
+    });
   });
 </script>
 
-@Using Html.BeginForm()
+@Using Html.BeginForm("Create", "Survey")
 
-@<div id="target">
-</div>
-
-@Html.Partial("_checkbox")
 @<div class="field">
     @Html.Label("Question Type")
     @Html.DropDownList("AnswerType", Hometastic.Models.Survey.AnswerTypeOptions)
     <a href="#" class="add_question button">Add New Question</a>
 </div>
+@<div id="target">
+</div>
+
+@Html.Partial("_templates")
 @<div class="field">
-  <input type="submit">Save</input>
+  @Html.Hidden("questions")
+  <input type="submit" value="Save" />
 </div>
 End Using

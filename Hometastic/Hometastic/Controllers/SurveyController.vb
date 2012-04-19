@@ -1,5 +1,6 @@
 ﻿Imports Hometastic.Models
 Imports BlueFinity.mvNET.CoreObjects
+Imports System.Web.Script.Serialization
 
 
 Namespace Hometastic
@@ -19,7 +20,7 @@ Namespace Hometastic
     ' GET: /News/Create
 
     Function Create() As ActionResult
-      Return View(New News())
+      Return View()
     End Function
 
     '
@@ -28,12 +29,22 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
-        newsItem.Write(collection)
-        Return RedirectToAction("Index")
+        Dim question As String = collection("questions")
+        Dim jsonSerializer As JavaScriptSerializer = New JavaScriptSerializer
+        Dim items = jsonSerializer.DeserializeObject(question)
+
+        Dim surveyItem As Survey
+        For Each item In items
+          If Not item("Id") = "" Then
+            surveyItem = Survey.FindById(Of ManagementCompany.Survey)(item("Id").Replace("_", "*"))
+          Else
+            surveyItem = Survey.Create(Of ManagementCompany.Survey)(CurrentUser)
+          End If
+          surveyItem.UpdateFromJson(item)
+        Next
       Catch
-        Return View()
       End Try
+      Return (RedirectToAction("Index"))
     End Function
 
     '

@@ -126,6 +126,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
     <Compile Include="Support\MyConfiguration.vb" />
@@ -289,10 +290,10 @@
     <Content Include="Views\News\Edit.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
-    <Content Include="Views\Survey\_checkbox.vbhtml" />
+    <Content Include="Views\Survey\_templates.vbhtml" />
     <Content Include="Views\Vendor\Edit.vbhtml" />
     <Content Include="Views\Survey\Index.vbhtml" />
-    <Content Include="Views\Survey\_templates.vbhtml" />
+    <Content Include="Views\Survey\Create.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
