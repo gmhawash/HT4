@@ -36,8 +36,16 @@ End Code
     });
 
     $('a.delete_question').live('click', function () {
-      if (confirm("Are you sure you want to delete this question? Click 'OK' to confirm, 'Cancel' otherwise."))
-        $(this).closest("div.question-group").remove();
+      if (confirm("Are you sure you want to delete this question? Click 'OK' to confirm, 'Cancel' otherwise.")) {
+        var question_group = $(this).closest("div.question-group");
+        var id = question_group.attr("id");
+        if (id != "") {
+          $.post('/survey/delete/' + id);
+        }
+        question_group.remove();
+      }
+
+
     });
 
     $('input[type=submit]').click(function () {
@@ -54,6 +62,7 @@ End Code
       });
       $('#questions').val(JSON.stringify(results));
     });
+
   });
 </script>
 

@@ -170,6 +170,19 @@ Public Class MVNetBase
     End Try
   End Sub
 
+  Sub Delete()
+    Try
+      Connect()
+      m_mvItem.DeleteItem()
+    Catch ex As Exception
+    Finally
+      m_Valid = False
+      m_Dirty = True
+      Disconnect()
+    End Try
+
+
+  End Sub
 
   Function Find(ByVal selectionClause As String, Optional ByVal sortClause As String = Nothing) As mvItemList
     Try
