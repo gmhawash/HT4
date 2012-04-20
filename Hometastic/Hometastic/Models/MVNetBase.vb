@@ -173,7 +173,8 @@ Public Class MVNetBase
   Sub Delete()
     Try
       Connect()
-      m_mvItem.DeleteItem()
+      Dim file As mvFile = m_mvAccount.FileOpen(m_TableName)
+      file.Delete(m_mvItem.ID)
     Catch ex As Exception
     Finally
       m_Valid = False

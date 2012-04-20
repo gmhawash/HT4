@@ -7,6 +7,8 @@ End Code
 
 <script type="text/javascript">
   $(function () {
+    LinkToButton();
+
     var jsonResponse = $.get('@Url.Action("surveylist", "survey")', function (data) {
       var questions = eval(data);
       $.each(questions, function (i, e) {
@@ -20,7 +22,9 @@ End Code
     $("a.add").live("click", function () {
       var me = $(this);
       var template = me.next().html();
-      me.closest("div").find(".target").append(template);
+      var target = me.closest("div").find(".target")
+      target.append(template);
+      target.find(".field:last-child input[type=text]").focus();
     });
 
     $("a.delete").live("click", function () {
@@ -40,16 +44,18 @@ End Code
         var question_group = $(this).closest("div.question-group");
         var id = question_group.attr("id");
         if (id != "") {
-          $.post('/survey/delete/' + id);
+          $('#spinner').show();
+          $.post('/survey/delete/' + id, function () {
+            document.location.href = '@Url.Action("Index", "survey")';
+          });
         }
         question_group.remove();
       }
-
-
     });
 
     $('input[type=submit]').click(function () {
       var results = [];
+      $('#spinner').show();
       $.each($('#target .question-group'), function () {
         var me = $(this);
         var result = {}

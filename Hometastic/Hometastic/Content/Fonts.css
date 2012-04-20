@@ -6,3 +6,11 @@
 .title-green {color: #7CB326; font-size: 80%; font-weight: bold;}
 .small { font-size: 70%; }
 .normal { font-size: 75%; }
+#spinner {
+left: 50%;
+line-height: 1px;
+position: absolute;
+top: 30%;
+margin-top: -38px;
+margin-left: -58px;
+}

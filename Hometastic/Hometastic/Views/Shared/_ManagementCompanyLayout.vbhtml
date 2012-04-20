@@ -51,5 +51,8 @@
       @Html.Partial("_Footer")
     </div>
   </div>
+  <div id="spinner" class="hidden">
+    <img src="/images/spinner.gif" />
+  </div>
 </body>
 </html>
