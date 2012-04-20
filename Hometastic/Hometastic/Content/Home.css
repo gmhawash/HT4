@@ -56,6 +56,7 @@ width:30%;
   margin-top: -1em;
   height: 6em;
 }
+
 #menu-container .menu ul
 {
   padding-top: 4.2em;
@@ -91,8 +92,6 @@ width:30%;
 {
   border: 0px;
 }
-
-  
 
 #services-menu ul
 {
@@ -222,167 +221,31 @@ padding-top: 3em;
   line-height: 1.7em;
 }
 
-#footer
-{
-padding-top: 1em;
-border-top: 3px solid  #47a2d9;
-width: 760px;
-display: block;
-clear: both;
-min-height: 4em;
-}
+#footer { padding-top: 1em; border-top: 3px solid  #47a2d9; width: 760px; display: block; clear: both; min-height: 4em; } 
+#footer div { width: 50%; display: block; float: left; }
+#footer .menu { margin-top: -1em; } 
+#footer .menu li { display: block; float: left; list-style-type: none; padding: 3px; }
+#footer a.menu { border-left: 1px black solid; padding-left: 3px; font-weight: bold; font: 75% veranda, sans-serif; vertical-align: top; }
+#footer .menu li:first-child a { border: 0px; }
+#footer .menu a.menu.active { pointer-events: none; cursor: default; text-decoration: none; color: Black; }
 
-
-#footer div
-{
-  width: 50%;
-  display: block;
-  float: left;
-}
-
-#footer .menu 
-{
-  margin-top: -1em;
-}
-
-#footer .menu li
-{
-  display: block;
-  float: left;
-  list-style-type: none;
-  padding: 3px;
-}
-
-#footer a.menu
-{
-  border-left: 1px black solid;
-  padding-left: 3px;
-  font-weight: bold;
-  font: 75% veranda, sans-serif;
-  vertical-align: top;
-}
-
-#footer .menu li:first-child a
-{
-  border: 0px;
-}
-
-#footer .menu a.menu.active
-{
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: Black;
-}
-
-#login 
-{
-  width: 100%;
-  height: 7em;  
-  background-color: #ecf5fc;
-  display:block;
-  clear:both;
-  line-height: 1em;
-}
-
-#login form
-{
-  padding-left: 1.5em;
-}
-
-#login ul 
-{
- margin-top: 0px;
-margin-left: -3em;
-}
-
-#login ul li
-{
-  list-style-type: none;
-  float:left;
-}
-
-#login .input
-{
-  display: block;
-  float: left;
-  padding-left: 0.5em;
-}
-
-#login .input label
-{
-display: block;
-}
-
-#login .input input
-{
-  display: block;
-  clear: both;
-  width: 10em;  
-}
-
-#login .clientNumber
-{
-  display: none;
-}
-
-.service 
-{
-  width: 60%;
-  background-color: White;
-  display: block;
-  float: left;
-}
-.service .right span 
-{
-display: block;
-clear: both;
-font-size: 70%;
-line-height: 1.2em;
-}
-
-.service .left 
-{
-  width: 3em;
- vertical-align : top;
-}
-
-#right-sidebar
-{
-  width: 206px;
-  background-color: White;
-  min-height: 100%;
-  display: block;
-  float: left;
-  border-left: 3px solid #ECF5FC;
-  border-right: 3px solid #ECF5FC;
-}
-
-
-#right-sidebar .description
-{
-  display: block;
-  clear: both;  
-  margin: 1.8em 0 1em 0;
-  padding: 0 0.5em;
-}
-
-.left-pad 
-{
-  padding-left: 0.5em;
-}
-
-#main 
-{
-  margin-top: -1em;
-}
-
-#main-body 
-{
-  padding-left: 1em;
-  font-size: 75%;
-}
-
+#login { width: 100%; height: 7em;  background-color: #ecf5fc; display:block; clear:both; line-height: 1em; } 
+#login form { padding-left: 1.5em; } 
+#login ul { margin-top: 0px; margin-left: -3em; }
+#login ul li { list-style-type: none; float:left; }
+#login .input { display: block; float: left; padding-left: 0.5em; }
+#login .input label { display: block; }
+#login .input input { display: block; clear: both; width: 10em;  } 
+#login .clientNumber { display: none; }
+.service { width: 60%; background-color: White; display: block; float: left; }
+.service .right span { display: block; clear: both; font-size: 70%; line-height: 1.2em; }
+.service .left { width: 3em; vertical-align : top; }
+#right-sidebar { width: 206px; background-color: White; min-height: 100%; display: block; float: left; border-left: 3px solid #ECF5FC; border-right: 3px solid #ECF5FC; }
+#right-sidebar .description { display: block; clear: both;  margin: 1.8em 0 1em 0; padding: 0 0.5em; }
+.left-pad { padding-left: 0.5em; }
+#main { margin-top: -1em; }
+#main-body { padding-left: 1em; font-size: 75%; }
+#main-body form .edit .field span {width: 30em; display:block; float: left;}
 
 h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 
@@ -392,20 +255,11 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 #contact-us input { width: 13em;  }
 #contact-us textarea { width: 13em; height: 5em; }
 #contact-us input[type=submit] {width: 6em; }
-#contact-info  
-{
-  display: block; 
-  float: left; 
-  width: 42%; 
-  border-left: 2px solid #ECF5FC;
-  padding-left: 1em;
-}
-
+#contact-info  { display: block; float: left; width: 42%; border-left: 2px solid #ECF5FC; padding-left: 1em; }
 .edit .field {display:block; clear: both;}
 .edit .field textarea {width: 80%; height: 8em; margin-bottom: 1em; display: block; clear: both;}
 .edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em; width: 10em; display:block; clear: both; float: left;}
 .edit .field input {width: 20em; display:block; float: left;}
 .edit .field.checkbox input {margin-left: 12em; width:10px;}
-#main-body form .edit .field span {width: 30em; display:block; float: left;}
 
 .hidden {display:none;}

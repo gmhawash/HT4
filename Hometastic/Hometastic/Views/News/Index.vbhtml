@@ -31,10 +31,10 @@ End Code
           <td>@item.Value("TITLE") </td>
           <td>@item.Value("HEADLINE") </td>
           <td>@item.CreatedDate</td>
-          <td>@Html.ActionLink("Edit", "Edit", "News", New With {.id = item.ID}, vbNull)</td>
+          <td>@Html.ActionLink("Edit", "Edit", "News", New With {.id = item.Id}, New With {.id = item.Id, .class = "button"})</td>
         </tr>
       Next
     </tbody>
   </table>
-  @Html.ActionLink("New Announcment", "Create", "News")
+  @Html.ActionLink("New Announcment", "Create", "News", New With {.class = "button"})
 </div>

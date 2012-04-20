@@ -23,11 +23,13 @@
         "sPaginationType": "full_numbers",
         "bSort": false
       });
+      LinkToButton();
     });
 
    function LinkToButton() {
       $("input:submit, a.button, button").button();
     }
+    
   </script>
   @RenderSection("JavaScript", False)
 </head>
