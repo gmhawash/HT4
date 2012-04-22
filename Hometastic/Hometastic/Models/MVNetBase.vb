@@ -1,4 +1,6 @@
-﻿Imports BlueFinity.mvNET.CoreObjects
+﻿Imports System
+Imports System.Reflection
+Imports BlueFinity.mvNET.CoreObjects
 
 Public Class MVNetBase
   Shared AccountName As String = Nothing
@@ -19,7 +21,17 @@ Public Class MVNetBase
 
 
   Shared Function FindById(Of T)(ByVal Id As String)
-    Dim item As MVNetBase = GetType(T).GetConstructor(New System.Type() {}).Invoke(New Object() {})
+    Dim item As MVNetBase
+    Dim obj As Object = GetType(T).GetConstructor({})
+    If obj Is Nothing Then
+      obj = GetType(T).GetConstructor({GetType(MVNetBase)})
+      If Not obj Is Nothing Then
+        item = obj.Invoke({Nothing})
+      End If
+    Else
+      item = obj.Invoke(New Object() {})
+    End If
+
     item.Read(Id)
     Return (If(item.Valid, item, Nothing))
   End Function

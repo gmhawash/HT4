@@ -57,19 +57,16 @@ Namespace Hometastic
     End Function
 
     '
-    ' GET: /News/Delete/5
-
-    Function Delete(ByVal id As Integer) As ActionResult
-      Return View()
-    End Function
-
-    '
     ' POST: /News/Delete/5
 
     <HttpPost()> _
-    Function Delete(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
+    Function Delete(ByVal id As String) As ActionResult
       Try
         ' TODO: Add delete logic here
+        If Not id = "" Then
+          Dim newsItem = News.FindById(Of News)(id.Replace("_", "*"))
+          newsItem.Delete()
+        End If
 
         Return RedirectToAction("Index")
       Catch

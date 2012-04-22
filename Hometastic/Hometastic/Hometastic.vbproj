@@ -173,6 +173,17 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Glimpse.Core.dll" />
+    <Content Include="bin\Hometastic.dll" />
+    <Content Include="bin\Hometastic.pdb" />
+    <Content Include="bin\Hometastic.xml" />
+    <Content Include="bin\MvcFlash.Core.dll" />
+    <Content Include="bin\RouteDebug.dll" />
+    <Content Include="bin\Yaml.dll" />
+    <Content Include="bin\YamlSerializer.dll" />
+    <Content Include="bin\YamlSerializer.xml" />
     <Content Include="Content\Survey.css" />
     <Content Include="Content\demo_page.css" />
     <Content Include="Content\demo_table_jui.css" />

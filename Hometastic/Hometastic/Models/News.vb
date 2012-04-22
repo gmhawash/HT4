@@ -1,4 +1,5 @@
-﻿Imports BlueFinity.mvNET.CoreObjects
+﻿Imports System
+Imports BlueFinity.mvNET.CoreObjects
 Namespace Models
   Public Class News
     Inherits MVNetBase
@@ -17,7 +18,7 @@ Namespace Models
       SEQ
     End Enum
 
-    Sub New(Optional ByRef CurrentUser As MVNetBase = Nothing)
+    Sub New(Optional ByVal CurrentUser As MVNetBase = Nothing)
       m_TableName = "DWNEWS"
       If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
       m_CurrentUser = CurrentUser

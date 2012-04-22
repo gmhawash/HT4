@@ -74,7 +74,7 @@ Namespace Models
       Write()
     End Sub
 
-    Sub New(Optional ByRef CurrentUser As MVNetBase = Nothing)
+    Sub New(Optional ByVal CurrentUser As MVNetBase = Nothing)
       m_TableName = "DWQUESTIONS"
       If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
       m_CurrentUser = CurrentUser
