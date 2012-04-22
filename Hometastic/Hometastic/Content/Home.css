@@ -263,3 +263,5 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 .edit .field.checkbox input {margin-left: 12em; width:10px;}
 
 .hidden {display:none;}
+#main-body div.file-uploader span.ui-button-text {width: 100%; }
+.ui-button-text-only .ui-button-text {padding: 0.3em 0.4em; }

@@ -3,12 +3,12 @@
 <html>
 <head>
   <title>@ViewData("Title")</title>
-  <link href="@Url.Content("~/Content/ManagementCompany.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/demo_page.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery.dataTables_themeroller.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/jquery-ui-1.8.18.custom.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/Content/Survey.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/ManagementCompany.css")" rel="stylesheet" type="text/css" />
 
   <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")" type="text/javascript"></script>
@@ -27,7 +27,7 @@
     });
 
    function LinkToButton() {
-      $("input:submit, a.button, button").button();
+      $("input:submit, div.button, a.button, button").button();
     }
     
   </script>

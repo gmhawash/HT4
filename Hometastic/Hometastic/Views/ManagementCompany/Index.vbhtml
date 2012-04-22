@@ -39,7 +39,7 @@ End Code
           <td>@item.id </td>
           <td>@item.name </td>
           <td>@item.formattedAddress </td>
-          <td>@Html.ActionLink("Edit", "Edit", "Hoa", New With {.id = item.id}, vbNull)</td>
+          <td>@Html.ActionLink("Edit", "Edit", "Hoa", New With {.id = item.id}, New With {.class = "button"})</td>
         </tr>
       Next
     </tbody>
@@ -61,7 +61,7 @@ End Code
           <td>@item.id </td>
           <td>@item.name </td>
           <td>@item.formattedAddress </td>
-          <td>@Html.ActionLink("Edit", "Edit", "Vendor", New With {.id = item.id}, vbNull)</td>
+          <td>@Html.ActionLink("Edit", "Edit", "Vendor", New With {.id = item.id}, New With {.class = "button"})</td>
         </tr>
       Next
     </tbody>

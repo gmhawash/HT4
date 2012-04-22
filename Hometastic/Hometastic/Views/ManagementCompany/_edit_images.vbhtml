@@ -13,8 +13,9 @@
         $('span.qq-upload-failed-text').hide();
         return true;
       },
-      template:  $('#@Model.purpose-Template').html()
+      template: $('#@Model.purpose-Template').html()
     });
+    LinkToButton();
   });
 </script>
 
@@ -22,7 +23,7 @@
   <div class="file-uploader">
     <div class="qq-upload-drop-area"></div>
     <div class="qq-upload-list"></div>
-    <div class="qq-upload-button file-add linkish">@Model.title</div>
+    <div class="qq-upload-button file-add linkish button">@Model.title</div>
   </div>
 </script>
 

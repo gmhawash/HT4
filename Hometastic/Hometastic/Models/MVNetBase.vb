@@ -21,19 +21,32 @@ Public Class MVNetBase
 
 
   Shared Function FindById(Of T)(ByVal Id As String)
-    Dim item As MVNetBase
-    Dim obj As Object = GetType(T).GetConstructor({})
-    If obj Is Nothing Then
-      obj = GetType(T).GetConstructor({GetType(MVNetBase)})
-      If Not obj Is Nothing Then
-        item = obj.Invoke({Nothing})
-      End If
-    Else
-      item = obj.Invoke(New Object() {})
-    End If
+    ' Unfortuantely, Microsoft designs things to be hard to use.  The New() constructor is optional, 
+    ' so you would thing that trying to reflect and find the constructor that has no paramters would
+    ' find the inherited constructor with the optional parameter, but it does not.  So we try first
+    ' to find one with no parameters (for shell inherited types - ManagementComapny::Survey) and then
+    ' try to find ones which take a singel MVNetBase paramater (the CurrentUser optional paramter).
+    '
+    ' You also need to invoke them with the exact count of paramters.
+    '
+    Try
+      Dim item As MVNetBase = Nothing
+      Dim obj As Object = GetType(T).GetConstructor({})
 
-    item.Read(Id)
-    Return (If(item.Valid, item, Nothing))
+      If obj Is Nothing Then
+        obj = GetType(T).GetConstructor({GetType(MVNetBase)})
+        If Not obj Is Nothing Then
+          item = obj.Invoke({Nothing})
+        End If
+      Else
+        item = obj.Invoke(New Object() {})
+      End If
+
+      item.Read(Id)
+      Return (If(item.Valid, item, Nothing))
+    Catch ex As Exception
+      Return Nothing
+    End Try
   End Function
 
   Shared Function Create(Of T)(Optional ByVal CurrentUser As MVNetBase = Nothing)

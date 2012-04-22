@@ -4,5 +4,5 @@
 
 
 #main-body.management-company.index .image img { width: 150px; }
-#main-body.management-company.index #logo-container  { width: 40%; float:left; display:block; }
-#main-body.management-company.index #front-image-container  { width: 40%; float:left; display:block;}
+#main-body.management-company.index #logo-container  { width: 40%; float:left; display:block; padding-left: 2em; }
+#main-body.management-company.index #front-image-container  { width: 40%; float:left; display:block; padding-left: 2em;}
