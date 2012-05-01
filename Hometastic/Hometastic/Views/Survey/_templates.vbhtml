@@ -1,6 +1,13 @@
 ﻿<script type='text/template' id='multiTemplate'>
   <div class="{{AnswerType}} question-group" id="{{QuestionId}}" type="{{AnswerType}}">
-    <a href="#" class="delete_question button">Delete Question</a>
+    <div class="float_right">
+        <a href="#" class="delete_question button">Delete Question</a>
+        <select class="question_type">
+          <option value="checkbox">Check Box</option>
+          <option value="radio">Radio</option>
+          <option value="select">Dropdown List</option>
+        </select>
+    </div>
     Question: <input type="text" class="question" value="{{QuestionText}}" />
     <div class="multi-options target">
         {{#AnswerOptions}}
@@ -24,7 +31,14 @@
 
 <script type='text/template' id='selectTemplate'>
   <div class="{{AnswerType}} question-group" id="{{QuestionId}}" type="{{AnswerType}}">
-    <a href="#" class="delete_question button">Delete Question</a>
+    <div class="float_right">
+        <a href="#" class="delete_question button">Delete Question</a>
+        <select class="question_type">
+          <option value="checkbox">Check Box</option>
+          <option value="radio">Radio</option>
+          <option value="select">Dropdown List</option>
+        </select>
+    </div>
     Question: <input type="text" class="question" value="{{QuestionText}}" />
     <div class="select-options">
       <ol class="target">

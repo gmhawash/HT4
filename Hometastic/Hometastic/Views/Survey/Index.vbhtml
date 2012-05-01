@@ -15,6 +15,8 @@ End Code
         var templateId = e.AnswerType == 'select' ? '#selectTemplate' : '#multiTemplate';
         var html = Mustache.to_html($(templateId).html(), e);
         $("#target").append(html);
+        // set selected option in select box.
+        $('#target #' + e.QuestionId + ' select').val(e.AnswerType);
         LinkToButton();
       });
     });
@@ -69,6 +71,32 @@ End Code
       $('#questions').val(JSON.stringify(results));
     });
 
+    $('select.question_type').live('change', function () {
+      var group = $(this).closest('div.question-group');
+      var answer = CollectAnswer(group);
+      RenderTemplate($(this), answer, group);
+      LinkToButton();
+    });
+
+    function RenderTemplate(me, answer, group) {
+      var templateId = me.val() == 'select' ? '#selectTemplate' : '#multiTemplate';
+      answer.AnswerType = me.val();
+      var html = Mustache.to_html($(templateId).html(), answer);
+      group.replaceWith(html);
+
+      // set selected option in select box.
+      $('#target #' + answer.QuestionId + ' select').val(answer.AnswerType);
+    }
+
+    function CollectAnswer(me) {
+      var result = {}
+      result.AnswerType = me.attr("type");
+      result.QuestionText = me.find(".question").val();
+      var answers = me.find(".target").find("input[type=text]");
+      result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();
+      result.QuestionId = me.attr("id");
+      return result;
+    }
   });
 </script>
 

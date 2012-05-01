@@ -27,7 +27,7 @@ Namespace Models
 
     Public Property AnswerType() As String
       Get
-        Dim optionTypes() As String = {"checkbox", "radio", "select"}
+        Dim optionTypes() As String = {"select", "checkbox", "radio"}
         Return optionTypes(Convert.ToInt16(Value(Columns.ANSWERTYPE)) - 1)
       End Get
 

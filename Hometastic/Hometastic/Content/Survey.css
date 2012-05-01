@@ -12,4 +12,5 @@
 
 .question-group input.question {width: 30em;}
 #target .button span, .button span {padding: 2px; font-size: 0.8em;}
-#target .delete_question {float: right;}
+#target .float_right {float: right;}
+#target .question_type {display:block; clear:both;}
