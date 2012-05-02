@@ -3,7 +3,7 @@ Imports BlueFinity.mvNET.CoreObjects
 
 Namespace Hometastic
   Public Class HoaController
-    Inherits System.Web.Mvc.Controller
+    Inherits ApplicationController
 
     ' GET: /Hoa
 
@@ -42,7 +42,11 @@ Namespace Hometastic
     ' GET: /Hoa/Edit/5
 
     Function Edit(ByVal id As Integer) As ActionResult
-      Return View()
+      Account.Authenticate("6400", "pmsi", id, "HoaUser")
+      Dim user As HoaUser = New HoaUser(Account.ManagementCompany.HoaAccount())
+      user.Read(id)
+
+      Return View(user)
     End Function
 
     '

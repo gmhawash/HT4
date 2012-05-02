@@ -10,6 +10,8 @@ Namespace Models
     '
     Public Shared Function Authenticate(ByVal UserName As String, ByVal Password As String, ByVal clientNumber As String, ByVal entityType As String) As Boolean
       Dim mgmtCompany = New ManagementCompanyUser(UserName)
+      HttpContext.Current.Session("ManagementCompany") = mgmtCompany
+
       LogOut()
 
       If (entityType = "ManagementCompany") Then
@@ -17,7 +19,7 @@ Namespace Models
           HttpContext.Current.Session("CurrentUser") = mgmtCompany
         End If
       ElseIf (entityType = "Hoa") Then
-        Dim model = New HoaUser(mgmtCompany.Value(ManagementCompanyUser.Columns.MVNETLOGIN))
+        Dim model = New HoaUser(mgmtCompany.HoaAccount())
         If (model.Authenticate(UserName, clientNumber, 1, Password)) Then
           HttpContext.Current.Session("CurrentUser") = model
         End If
@@ -29,6 +31,10 @@ Namespace Models
       End If
 
       Return True
+    End Function
+
+    Public Shared Function ManagementCompany() As ManagementCompanyUser
+      Return HttpContext.Current.Session("ManagementCompany")
     End Function
 
     Public Shared Sub LogOut()

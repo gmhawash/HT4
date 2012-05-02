@@ -64,6 +64,32 @@ Namespace Models
     Overloads Function id()
       Return Value(Columns.HOANO)
     End Function
+
+    ' Special case to substitute special CRLF character with normal CRLF for display
+    Function WelcomeText() As String
+      Return Value(Columns.TEXTWELCOME).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
+    Function WebsitePrefix() As String
+      Return Account.ManagementCompany.WebsitePath
+    End Function
+
+    Function ShowEmail() As Boolean
+      Return Value(Columns.SHOWEMAIL) = "1"
+    End Function
+
+    Function ShowManagementLogo() As Boolean
+      Return Value(Columns.SHOWMGMTCOLOGO) = "1"
+    End Function
+
+    Function Themes() As List(Of SelectListItem)
+      Return Account.ManagementCompany.Themes
+    End Function
+
+    Function LogoPath()
+      ' Return MyConfiguration.AssetUrl("logo", Value(Columns.WEBSITEPATH), GetFileName(Id() & ".*"))
+      Return "somepath"
+    End Function
   End Class
 End Namespace
 

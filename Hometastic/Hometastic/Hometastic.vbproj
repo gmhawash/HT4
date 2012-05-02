@@ -299,6 +299,9 @@
     <Content Include="Views\News\Create.vbhtml" />
     <Content Include="Views\News\_Form.vbhtml" />
     <Content Include="Views\News\Edit.vbhtml" />
+    <Content Include="Views\Hoa\_edit_website_configuration.vbhtml" />
+    <Content Include="Views\Hoa\_edit_images.vbhtml" />
+    <Content Include="Views\Hoa\_edit_front_image_theme.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />

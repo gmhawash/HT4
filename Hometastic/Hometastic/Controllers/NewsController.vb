@@ -6,6 +6,8 @@ Namespace Hometastic
     Inherits ApplicationController
     '
     ' GET: /News
+    ' ManagementCompany/6400/NewsList
+    ' HOA/605/NewsList
     Function Index() As ActionResult
       ViewBag.NewsList = CurrentUser.NewsList
       Return View()

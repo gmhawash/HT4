@@ -196,6 +196,10 @@ Namespace Models
     Function FrontPagePath()
       Return MyConfiguration.AssetUrl("front-image", Value(Columns.WEBSITEPATH), GetFileName(Id() & "_front_image.*"))
     End Function
+
+    Function HoaAccount() As String
+      Return Value(Columns.MVNETLOGIN)
+    End Function
   End Class
 End Namespace
 
