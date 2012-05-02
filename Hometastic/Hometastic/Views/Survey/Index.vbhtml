@@ -46,9 +46,8 @@ End Code
         var question_group = $(this).closest("div.question-group");
         var id = question_group.attr("id");
         if (id != "") {
-          $('#spinner').show();
           $.post('/survey/delete/' + id, function () {
-            document.location.href = '@Url.Action("Index", "survey")';
+         //   document.location.href = '@Url.Action("Index", "survey")';
           });
         }
         question_group.remove();
@@ -61,11 +60,11 @@ End Code
       $.each($('#target .question-group'), function () {
         var me = $(this);
         var result = {}
-        result.AnswerType = me.attr("type");
+        result.AnswerType = me.find("select.question_type").val();
         result.QuestionText = me.find(".question").val();
         var answers = me.find(".target").find("input[type=text]");
         result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();
-        result.Id = me.attr("id");
+        result.Id = me.attr("id") || "";
         results.push(result);
       });
       $('#questions').val(JSON.stringify(results));
@@ -82,15 +81,15 @@ End Code
       var templateId = me.val() == 'select' ? '#selectTemplate' : '#multiTemplate';
       answer.AnswerType = me.val();
       var html = Mustache.to_html($(templateId).html(), answer);
-      group.replaceWith(html);
+      group.children().replaceWith($(html).children());
 
       // set selected option in select box.
-      $('#target #' + answer.QuestionId + ' select').val(answer.AnswerType);
+      group.find('select').val(answer.AnswerType);
     }
 
     function CollectAnswer(me) {
       var result = {}
-      result.AnswerType = me.attr("type");
+      result.AnswerType = me.find("select.question_type").val();
       result.QuestionText = me.find(".question").val();
       var answers = me.find(".target").find("input[type=text]");
       result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();

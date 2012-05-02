@@ -60,9 +60,9 @@ Namespace Hometastic
           surveyItem.Delete()
         End If
 
-        Return RedirectToAction("Index")
+        Return Json(New With {.success = True})
       Catch
-        Return View()
+        Return Json(New With {.success = False})
       End Try
     End Function
   End Class
