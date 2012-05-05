@@ -126,9 +126,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\Log.vb" />
     <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
+    <Compile Include="Support\Helper.vb" />
     <Compile Include="Support\MyConfiguration.vb" />
     <Compile Include="Models\VendorUser.vb" />
     <Compile Include="Models\HoaUser.vb" />
@@ -172,6 +174,10 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="App_Data\LocalDatabase.mdf" />
+    <Content Include="App_Data\LocalDatabase_log.ldf">
+      <DependentUpon>LocalDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.xml" />
@@ -271,6 +277,7 @@
     <Content Include="Scripts\mustache.js" />
     <Content Include="Support\YamlSerializer\YamlSerializer.dll" />
     <Content Include="Support\YamlSerializer\YamlSerializer.XML" />
+    <Content Include="TextFile1.txt" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_contact_info.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_introduction.vbhtml" />
@@ -302,6 +309,7 @@
     <Content Include="Views\Hoa\_edit_website_configuration.vbhtml" />
     <Content Include="Views\Hoa\_edit_images.vbhtml" />
     <Content Include="Views\Hoa\_edit_front_image_theme.vbhtml" />
+    <Content Include="Views\Hoa\_edit_contact_information.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />
@@ -353,9 +361,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>

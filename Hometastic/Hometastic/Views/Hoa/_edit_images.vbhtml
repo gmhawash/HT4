@@ -4,10 +4,11 @@
       // pass the dom node (ex. $(selector)[0] for jQuery users)
       element: document.getElementById('@Model.purpose'),
       // path to server-side upload script
-      action: '@Url.Action("Upload", "ManagementCompany")',
+      action: '@Model.url',
       debug: true,
       params: {
-        purpose: '@Model.purpose'
+        purpose: '@Model.purpose',
+        id: '@Model.id'
       },
       onComplete: function (id, filename, responseJSON) {
         $('span.qq-upload-failed-text').hide();
@@ -15,7 +16,6 @@
       },
       template: $('#@Model.purpose-Template').html()
     });
-    LinkToButton();
   });
 </script>
 
@@ -29,7 +29,6 @@
 
 <div class="image @Model.purpose">
   <img src="@Model.image_path" alt="@Model.title" />
-  
 </div>
 
 <div id="@Model.purpose">       

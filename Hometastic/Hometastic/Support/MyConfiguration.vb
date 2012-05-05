@@ -27,11 +27,11 @@ Module MyConfiguration
       Case "front-image"
         filename = filename & "_front_image"
     End Select
-    Return String.Format("{0}/{1}.{2}", PhysicalAssetFolder(type, path), filename, extension)
+    Return String.Format("{0}/{1}.{2}", PhysicalAssetFolder(path), filename, extension)
   End Function
 
-  Function PhysicalAssetFolder(ByVal type As String, ByVal path As String)
-    Return String.Format("{0}/{1}", Setting("Hometast3Info").ToString().Trim(""""), AssetPath(type, path))
+  Function PhysicalAssetFolder(ByVal folder As String)
+    Return String.Format("{0}/{1}", Setting("Hometast3Info").ToString().Trim(""""), folder)
   End Function
 
   Function AssetPath(ByVal type As String, ByVal path As String) As String

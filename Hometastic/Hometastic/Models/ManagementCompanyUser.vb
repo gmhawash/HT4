@@ -57,9 +57,9 @@ Namespace Models
       Read(id)
 
       m_WriteableColumnList = New List(Of String)(New String() _
-        {"TEXTINTRO", "TEXTINTRO", "CCITY", "CST", "CONTACTZIPCODE", _
-         "CONTACTEMAIL", "WEBMASTEREMAIL", "CONTACTPHONE", _
-         "MGMTCOFAX", "CONTACTNAME", "WEBSITEURL", "CADD1", _
+        {"TEXTINTRO", "TEXTINTRO", "CCITY", "CST", "CONTACTZIPCODE",
+         "CONTACTEMAIL", "WEBMASTEREMAIL", "CONTACTPHONE",
+         "MGMTCOFAX", "CONTACTNAME", "WEBSITEURL", "CADD1",
          "CADD1", "THEMENAME", "SHOWEMAIL", "PASSPROTECTPROPERTIES"})
     End Sub
 
@@ -148,6 +148,9 @@ Namespace Models
       Return Value(Columns.CONTACTADD2)
     End Function
 
+    Function Path()
+      Return Value(Columns.WEBSITEPATH)
+    End Function
 
     ' Build public website path to manamgent company.
     ' TODO: Replace with Html.ActionLink
@@ -176,7 +179,7 @@ Namespace Models
     End Function
 
     Function GetFileName(ByVal filePattern As String)
-      Dim path = MyConfiguration.PhysicalAssetFolder("logo", Value("WEBSITEPATH"))
+      Dim path = MyConfiguration.PhysicalAssetFolder(Value("WEBSITEPATH"))
       Dim dirInfo As System.IO.DirectoryInfo = New DirectoryInfo(path)
 
       Dim files() = dirInfo.GetFiles(filePattern)
@@ -189,12 +192,16 @@ Namespace Models
       Return filename
     End Function
 
+    Function AssetFolder()
+      Return MyConfiguration.PhysicalAssetFolder(Value("WEBSITEPATH"))
+    End Function
+
     Function LogoPath()
-      Return MyConfiguration.AssetUrl("logo", Value(Columns.WEBSITEPATH), GetFileName(Id() & ".*"))
+      Return MyConfiguration.AssetUrl("logo", Path, GetFileName(Id() & "_logo.*"))
     End Function
 
     Function FrontPagePath()
-      Return MyConfiguration.AssetUrl("front-image", Value(Columns.WEBSITEPATH), GetFileName(Id() & "_front_image.*"))
+      Return MyConfiguration.AssetUrl("front-image", Path, GetFileName(Id() & "_front_image.*"))
     End Function
 
     Function HoaAccount() As String

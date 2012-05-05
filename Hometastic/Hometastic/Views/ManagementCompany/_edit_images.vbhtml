@@ -15,7 +15,6 @@
       },
       template: $('#@Model.purpose-Template').html()
     });
-    LinkToButton();
   });
 </script>
 
@@ -29,7 +28,6 @@
 
 <div class="image @Model.purpose">
   <img src="@Model.image_path" alt="@Model.title" />
-  
 </div>
 
 <div id="@Model.purpose">       

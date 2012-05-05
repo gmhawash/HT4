@@ -41,7 +41,7 @@ Namespace Hometastic
     Function Upload(ByVal collection As FormCollection) As ActionResult
       Dim writer As FileStream
 
-      ' TODO: Delete exisiting images of same pattern.
+      DeleteFiles(CurrentUser.AssetFolder, Request.Params("purpose") & ".*")
 
       Dim extension = Request.Headers("X-File-Name").Split(".").Last()
       Dim path = MyConfiguration.PhysicalAssetPath(Request.Params("purpose"), CurrentUser.Value("WEBSITEPATH"), CurrentUser.Id, extension)

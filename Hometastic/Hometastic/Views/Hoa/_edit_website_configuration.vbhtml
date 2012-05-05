@@ -7,25 +7,6 @@
     of the URL used to locate your site on the Internet.
   </p>
   <div class="management_company edit">
-    @Code 
-      Dim items = {({"Phone Number", "HOAPHONE"}), _
-                 ({"Fax Number", "HOAFAX"}), _
-                 ({"Contact Email", "CONTACTEMAIL"}), _
-                 ({"Webmaster E-Mail", "WEBMASTEREMAIL"}), _
-                 ({"Address", "HOAADD1"}), _
-                 ({" ", "HOAADD2"}), _
-                 ({"City", "CCITY"}), _
-                 ({"State", "CST"}), _
-                 ({"Zip", "CONTACTZIP"})
-                 }
-      For Each item As String() In items
-        @<div class="field">
-          @Html.Label(item(0))
-          @Html.TextBox(item(1), Model.Value(item(1)))
-        </div>
-      Next
-    End Code
-
     <div class="field">
       @Html.Label("Introduction")
       @Html.TextArea("TEXTWELCOME", Model.WelcomeText)
@@ -47,12 +28,12 @@
     </div>
 
     <div class="field checkbox">
-      @Html.CheckBox("HOWEMAIL", Model.ShowEmail)
+      @Html.CheckBox("SHOWEMAIL", Model.ShowEmail)
       <span>Show email address of Service Providers on public site</span>
     </div>
 
     @Code 
-      items = {({"E-Check URL", "ECHECKLINKURL"}), _
+      Dim items = {({"E-Check URL", "ECHECKLINKURL"}), _
                  ({"Credit Card URL", "CREDITCARDLINKURL"}), _
                  ({"Documents URL", "DOCUMENTSLINKURL"}), _
                  ({"Other URL", "OTHERLINKURL"}), _

@@ -7,10 +7,20 @@ End Code
 <div id="main-body" class="management-company index">
   <h2>Site Images</h2>
   <div id="logo-container">
-    @Html.Partial("_edit_images", New With {.purpose = "logo", .title = "Upload Logo", .image_path = Model.LogoPath})
+    @Html.Partial("_edit_images",
+                   New With {.purpose = "logo",
+                             .title = "Upload Logo",
+                             .image_path = Model.LogoPath,
+                             .url = Url.Action("Upload", "ManagementCompany")
+                            }) 
   </div>
   <div id="front-image-container">
-    @Html.Partial("_edit_images", New With {.purpose = "front-image", .title = "Upload Front Image", .image_path = Model.FrontPagePath})
+    @Html.Partial("_edit_images",
+                   New With {.purpose = "front-image",
+                             .title = "Upload Front Image",
+                             .image_path = Model.FrontPagePath,
+                             .url = Url.Action("Upload", "ManagementCompany")
+                            }) 
   </div>
   
   <h2 class="clear"> Manage Clients</h2>

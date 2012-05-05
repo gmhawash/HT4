@@ -40,12 +40,19 @@ Namespace Models
       WEBSITEURL
       HASIMAGE
       TEXTWELCOME
+      THEMENAME
     End Enum
 
     Sub New(ByVal accountName As String)
       m_TableName = "DWMASTER"
       m_AccountName = accountName
       ParseColumns([Enum].GetValues(GetType(Columns)))
+
+      m_WriteableColumnList = New List(Of String)(New String() _
+      {"DISKQUOTA", "CADD1", "CADD2", "CCITY", "CST", "CONTACTPHONE", "CONTACTFAX",
+      "CONTACTZIPCODE", "CONTACTEMAIL", "SHOWEMAIL", "SHOWMGMTCOLOGO", "WEBMASTEREMAIL",
+      "CREDITCARDLINKURL", "ECHECKLINKURL", "DOCUMENTSLINKURL", "OTHERLINKURL", "WEBSITEPATH",
+       "WEBSITEURL", "TEXTWELCOME", "THEMENAME"})
     End Sub
 
     Sub New(ByVal item As mvItem)
@@ -83,12 +90,27 @@ Namespace Models
     End Function
 
     Function Themes() As List(Of SelectListItem)
-      Return Account.ManagementCompany.Themes
+      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
+      For Each item In {"Default", "Antiquity", "Grayscale", "Mocha", "Seafoam", "Zeitgeist"}
+        Dim selected As Boolean = Value(Columns.THEMENAME) = item
+        list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
+      Next
+      Return list
     End Function
 
-    Function LogoPath()
-      ' Return MyConfiguration.AssetUrl("logo", Value(Columns.WEBSITEPATH), GetFileName(Id() & ".*"))
-      Return "somepath"
+    Function AssetFolder()
+      Return PhysicalAssetFolder(Account.ManagementCompany.Path & "\\" & Value(Columns.WEBSITEPATH))
+    End Function
+
+    Function LogoPath(Optional ByVal filename As String = Nothing) As String
+      Dim extension = ""
+      If (Not filename Is Nothing) Then extension = filename.Split(".").Last
+      CreateFolder(AssetFolder)
+      Return AssetFolder() & "\\logo." & extension
+    End Function
+
+    Function LogoUrl()
+      Return AssetPath("logo", "6400")
     End Function
   End Class
 End Namespace

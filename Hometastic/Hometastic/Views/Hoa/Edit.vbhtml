@@ -13,37 +13,25 @@ End Code
     };
     $("#accordion").accordion({
       icons: icons,
-      active: 1,
+      active: 0,
       autoHeight: false
     });
-
-    // This fixes an issue with accordion and checkboxes.
-    // http://stackoverflow.com/questions/7426425/jqueryui-accordion-question
-    $("#accordion input[type='checkbox']").click(function (evt) {
-      evt.stopPropagation();
-    }); 
-
-    $('#accordion').click(function () {
-      $(this).next().toggle('slow');
-      return false;
-    }).next().hide();
-
-    setTimeout(function () { $('#accordion a').first().click(); }, 1000);
   });
 </script>
 End Section
 
 <div id="main-body">
-  <p>
-  </p>
+  <p class="don-t-delete-me"></p>
   @Using Html.BeginForm()
-    @<div id="accordion"> 
+      @<div id="accordion">
+        <h3><a href="#">Contact Information</a></h3>
+        @Html.Partial("_edit_contact_information")
         <h3><a href="#">Website Configuration</a></h3>
         @Html.Partial("_edit_website_configuration")
-        <h3><a href="#">Front Image and Theme</a></h3>
-        @Html.Partial("_edit_front_image_theme") 
-    </div>
-    @<div></div>
-    @<input type="submit" value="Update" />
+        <h3><a href="#">Theme and Logo</a></h3>
+        @Html.Partial("_edit_front_image_theme")
+      </div>
+      @<div></div>
+      @<input type="submit" value="Update" />
   End Using
 </div>
