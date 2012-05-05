@@ -20,7 +20,6 @@ Namespace Hometastic
     ' GET: /ManagementCompany/Edit/5
 
     Function Edit() As ActionResult
-      Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
       Return View(CurrentUser)
     End Function
 

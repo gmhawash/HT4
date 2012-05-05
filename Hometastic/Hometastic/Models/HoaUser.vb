@@ -2,6 +2,7 @@
 Namespace Models
   Public Class HoaUser
     Inherits MVNetBase
+    Dim m_documentList As List(Of Document) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -96,6 +97,20 @@ Namespace Models
         list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
       Next
       Return list
+    End Function
+
+    Function Documents() As List(Of Document)
+      If Not m_documentList Is Nothing Then Return m_documentList
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim finder = New Document(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY NAMEUC BY CREATEDATE BY CREATETIME")
+      m_documentList = New List(Of Document)
+      For Each item As mvItem In itemList
+        m_documentList.Add(New Document(item))
+      Next
+
+      Return m_documentList
     End Function
 
     Function AssetFolder()

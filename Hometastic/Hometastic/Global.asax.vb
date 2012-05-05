@@ -17,6 +17,7 @@ Public Class MvcApplication
     provider.Add("News", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Survey", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Hoa", "*", New HoaInitializeFilter)
+    provider.Add("Document", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
 
@@ -39,12 +40,17 @@ Public Class MvcApplication
     MapResource("News")
     MapResource("Survey")
 
-    routes.MapRoute( _
-        "Default", _
-        "{controller}/{path}", _
-        New With {.controller = "Home", .action = "Index", .path = UrlParameter.Optional} _
-    )
+    routes.MapRoute("Document",
+                    "Hoa/{hoa_id}/Document/{action}/{id}",
+                    New With {.controller = "Document", .id = UrlParameter.Optional}
+                    )
 
+    routes.MapRoute("Default",
+                    "{controller}/{path}",
+                    New With {.controller = "Home", .action = "Index", .path = UrlParameter.Optional}
+                    )
+    ' NOTE: This line is used for debugging routes; remove it when you are done debugging.
+    ' RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes)
   End Sub
 
   Sub Application_Start()

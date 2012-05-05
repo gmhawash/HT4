@@ -265,3 +265,4 @@ h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
 .hidden {display:none;}
 #main-body div.file-uploader span.ui-button-text {width: 100%; }
 .ui-button-text-only .ui-button-text {padding: 0.3em 0.4em; }
+.protected {background: url(/images/lock.png) top right no-repeat; background-size: 17px;}

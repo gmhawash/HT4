@@ -50,6 +50,10 @@
     <Reference Include="MvcFlash.Core">
       <HintPath>..\packages\MvcFlash.1.0.0\lib\MvcFlash.Core.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebug, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RouteDebug.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
@@ -114,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.vb" />
+    <Compile Include="Controllers\DocumentController.vb" />
     <Compile Include="Controllers\SurveyController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
     <Compile Include="Controllers\VendorController.vb" />
@@ -126,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\Document.vb" />
     <Compile Include="Models\Log.vb" />
     <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
@@ -310,6 +316,11 @@
     <Content Include="Views\Hoa\_edit_images.vbhtml" />
     <Content Include="Views\Hoa\_edit_front_image_theme.vbhtml" />
     <Content Include="Views\Hoa\_edit_contact_information.vbhtml" />
+    <Content Include="Views\Document\_Form.vbhtml" />
+    <Content Include="Views\Document\Create.vbhtml" />
+    <Content Include="Views\Document\Edit.vbhtml" />
+    <Content Include="Views\Document\Index.vbhtml" />
+    <Content Include="Views\Document\_upload_document.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />
