@@ -35,26 +35,26 @@ Namespace Hometastic
     '
     ' GET: /Category/Edit/5
 
-    'Function Edit(ByVal id As String) As ActionResult
-    '  Dim newsItem = New Category(CType(CurrentUser(), ManagementCompanyUser))
-    '  newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
-    '  Return View(newsItem)
-    'End Function
+    Function Edit(ByVal id As String) As ActionResult
+      Dim item = Category.FindById(HoaUser, id)
+      Return View(item)
+    End Function
 
-    ''
-    '' POST: /Category/Edit/5
+    '
+    ' POST: /Category/Edit/5
 
-    '<HttpPost()> _
-    'Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
-    '  Try
-    '    Dim newsItem = New Category(CType(CurrentUser(), ManagementCompanyUser))
-    '    newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
-    '    newsItem.Write(collection)
-    '    Return RedirectToAction("Index")
-    '  Catch
-    '    Return View()
-    '  End Try
-    'End Function
+    <HttpPost()> _
+    Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
+      Try
+        Dim item = Category.FindById(HoaUser, id)
+        item.Write(collection)
+        Response.StatusCode = 200
+        Response.ContentType = "text/html"
+        Return Json(New With {.success = True})
+      Catch
+        Return View()
+      End Try
+    End Function
 
     ''
     '' POST: /Category/Delete/5

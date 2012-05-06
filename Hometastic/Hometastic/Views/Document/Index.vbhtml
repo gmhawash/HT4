@@ -4,23 +4,6 @@
   Layout = "~/Views/Shared/_ManagementCompanyLayout.vbhtml"
 End Code
 
-<script type="text/javascript">
-  $(function () {
-    $('a.delete_item').live('click', function (event) {
-      event.preventDefault();
-      if (confirm("Are you sure you want to delete this news item? Click 'OK' to confirm, 'Cancel' otherwise.")) {
-        var href = $(this).attr("href");
-        if (href != "") {
-          $('#spinner').show();
-          $.post(href, function () {
-            document.location.href = '@Url.Action("Index", "Document")';
-          });
-        }
-      }
-    });
-  });
-</script>
-
 @Html.Partial("_edit_category", New With {.action = "Update"})
 
 <div id='category' class="hidden">
@@ -41,8 +24,8 @@ End Code
     <table class="dataTable">
       <thead>
         <tr>
-          <th> Title </th>
           <th> Category </th>
+          <th> Title </th>
           <th> </th>
           <th> </th>
         </tr>
@@ -50,8 +33,8 @@ End Code
       <tbody>
         @For Each item As Hometastic.Models.Document In ViewBag.DocumentList
           @<tr>
+            <td><span class="category">@item.Value("CATEGORY")</span>@Html.ActionLink("Rename", "Edit", "Category", New With {.id = item.Value("CATEGORYID")}, New With {.class = "float_right button edit_category"})</td>
             <td><div class='@item.AuthorizationLevel'>@item.Value("NAME")</div></td>
-            <td><span class="category">@item.Value("CATEGORY")</span><a class="float_right button" href="#" category_id='@item.Value("CATEGORYID")'>rename</a></td>
             <td>@Html.ActionLink("Edit", "Edit", "Document", New With {.id = item.Id}, New With {.class = "button"}) </td>
             <td>@Html.ActionLink("Delete", "Delete", "Document", New With {.id = item.Id}, New With {.class = "button delete_item"}) </td>
           </tr>

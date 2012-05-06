@@ -66,7 +66,7 @@ Namespace Hometastic
       Try
         ' TODO: Add delete logic here
         If Not id = "" Then
-          Dim newsItem = News.FindById(Of News)(id.Replace("_", "*"))
+          Dim newsItem = News.FindById(id.Replace("_", "*"))
           newsItem.Delete()
         End If
 

@@ -30,7 +30,7 @@ Namespace Hometastic
         Dim surveyItem As Survey
         For Each item In items
           If Not item("Id") = "" Then
-            surveyItem = Survey.FindById(Of ManagementCompany.Survey)(item("Id").Replace("_", "*"))
+            surveyItem = Survey.FindById(item("Id").Replace("_", "*"))
           Else
             surveyItem = Survey.Create(Of ManagementCompany.Survey)(CurrentUser)
           End If
@@ -56,7 +56,7 @@ Namespace Hometastic
       Try
         ' TODO: Add delete logic here
         If Not id = "" Then
-          Dim surveyItem = Survey.FindById(Of ManagementCompany.Survey)(id.Replace("_", "*"))
+          Dim surveyItem = Survey.FindById(id.Replace("_", "*"))
           surveyItem.Delete()
         End If
 

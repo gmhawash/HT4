@@ -10,10 +10,16 @@ Namespace Models
       DESCRIPTION
     End Enum
 
-    Sub New(ByVal hoaUser As HoaUser)
+    Shared Function FindById(ByVal hoaUser As HoaUser, ByVal Id As String)
+      Dim item = New Category(hoaUser)
+      item.Read(hoaUser.id & "*" & Id)
+      Return item
+    End Function
+
+    Sub New(Optional ByVal hoaUser As HoaUser = Nothing)
       m_hoaUser = hoaUser
       m_TableName = "HOACATEGORIES"
-      m_AccountName = hoaUser.m_AccountName
+      If Not hoaUser Is Nothing Then m_AccountName = hoaUser.m_AccountName
       ParseColumns([Enum].GetValues(GetType(Columns)))
 
       m_WriteableColumnList = New List(Of String)(New String() _

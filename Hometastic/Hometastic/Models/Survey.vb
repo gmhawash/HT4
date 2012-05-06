@@ -11,6 +11,12 @@ Namespace Models
       SEQ
     End Enum
 
+    Shared Function FindById(ByVal Id As String)
+      Dim item = New Survey()
+      item.Read(Id)
+      Return item
+    End Function
+
     Public Property AnswerOptions()
       Get
         Dim answerList = Value("ANSWERTEXT").Split(DataBASIC.VM)
