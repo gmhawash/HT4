@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.vb" />
+    <Compile Include="Controllers\CategoryController.vb" />
     <Compile Include="Controllers\DocumentController.vb" />
     <Compile Include="Controllers\SurveyController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
@@ -330,6 +331,12 @@
     <Content Include="Views\Document\Edit.vbhtml" />
     <Content Include="Views\Document\Index.vbhtml" />
     <Content Include="Views\Document\_upload_document.vbhtml" />
+    <Content Include="Views\Category\_Form.vbhtml" />
+    <Content Include="Views\Category\_upload_document.vbhtml" />
+    <Content Include="Views\Category\Create.vbhtml" />
+    <Content Include="Views\Category\Edit.vbhtml" />
+    <Content Include="Views\Category\Index.vbhtml" />
+    <Content Include="Views\Shared\_Plain.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />

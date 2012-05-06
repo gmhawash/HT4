@@ -50,6 +50,10 @@ Namespace Models
       Return list
     End Function
 
+    Function AuthorizationLevel() As String
+      Return (Value("PASSWORDPROTECT"))
+    End Function
+
     Public Property Category() As String
       Get
         Return Value("CATEGORYID")

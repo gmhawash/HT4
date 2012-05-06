@@ -25,6 +25,10 @@ Public Class MvcApplication
     RouteTable.Routes.MapRoute(resource, resource & "/{action}/{id}", New With {.controller = resource, .id = UrlParameter.Optional})
   End Sub
 
+  Shared Sub MapResource(ByVal scope As String, ByVal resource As String)
+    RouteTable.Routes.MapRoute(resource, String.Format("{0}/{{{1}_id}}/{2}/{{action}}/{{id}}", scope, scope.ToLower(), resource), New With {.controller = resource, .id = UrlParameter.Optional})
+  End Sub
+
   Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
     routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
 
@@ -40,10 +44,13 @@ Public Class MvcApplication
     MapResource("News")
     MapResource("Survey")
 
-    routes.MapRoute("Document",
-                    "Hoa/{hoa_id}/Document/{action}/{id}",
-                    New With {.controller = "Document", .id = UrlParameter.Optional}
-                    )
+    MapResource("Hoa", "Document")
+    MapResource("Hoa", "Category")
+    'routes.MapRoute("Document",
+    '                "Hoa/{hoa_id}/Document/{action}/{id}",
+    '                New With {.controller = "Document", .id = UrlParameter.Optional}
+    '                )
+
 
     routes.MapRoute("Default",
                     "{controller}/{path}",

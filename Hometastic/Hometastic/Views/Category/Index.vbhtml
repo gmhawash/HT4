@@ -18,10 +18,25 @@ End Code
         }
       }
     });
-  });
-</script>
 
-@Html.Partial("_edit_category", New With {.action = "Update"})
+    $('<div></div>').load('@Url.Action("Create", "Category")').dialog();
+
+    $('a[category_id]').click(function () {
+      var category = $(this).closest('td').find('span.category').text();
+      var category_id = $(this).attr("category_id");
+      $('#category input').val(category);
+      $('#category').dialog({
+        modal: true,
+        title: "Change Categroy",
+        buttons: {
+          "Change": function () { $(this).dialog("close"); },
+          "Cancel": function () { $(this).dialog("close"); }
+        }
+      });
+    });
+  });
+
+</script>
 
 <div id='category' class="hidden">
   <p>WARNING: A change to the category name will apply to all documents within this category.</p>
@@ -50,7 +65,7 @@ End Code
       <tbody>
         @For Each item As Hometastic.Models.Document In ViewBag.DocumentList
           @<tr>
-            <td><div class='@item.AuthorizationLevel'>@item.Value("NAME")</div></td>
+            <td><div class='@item.PasswordProtected'>@item.Value("NAME")</div></td>
             <td><span class="category">@item.Value("CATEGORY")</span><a class="float_right button" href="#" category_id='@item.Value("CATEGORYID")'>rename</a></td>
             <td>@Html.ActionLink("Edit", "Edit", "Document", New With {.id = item.Id}, New With {.class = "button"}) </td>
             <td>@Html.ActionLink("Delete", "Delete", "Document", New With {.id = item.Id}, New With {.class = "button delete_item"}) </td>

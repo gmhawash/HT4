@@ -1,5 +1,7 @@
 ﻿@ModelType Hometastic.Models.Document
 
+@Html.Partial("_edit_category", New With {.action = "Create"})
+
 <h2>Manage HOA Documents</h2>
 <p>
 To post an announcement or news article on your site please enter its title, provide
@@ -17,6 +19,7 @@ To post an announcement or news article on your site please enter its title, pro
       <div class="field">
         @Html.Label("Category")
         @Html.DropDownList("CATEGORY", Model.Categories)
+        <a class="float_right button" href="#" category_id="">New Category</a>
       </div>
       <div class="field">
         @Html.Label("Authorization Level")
