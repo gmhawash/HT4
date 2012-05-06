@@ -24,6 +24,9 @@ Namespace Hometastic
 
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
+      Dim cat = Category.Create(Of Category)(HoaUser)
+      collection("ID") = cat.NextId()
+      cat.Write(collection)
       Response.StatusCode = 200
       Response.ContentType = "text/html"
       Return Json(New With {.success = True})

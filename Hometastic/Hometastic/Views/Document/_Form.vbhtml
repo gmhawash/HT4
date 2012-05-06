@@ -22,7 +22,7 @@ To post an announcement or news article on your site please enter its title, pro
         <a class="float_right button" href="#" category_id="">New Category</a>
       </div>
       <div class="field">
-        @Html.Label("Authorization Level")
+        @Html.Label("Password Protection")
         @Html.DropDownList("PASSWORDPROTECT", Model.AuthorizationLevels)
       </div> 
       <div class="field">

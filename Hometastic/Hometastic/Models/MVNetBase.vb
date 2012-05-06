@@ -50,9 +50,24 @@ Public Class MVNetBase
   End Function
 
   Shared Function Create(Of T)(Optional ByVal CurrentUser As MVNetBase = Nothing)
-    Dim item As MVNetBase = GetType(T).GetConstructor(New System.Type() {}).Invoke(New Object() {})
-    item.CreateNewMvItem(CurrentUser)
-    Return item
+    Try
+      Dim item As MVNetBase = Nothing
+      Dim obj As Object = GetType(T).GetConstructor({})
+
+      If obj Is Nothing Then
+        obj = GetType(T).GetConstructor({CurrentUser.GetType()})
+        If Not obj Is Nothing Then
+          item = obj.Invoke({CurrentUser})
+        End If
+      Else
+        item = obj.Invoke(New Object() {})
+      End If
+
+      item.CreateNewMvItem(CurrentUser)
+      Return (If(item.Valid, item, Nothing))
+    Catch ex As Exception
+      Return Nothing
+    End Try
   End Function
 
   Sub CreateNewMvItem(ByVal CurrentUser As MVNetBase)

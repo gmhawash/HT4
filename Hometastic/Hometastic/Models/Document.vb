@@ -44,9 +44,8 @@ Namespace Models
 
     Function AuthorizationLevels() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
-      list.Add(New SelectListItem With {.Value = "0", .Text = "Everyone"})
-      list.Add(New SelectListItem With {.Value = "1", .Text = "Clients"})
-      list.Add(New SelectListItem With {.Value = "2", .Text = "Administrators"})
+      list.Add(New SelectListItem With {.Value = "0", .Text = "None"})
+      list.Add(New SelectListItem With {.Value = "1", .Text = "Activate"})
       Return list
     End Function
 

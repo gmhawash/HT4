@@ -337,6 +337,7 @@
     <Content Include="Views\Category\Edit.vbhtml" />
     <Content Include="Views\Category\Index.vbhtml" />
     <Content Include="Views\Shared\_Plain.vbhtml" />
+    <Content Include="Views\Document\_edit_category.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />
