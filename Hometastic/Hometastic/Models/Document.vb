@@ -2,6 +2,7 @@
 Namespace Models
   Public Class Document
     Inherits MVNetBase
+    Dim m_hoaUser As HoaUser
 
     Public Enum Columns
       CATEGORY
@@ -13,6 +14,7 @@ Namespace Models
     End Enum
 
     Sub New(ByVal hoaUser As HoaUser)
+      m_hoaUser = hoaUser
       m_TableName = "HOADOCUMENTS"
       m_AccountName = hoaUser.m_AccountName
       ParseColumns([Enum].GetValues(GetType(Columns)))
@@ -26,12 +28,26 @@ Namespace Models
       ParseColumns([Enum].GetValues(GetType(Columns)))
     End Sub
 
+
+    Function Categories() As List(Of SelectListItem)
+      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
+      For Each cat In m_hoaUser.Categories()
+        list.Add(New SelectListItem With {.Text = cat.Value("DESCRIPTION"), .Value = cat.Value("@ID")})
+      Next
+
+      Return list
+    End Function
+
     Overloads Function id()
       Return Value("ID")
     End Function
 
-    Function PasswordProtected()
-      Return If(Value("PASSPROTECT") = "1", "protected", "")
+    Function AuthorizationLevels() As List(Of SelectListItem)
+      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
+      list.Add(New SelectListItem With {.Value = "0", .Text = "Everyone"})
+      list.Add(New SelectListItem With {.Value = "1", .Text = "Clients"})
+      list.Add(New SelectListItem With {.Value = "2", .Text = "Administrators"})
+      Return list
     End Function
 
     Public Property Category() As String

@@ -3,6 +3,7 @@ Namespace Models
   Public Class HoaUser
     Inherits MVNetBase
     Dim m_documentList As List(Of Document) = Nothing
+    Dim m_categoryList As List(Of Category) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -113,6 +114,20 @@ Namespace Models
       Return m_documentList
     End Function
 
+    Function Categories() As List(Of Category)
+      If Not m_categoryList Is Nothing Then Return m_categoryList
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim finder = New Category(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "")
+      m_categoryList = New List(Of Category)
+      For Each item As mvItem In itemList
+        m_categoryList.Add(New Category(item))
+      Next
+
+      Return m_categoryList
+    End Function
+
     Function AssetFolder()
       Return PhysicalAssetFolder(Account.ManagementCompany.Path & "\\" & Value(Columns.WEBSITEPATH))
     End Function
@@ -137,7 +152,7 @@ Namespace Models
     End Function
 
     Function LogoUrl()
-      Return AssetPath("logo", "6400")
+      Return AssetPath("logo")
     End Function
 
   End Class

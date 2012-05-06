@@ -15,10 +15,17 @@ To post an announcement or news article on your site please enter its title, pro
         @Html.TextBox("NAME", Model.Value("NAME"))
       </div>
       <div class="field">
+        @Html.Label("Category")
+        @Html.DropDownList("CATEGORY", Model.Categories)
+      </div>
+      <div class="field">
+        @Html.Label("Authorization Level")
+        @Html.DropDownList("PASSWORDPROTECT", Model.AuthorizationLevels)
+      </div> 
+      <div class="field">
         @Html.Label("Description")
         @Html.TextArea("DESCRIPTION", Model.Value("DESCRIPTION"))
       </div>
-
     </div>
 
     @<div id="document-container">

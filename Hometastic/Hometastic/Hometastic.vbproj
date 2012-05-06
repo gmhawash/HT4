@@ -131,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.vb" />
+    <Compile Include="Models\Category.vb" />
     <Compile Include="Models\Document.vb" />
     <Compile Include="Models\Log.Designer.vb">
       <AutoGen>True</AutoGen>
