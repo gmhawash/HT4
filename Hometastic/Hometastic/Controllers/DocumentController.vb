@@ -25,9 +25,23 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        Dim newsItem = New Document(HoaUser)
-        newsItem.Write(collection)
-        Return RedirectToAction("Index")
+        FileCopy(collection("TempFilename"), HoaUser.DocumentPath(collection("Filename")))
+
+      Catch
+        Return View()
+      End Try
+    End Function
+
+    <HttpPost()> _
+    Function Upload(ByVal collection As FormCollection) As ActionResult
+      Try
+        Dim filename = Request.Headers("X-File-Name")
+        Dim tmpFile = TempFilename()
+        UploadFile(tmpFile, Request.InputStream)
+
+        Response.StatusCode = 200
+        Response.ContentType = "text/html"
+        Return Json(New With {.success = True, .tempFilename = tmpFile, .filename = filename})
       Catch
         Return View()
       End Try

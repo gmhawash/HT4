@@ -2,6 +2,7 @@
 Imports System.Configuration
 Imports System.Yaml
 Imports System.Web.Hosting
+Imports System.IO
 
 Module MyConfiguration
   Public RootPath = HostingEnvironment.ApplicationPhysicalPath
@@ -21,6 +22,10 @@ Module MyConfiguration
       Setting(key) = serverSpecific(key)
     Next
   End Sub
+
+  Function TempFilename()
+    Return Path.GetTempFileName()
+  End Function
 
   Function PhysicalAssetPath(ByVal type As String, ByVal path As String, ByVal filename As String, ByVal extension As String) As String
     Select Case type

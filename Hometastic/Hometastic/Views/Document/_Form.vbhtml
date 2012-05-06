@@ -18,6 +18,7 @@ To post an announcement or news article on your site please enter its title, pro
         @Html.Label("Description")
         @Html.TextArea("DESCRIPTION", Model.Value("DESCRIPTION"))
       </div>
+
     </div>
 
     @<div id="document-container">

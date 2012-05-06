@@ -132,7 +132,11 @@
     </Compile>
     <Compile Include="Models\Account.vb" />
     <Compile Include="Models\Document.vb" />
-    <Compile Include="Models\Log.vb" />
+    <Compile Include="Models\Log.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Log.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
@@ -171,6 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Configuration.Yaml" />
+    <EntityDeploy Include="Models\Log.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Log.Designer.vb</LastGenOutput>
+    </EntityDeploy>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

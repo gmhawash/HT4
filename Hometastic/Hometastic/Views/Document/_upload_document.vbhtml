@@ -6,17 +6,19 @@
       // path to server-side upload script
       action: '@Url.Action("Upload", "Document")',
       debug: true,
+      multiple: false,
       params: {
         purpose: '@Model.purpose'
       },
       onComplete: function (id, filename, responseJSON) {
         $('span.qq-upload-failed-text').hide();
+        $('#TempFilename').val(responseJSON.tempFilename);
+        $('#Filename').val(responseJSON.filename);
         return true;
       },
       template: $('#@Model.purpose-Template').html(),
       onSubmit: function (id, fileName) { $('.qq-upload-list').html(""); }
     });
-
   });
 </script>
 
@@ -28,6 +30,8 @@
   </div>
 </script>
 
+@Html.Hidden("TempFilename")
+@Html.Hidden("Filename")
 
 <div id="@Model.purpose">       
     <noscript>

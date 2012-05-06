@@ -100,18 +100,17 @@ End Code
 </script>
 
 @Using Html.BeginForm("Create", "Survey")
-
-@<div class="field">
+  @<div class="field">
     @Html.Label("Question Type")
     @Html.DropDownList("AnswerType", Hometastic.Models.Survey.AnswerTypeOptions)
     <a href="#" class="add_question button">Add New Question</a>
-</div>
-@<div id="target">
-</div>
+  </div>
+  @<div id="target">
+  </div>
 
-@Html.Partial("_templates")
-@<div class="field">
-  @Html.Hidden("questions")
-  <input type="submit" value="Save" />
-</div>
+  @Html.Partial("_templates")
+  @<div class="field">
+    @Html.Hidden("questions")
+    <input type="submit" value="Save" />
+  </div>
 End Using

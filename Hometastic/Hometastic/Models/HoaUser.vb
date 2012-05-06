@@ -117,6 +117,18 @@ Namespace Models
       Return PhysicalAssetFolder(Account.ManagementCompany.Path & "\\" & Value(Columns.WEBSITEPATH))
     End Function
 
+    Function AssetPath(Optional ByVal filename As String = Nothing) As String
+      Dim extension = ""
+      If (Not filename Is Nothing) Then extension = filename.Split(".").Last
+      CreateFolder(AssetFolder)
+      Return AssetFolder() & "\\logo." & extension
+    End Function
+
+    Function DocumentPath(ByVal filename)
+      CreateFolder(AssetFolder)
+      Return String.Format("{0}\\{1}", AssetFolder, filename)
+    End Function
+
     Function LogoPath(Optional ByVal filename As String = Nothing) As String
       Dim extension = ""
       If (Not filename Is Nothing) Then extension = filename.Split(".").Last
@@ -127,6 +139,7 @@ Namespace Models
     Function LogoUrl()
       Return AssetPath("logo", "6400")
     End Function
+
   End Class
 End Namespace
 
