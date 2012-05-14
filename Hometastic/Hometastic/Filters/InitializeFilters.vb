@@ -11,7 +11,8 @@ Namespace Models
   Public Class ManagementCompanyInitializeFilter
     Inherits ActionFilterAttribute
     Public Overrides Sub OnActionExecuting(ByVal filterContext As ActionExecutingContext)
-      filterContext.Controller.ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
+      filterContext.Controller.ViewBag.Menu = {
+                      ({"My Account", "/ManagementCompany/Index"}),
                       ({"Manage Site", "/ManagementCompany/Edit"}),
                       ({"News", "/News/Index"}),
                       ({"Q&A", "/Survey/Index"})
@@ -23,11 +24,25 @@ Namespace Models
   Public Class HoaInitializeFilter
     Inherits ActionFilterAttribute
     Public Overrides Sub OnActionExecuting(ByVal filterContext As ActionExecutingContext)
-      filterContext.Controller.ViewBag.Menu = {({"My Account", "/ManagementCompany/Index"}),
-                      ({"Manage Site", "/ManagementCompany/Edit"}),
-                      ({"News", "/News/Index"}),
-                      ({"This and That", "/ManagementCompany/Survey"})
+
+      Dim routeParams = filterContext.RouteData.Values
+      Dim hoa_id = If(routeParams("hoa_id") Is Nothing, routeParams("id"), routeParams("hoa_id"))
+
+      filterContext.Controller.ViewBag.Menu = {
+                      ({"Mgmt Co.", "/ManagementCompany/Index"}),
+                      ({"Manage Hoa", "/Hoa/Edit/{hoa_id}"}),
+                      ({"News", "/Hoa/{hoa_id}/News/Index"}),
+                      ({"Events", "/Hoa/{hoa_id}/Events/Index"}),
+                      ({"Surveys", "/Hoa/{hoa_id}/Survey/Index"}),
+                      ({"Providers", "/Hoa/{hoa_id}/Providers/Index"}),
+                      ({"Documents", "/Hoa/{hoa_id}/Document/Index"})
                      }
+
+      ' Update menu items with hoa_id
+      For Each Item As String() In filterContext.Controller.ViewBag.Menu
+        Item(1) = Item(1).Replace("{hoa_id}", hoa_id)
+      Next
+
     End Sub
   End Class
 End Namespace

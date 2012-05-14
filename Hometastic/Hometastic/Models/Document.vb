@@ -28,6 +28,11 @@ Namespace Models
       ParseColumns([Enum].GetValues(GetType(Columns)))
     End Sub
 
+    Shared Function FindById(ByVal hoaUser As HoaUser, ByVal Id As String)
+      Dim item = New Document(hoaUser)
+      item.Read(String.Format("{0}*{1}", hoaUser.id, Id))
+      Return item
+    End Function
 
     Function Categories() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
@@ -39,7 +44,7 @@ Namespace Models
     End Function
 
     Overloads Function id()
-      Return Value("ID")
+      Return Value("SEQ")
     End Function
 
     Function AuthorizationLevels() As List(Of SelectListItem)

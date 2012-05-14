@@ -25,6 +25,7 @@ Namespace Hometastic
       Else
         m_HoaUser.Read(routeParams("hoa_id"))
       End If
+
       Return m_HoaUser
     End Function
   End Class

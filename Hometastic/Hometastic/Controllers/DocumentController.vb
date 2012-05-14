@@ -25,8 +25,11 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
+        Dim document = New Document(HoaUser)
+        collection("ID") = HoaUser.id & "*" & collection("Filename")
+        document.Write(collection)
         FileCopy(collection("TempFilename"), HoaUser.DocumentPath(collection("Filename")))
-
+        Return RedirectToAction("Index")
       Catch
         Return View()
       End Try
@@ -50,26 +53,21 @@ Namespace Hometastic
     '
     ' GET: /Document/Edit/5
 
-    'Function Edit(ByVal id As String) As ActionResult
-    '  Dim newsItem = New Document(CType(CurrentUser(), ManagementCompanyUser))
-    '  newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
-    '  Return View(newsItem)
-    'End Function
+    Function Edit(ByVal id As String) As ActionResult
+      Return View(Document.FindById(HoaUser, id))
+    End Function
 
     ''
     '' POST: /Document/Edit/5
 
-    '<HttpPost()> _
-    'Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
-    '  Try
-    '    Dim newsItem = New Document(CType(CurrentUser(), ManagementCompanyUser))
-    '    newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
-    '    newsItem.Write(collection)
-    '    Return RedirectToAction("Index")
-    '  Catch
-    '    Return View()
-    '  End Try
-    'End Function
+    <HttpPost()> _
+    Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
+      Try
+        Return RedirectToAction("Index")
+      Catch
+        Return View()
+      End Try
+    End Function
 
     ''
     '' POST: /Document/Delete/5
