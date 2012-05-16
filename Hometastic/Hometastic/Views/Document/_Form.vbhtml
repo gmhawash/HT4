@@ -18,7 +18,7 @@ To post an announcement or news article on your site please enter its title, pro
       </div>
       <div class="field">
         @Html.Label("Category")
-        @Html.DropDownList("CATEGORY", Model.Categories)
+        @Html.DropDownList("CATEGORYID", Model.Categories)
         <a class="float_right button" href="#" category_id="">New Category</a>
       </div>
       <div class="field">

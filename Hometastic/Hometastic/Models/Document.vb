@@ -37,7 +37,8 @@ Namespace Models
     Function Categories() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
       For Each cat In m_hoaUser.Categories()
-        list.Add(New SelectListItem With {.Text = cat.Value("DESCRIPTION"), .Value = cat.Value("@ID")})
+        Dim cat_id = cat.Value("CODE")
+        list.Add(New SelectListItem With {.Text = cat.Value("DESCRIPTION"), .Value = cat_id, .Selected = (cat_id = Value(Columns.CATEGORYID))})
       Next
 
       Return list

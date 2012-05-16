@@ -27,8 +27,8 @@ Namespace Hometastic
       Try
         Dim document = New Document(HoaUser)
         collection("ID") = HoaUser.id & "*" & collection("Filename")
-        document.Write(collection)
         FileCopy(collection("TempFilename"), HoaUser.DocumentPath(collection("Filename")))
+        document.Write(collection)
         Return RedirectToAction("Index")
       Catch
         Return View()
@@ -63,6 +63,13 @@ Namespace Hometastic
     <HttpPost()> _
     Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
       Try
+        Dim doc = Document.FindById(HoaUser, id)
+        If Not String.IsNullOrWhiteSpace(collection("filename")) Then
+          collection("ID") = HoaUser.id & "*" & collection("Filename")
+          FileCopy(collection("TempFilename"), HoaUser.DocumentPath(collection("Filename")))
+        End If
+
+        doc.Write(collection)
         Return RedirectToAction("Index")
       Catch
         Return View()
