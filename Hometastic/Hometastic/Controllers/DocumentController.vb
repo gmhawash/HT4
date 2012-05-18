@@ -1,5 +1,6 @@
 ﻿Imports Hometastic.Models
 Imports BlueFinity.mvNET.CoreObjects
+Imports MvcFlash.Core
 
 Namespace Hometastic
   Public Class DocumentController
@@ -54,7 +55,12 @@ Namespace Hometastic
     ' GET: /Document/Edit/5
 
     Function Edit(ByVal id As String) As ActionResult
-      Return View(Document.FindById(HoaUser, id))
+      Try
+        Return View(Document.FindById(HoaUser, id))
+      Catch ex As Exception
+        Throw ex
+        Return RedirectToAction("Index")
+      End Try
     End Function
 
     ''
@@ -78,20 +84,19 @@ Namespace Hometastic
 
     ''
     '' POST: /Document/Delete/5
-
     '<HttpPost()> _
-    'Function Delete(ByVal id As String) As ActionResult
-    '  Try
-    '    ' TODO: Add delete logic here
-    '    If Not id = "" Then
-    '      Dim newsItem = Document.FindById(Of Document)(id.Replace("_", "*"))
-    '      newsItem.Delete()
-    '    End If
+    Function Delete(ByVal id As String) As ActionResult
+      Try
+        ' TODO: Add delete logic here
+        If Not id = "" Then
+          Dim doc = Document.FindById(HoaUser, id)
+          doc.Delete()
+        End If
 
-    '    Return RedirectToAction("Index")
-    '  Catch
-    '    Return View()
-    '  End Try
-    'End Function
+        Return RedirectToAction("Index")
+      Catch
+        Return RedirectToAction("Index")
+      End Try
+    End Function
   End Class
 End Namespace

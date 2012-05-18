@@ -1,4 +1,6 @@
 ﻿Imports Hometastic.Models
+Imports MvcFlash.Core
+
 Namespace Hometastic
   Public Class ApplicationController
     Inherits System.Web.Mvc.Controller

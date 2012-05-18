@@ -35,6 +35,7 @@
 </head>
 <body>
   <div id="container">
+    @Html.Flash()
     <div id="menu-container">
       <div id="left">
         <img src="/Images/corner.gif" class="corner" alt="" />

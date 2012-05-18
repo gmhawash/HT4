@@ -50,13 +50,14 @@ Namespace Models
 
     Function AuthorizationLevels() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
-      list.Add(New SelectListItem With {.Value = "0", .Text = "None"})
-      list.Add(New SelectListItem With {.Value = "1", .Text = "Activate"})
+      Dim level = Value(Columns.PASSPROTECT)
+      list.Add(New SelectListItem With {.Value = "0", .Text = "None", .Selected = (level = "0")})
+      list.Add(New SelectListItem With {.Value = "1", .Text = "Activate", .Selected = (level = "1")})
       Return list
     End Function
 
     Function AuthorizationLevel() As String
-      Return (Value("PASSWORDPROTECT"))
+      Return ("authorization_level_" & Value(Columns.PASSPROTECT))
     End Function
 
     Public Property Category() As String

@@ -120,6 +120,7 @@
     <Compile Include="Controllers\ApplicationController.vb" />
     <Compile Include="Controllers\CategoryController.vb" />
     <Compile Include="Controllers\DocumentController.vb" />
+    <Compile Include="Controllers\ErrorController.vb" />
     <Compile Include="Controllers\SurveyController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
     <Compile Include="Controllers\VendorController.vb" />
@@ -338,6 +339,8 @@
     <Content Include="Views\Category\Index.vbhtml" />
     <Content Include="Views\Shared\_Plain.vbhtml" />
     <Content Include="Views\Document\_edit_category.vbhtml" />
+    <Content Include="Views\Error\HttpError.vbhtml" />
+    <Content Include="Views\Error\Http404.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />

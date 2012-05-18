@@ -165,6 +165,7 @@ Public Class MVNetBase
       m_Dirty = False
     Catch ex As Exception
       ' TODO: Exception Handling
+      Throw ex
       m_Valid = False
     Finally
       Disconnect()

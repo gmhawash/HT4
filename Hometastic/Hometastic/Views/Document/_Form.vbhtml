@@ -23,7 +23,7 @@ To post an announcement or news article on your site please enter its title, pro
       </div>
       <div class="field">
         @Html.Label("Password Protection")
-        @Html.DropDownList("PASSWORDPROTECT", Model.AuthorizationLevels)
+        @Html.DropDownList("PASSPROTECT", Model.AuthorizationLevels)
       </div> 
       <div class="field">
         @Html.Label("Description")

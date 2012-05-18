@@ -2,6 +2,7 @@
 ' visit http://go.microsoft.com/?LinkId=9394802
 
 Imports Hometastic.Models
+Imports MvcFlash.Core
 
 Public Class MvcApplication
   Inherits System.Web.HttpApplication
@@ -46,12 +47,11 @@ Public Class MvcApplication
 
     MapResource("Hoa", "Document")
     MapResource("Hoa", "Category")
-    'routes.MapRoute("Document",
-    '                "Hoa/{hoa_id}/Document/{action}/{id}",
-    '                New With {.controller = "Document", .id = UrlParameter.Optional}
-    '                )
 
-
+    routes.MapRoute("Error",
+                    "Error/{action}",
+                    New With {.controller = "Error"}
+                    )
     routes.MapRoute("Default",
                     "{controller}/{path}",
                     New With {.controller = "Home", .action = "Index", .path = UrlParameter.Optional}
@@ -66,5 +66,10 @@ Public Class MvcApplication
     RegisterGlobalFilters(GlobalFilters.Filters)
     RegisterRoutes(RouteTable.Routes)
     MyConfiguration.Load()
+  End Sub
+
+  Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
+    Dim ex As Exception = Server.GetLastError()
+    Application(HttpContext.Current.Request.UserHostAddress.ToString()) = ex
   End Sub
 End Class
