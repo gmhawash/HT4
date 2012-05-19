@@ -1,7 +1,7 @@
 ﻿Imports System
 Imports BlueFinity.mvNET.CoreObjects
 Namespace Models
-  Public Class Survey
+  Public Class Question
     Inherits MVNetBase
 
     Public Enum Columns
@@ -12,7 +12,7 @@ Namespace Models
     End Enum
 
     Shared Function FindById(ByRef CurrentAccount, ByVal Id)
-      Dim item = New Survey(CurrentAccount)
+      Dim item = New Question(CurrentAccount)
       item.Read(Id)
       Return item
     End Function

@@ -13,12 +13,14 @@ Public Class MvcApplication
     'provider.Add("ManagementCompany", "*", New ManagementUserFilter)
     'provider.Add("Hoa", "*", New HoaUserFilter)
 
-    provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Home", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
     provider.Add("News", "*", New ManagementCompanyInitializeFilter)
-    provider.Add("News", "*", New HoaInitializeFilter)
-    provider.Add("Survey", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("Question", "*", New ManagementCompanyInitializeFilter)
+
     provider.Add("Hoa", "*", New HoaInitializeFilter)
+    provider.Add("Survey", "*", New HoaInitializeFilter)
+    provider.Add("News", "*", New HoaInitializeFilter)
     provider.Add("HoaDocument", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
@@ -40,15 +42,16 @@ Public Class MvcApplication
     ' (3) Parameter defaults
     'routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
     routes.MapRoute("LogOn", "", New With {.controller = "ManagementCompany", .action = "Edit", .path = UrlParameter.Optional})
-    MapResource("ManagementCompany")
-    MapResource("Vendor")
-    MapResource("News")
-    MapResource("Survey")
-
     routes.MapRoute("Hoa", "Hoa/{action}/{hoa_id}", New With {.controller = "Hoa"})
     MapResource("Hoa", "Document")
     MapResource("Hoa", "Category")
     MapResource("Hoa", "News")
+    MapResource("Hoa", "Survey")
+
+    MapResource("ManagementCompany")
+    MapResource("Vendor")
+    MapResource("News")
+    MapResource("Question")
 
     routes.MapRoute("Error",
                     "Error/{action}",

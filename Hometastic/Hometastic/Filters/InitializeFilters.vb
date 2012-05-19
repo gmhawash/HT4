@@ -15,7 +15,7 @@ Namespace Models
                       ({"My Account", "/ManagementCompany/Index"}),
                       ({"Manage Site", "/ManagementCompany/Edit"}),
                       ({"News", "/News/Index"}),
-                      ({"Q&A", "/Survey/Index"})
+                      ({"Q&A", "/Question/Index"})
                      }
       Account.Authenticate("6400", "pmsi", "", "ManagementCompany")
     End Sub

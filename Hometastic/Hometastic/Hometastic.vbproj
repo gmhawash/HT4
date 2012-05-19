@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.vb" />
     <Compile Include="Controllers\CategoryController.vb" />
+    <Compile Include="Controllers\QuestionController.vb" />
     <Compile Include="Controllers\DocumentController.vb" />
     <Compile Include="Controllers\ErrorController.vb" />
     <Compile Include="Controllers\SurveyController.vb" />
@@ -134,6 +135,7 @@
     </Compile>
     <Compile Include="Models\Account.vb" />
     <Compile Include="Models\Category.vb" />
+    <Compile Include="Models\Question.vb" />
     <Compile Include="Models\Document.vb" />
     <Compile Include="Models\Log.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -341,6 +343,9 @@
     <Content Include="Views\Document\_edit_category.vbhtml" />
     <Content Include="Views\Error\HttpError.vbhtml" />
     <Content Include="Views\Error\Http404.vbhtml" />
+    <Content Include="Views\Question\_templates.vbhtml" />
+    <Content Include="Views\Question\Create.vbhtml" />
+    <Content Include="Views\Question\Index.vbhtml" />
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />

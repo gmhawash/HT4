@@ -9,7 +9,7 @@ End Code
   $(function () {
     LinkToButton();
 
-    var jsonResponse = $.get('@Url.Action("Surveylist")', function (data) {
+    var jsonResponse = $.get('@Url.Action("QuestionList")', function (data) {
       var questions = eval(data);
       $.each(questions, function (i, e) {
         var templateId = e.AnswerType == 'select' ? '#selectTemplate' : '#multiTemplate';
@@ -99,10 +99,10 @@ End Code
   });
 </script>
 
-@Using Html.BeginForm("Create", "Survey")
+@Using Html.BeginForm("Create", "Question")
   @<div class="field">
     @Html.Label("Question Type")
-    @Html.DropDownList("AnswerType", Hometastic.Models.Survey.AnswerTypeOptions)
+    @Html.DropDownList("AnswerType", Hometastic.Models.Question.AnswerTypeOptions)
     <a href="#" class="add_question button">Add New Question</a>
   </div>
   @<div id="target">

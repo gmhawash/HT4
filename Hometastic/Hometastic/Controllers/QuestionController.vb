@@ -4,7 +4,7 @@ Imports System.Web.Script.Serialization
 
 
 Namespace Hometastic
-  Public Class SurveyController
+  Public Class QuestionController
     Inherits ApplicationController
     '
     ' GET: /News
@@ -12,9 +12,9 @@ Namespace Hometastic
       Return View()
     End Function
 
-    Function SurveyList()
+    Function QuestionList()
       Response.StatusCode = 200
-      Return Json(CurrentAccount.SurveyList, JsonRequestBehavior.AllowGet)
+      Return Json(CurrentAccount.QuestionList, JsonRequestBehavior.AllowGet)
     End Function
 
     '
@@ -23,16 +23,17 @@ Namespace Hometastic
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        Dim question As String = collection("questions")
+        Dim q As String = collection("questions")
         Dim jsonSerializer As JavaScriptSerializer = New JavaScriptSerializer
-        Dim items = jsonSerializer.DeserializeObject(question)
+        Dim items = jsonSerializer.DeserializeObject(q)
 
-        Dim surveyItem As Survey
+        Dim surveyItem As Question
         For Each item In items
           If Not item("Id") = "" Then
-            surveyItem = Survey.FindById(CurrentAccount, item("Id").Replace("_", "*"))
+            surveyItem = Question.FindById(CurrentAccount, item("Id").Replace("_", "*"))
           Else
-            surveyItem = New Survey(CurrentAccount)
+            surveyItem = New Question(CurrentAccount)
+            surveyItem.CreateNewMvItem(CurrentAccount)
           End If
           surveyItem.UpdateFromJson(item)
         Next
@@ -55,7 +56,7 @@ Namespace Hometastic
       Try
         ' TODO: Add delete logic here
         If Not id = "" Then
-          Dim surveyItem = Survey.FindById(CurrentAccount, id.Replace("_", "*"))
+          Dim surveyItem = Question.FindById(CurrentAccount, id.Replace("_", "*"))
           surveyItem.Delete()
         End If
 

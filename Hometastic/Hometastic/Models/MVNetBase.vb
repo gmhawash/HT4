@@ -94,11 +94,16 @@ Public Class MVNetBase
     m_ColumnNames = m_ColumnNames.Trim(charsToTrim)
   End Sub
 
+  ' TODO: Are these really necessary?
   Overridable Function NewsList()
     Return Nothing
   End Function
 
   Overridable Function SurveyList()
+    Return Nothing
+  End Function
+
+  Overridable Function QuestionList()
     Return Nothing
   End Function
 
