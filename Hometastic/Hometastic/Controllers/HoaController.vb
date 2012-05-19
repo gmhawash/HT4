@@ -42,12 +42,8 @@ Namespace Hometastic
     '
     ' GET: /Hoa/Edit/5
 
-    Function Edit(ByVal id As Integer) As ActionResult
-      Account.Authenticate("6400", "pmsi", id, "HoaUser")
-      Dim hoa As HoaUser = New HoaUser(Account.ManagementCompany.HoaAccount())
-      hoa.Read(id)
-
-      Return View(hoa)
+    Function Edit(ByVal hoa_id As Integer) As ActionResult
+      Return View(HoaUser())
     End Function
 
     '
@@ -56,10 +52,8 @@ Namespace Hometastic
     <HttpPost()> _
     Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
       Try
-        Dim hoa As HoaUser = New HoaUser(Account.ManagementCompany.HoaAccount())
-        hoa.Read(id)
-        hoa.Write(collection)
-        Return View(hoa)
+        HoaUser.Write(collection)
+        Return View(HoaUser)
       Catch
         Return View()
       End Try

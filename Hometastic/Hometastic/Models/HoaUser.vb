@@ -4,6 +4,7 @@ Namespace Models
     Inherits MVNetBase
     Dim m_documentList As List(Of Document) = Nothing
     Dim m_categoryList As List(Of Category) = Nothing
+    Dim m_NewsList As List(Of News) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -126,6 +127,21 @@ Namespace Models
       Next
 
       Return m_categoryList
+    End Function
+
+    ' Build list of news for this management comapany
+    Overrides Function NewsList()
+      If Not m_NewsList Is Nothing Then Return m_NewsList
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim finder = New News(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY CREATEDATE")
+      m_NewsList = New List(Of News)
+      For Each item As mvItem In itemList
+        m_NewsList.Add(New News(item))
+      Next
+
+      Return m_NewsList
     End Function
 
     Function AssetFolder()

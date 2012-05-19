@@ -49,7 +49,7 @@ End Code
           <td>@item.id </td>
           <td>@item.name </td>
           <td>@item.formattedAddress </td>
-          <td>@Html.ActionLink("Edit", "Edit", "Hoa", New With {.id = item.id}, New With {.class = "button"})</td>
+          <td>@Html.ActionLink("Edit", "Edit", "Hoa", New With {.hoa_id = item.id}, New With {.class = "button"})</td>
         </tr>
       Next
     </tbody>

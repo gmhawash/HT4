@@ -7,6 +7,18 @@ Namespace Hometastic
     Dim m_CurrentUser As MVNetBase = Nothing
     Dim m_HoaUser As HoaUser = Nothing
 
+    ' Determines which area on the site we are in, HOA or Managmenet company and
+    ' returns the proper model for accessing account information.
+    '
+    Function CurrentAccount()
+      Dim routeParams = Request.RequestContext.RouteData.Values
+      If routeParams("hoa_id") Is Nothing Then
+        Return CurrentUser()
+      Else
+        Return HoaUser()
+      End If
+    End Function
+
     Function CurrentUser()
       If m_CurrentUser Is Nothing Then
         m_CurrentUser = Session("CurrentUser")

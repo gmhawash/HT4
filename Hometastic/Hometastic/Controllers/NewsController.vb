@@ -4,29 +4,22 @@ Imports BlueFinity.mvNET.CoreObjects
 Namespace Hometastic
   Public Class NewsController
     Inherits ApplicationController
-    '
-    ' GET: /News
-    ' ManagementCompany/6400/NewsList
-    ' HOA/605/NewsList
+
     Function Index() As ActionResult
-      ViewBag.NewsList = CurrentUser.NewsList
+      ViewBag.NewsList = CurrentAccount.NewsList
       Return View()
     End Function
 
-    '
     ' GET: /News/Create
-
     Function Create() As ActionResult
       Return View(New News())
     End Function
 
-    '
     ' POST: /News/Create
-
     <HttpPost()> _
     Function Create(ByVal collection As FormCollection) As ActionResult
       Try
-        Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
+        Dim newsItem = New News(CurrentAccount)
         newsItem.Write(collection)
         Return RedirectToAction("Index")
       Catch
@@ -34,22 +27,18 @@ Namespace Hometastic
       End Try
     End Function
 
-    '
     ' GET: /News/Edit/5
-
     Function Edit(ByVal id As String) As ActionResult
-      Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
+      Dim newsItem = New News(CurrentAccount)
       newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
       Return View(newsItem)
     End Function
 
-    '
     ' POST: /News/Edit/5
-
     <HttpPost()> _
     Function Edit(ByVal id As String, ByVal collection As FormCollection) As ActionResult
       Try
-        Dim newsItem = New News(CType(CurrentUser(), ManagementCompanyUser))
+        Dim newsItem = New News(CurrentAccount)
         newsItem.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
         newsItem.Write(collection)
         Return RedirectToAction("Index")
@@ -66,7 +55,7 @@ Namespace Hometastic
       Try
         ' TODO: Add delete logic here
         If Not id = "" Then
-          Dim newsItem = News.FindById(id.Replace("_", "*"))
+          Dim newsItem = News.FindById(CurrentAccount, id.Replace("_", "*"))
           newsItem.Delete()
         End If
 

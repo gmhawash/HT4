@@ -9,7 +9,7 @@ Public Class MVNetBase
 
   Protected Friend m_mvAccount As mvAccount
   Protected Friend m_TableName As String = Nothing
-  Protected Friend m_AccountName As String = "AsiAr"
+  Public m_AccountName As String = "AsiAr"
   Protected Friend m_ColumnNames As String = Nothing
   Protected m_ColumnNamesList As List(Of String) = New List(Of String)
   Protected m_WriteableColumnList As List(Of String)

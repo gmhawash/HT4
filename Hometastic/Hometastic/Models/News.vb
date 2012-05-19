@@ -18,13 +18,13 @@ Namespace Models
       SEQ
     End Enum
 
-    Shared Function FindById(ByVal Id As String)
-      Dim item = New News()
+    Shared Function FindById(ByVal CurrentAccount, ByVal Id)
+      Dim item = New News(CurrentAccount)
       item.Read(Id)
       Return item
     End Function
 
-    Sub New(Optional ByVal CurrentUser As MVNetBase = Nothing)
+    Sub New(Optional ByVal CurrentUser = Nothing)
       m_TableName = "DWNEWS"
       If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
       m_CurrentUser = CurrentUser

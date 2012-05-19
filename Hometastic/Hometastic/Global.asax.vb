@@ -13,12 +13,13 @@ Public Class MvcApplication
     'provider.Add("ManagementCompany", "*", New ManagementUserFilter)
     'provider.Add("Hoa", "*", New HoaUserFilter)
 
-    Provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("ManagementCompany", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Home", "*", New ManagementCompanyInitializeFilter)
     provider.Add("News", "*", New ManagementCompanyInitializeFilter)
+    provider.Add("News", "*", New HoaInitializeFilter)
     provider.Add("Survey", "*", New ManagementCompanyInitializeFilter)
     provider.Add("Hoa", "*", New HoaInitializeFilter)
-    provider.Add("Document", "*", New HoaInitializeFilter)
+    provider.Add("HoaDocument", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
 
@@ -27,7 +28,7 @@ Public Class MvcApplication
   End Sub
 
   Shared Sub MapResource(ByVal scope As String, ByVal resource As String)
-    RouteTable.Routes.MapRoute(resource, String.Format("{0}/{{{1}_id}}/{2}/{{action}}/{{id}}", scope, scope.ToLower(), resource), New With {.controller = resource, .id = UrlParameter.Optional})
+    RouteTable.Routes.MapRoute(scope & resource, String.Format("{0}/{{{1}_id}}/{2}/{{action}}/{{id}}", scope, scope.ToLower(), resource), New With {.controller = resource, .id = UrlParameter.Optional})
   End Sub
 
   Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
@@ -40,13 +41,14 @@ Public Class MvcApplication
     'routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
     routes.MapRoute("LogOn", "", New With {.controller = "ManagementCompany", .action = "Edit", .path = UrlParameter.Optional})
     MapResource("ManagementCompany")
-    MapResource("Hoa")
     MapResource("Vendor")
     MapResource("News")
     MapResource("Survey")
 
+    routes.MapRoute("Hoa", "Hoa/{action}/{hoa_id}", New With {.controller = "Hoa"})
     MapResource("Hoa", "Document")
     MapResource("Hoa", "Category")
+    MapResource("Hoa", "News")
 
     routes.MapRoute("Error",
                     "Error/{action}",
