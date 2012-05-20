@@ -108,8 +108,8 @@ Namespace Models
       Return m_NewsList
     End Function
 
-    ' Build list of news for this management comapany
-    Function QuestionList()
+    ' Build list of questions for this management comapany
+    Overrides Function QuestionList()
       If Not m_QuestionList Is Nothing Then Return m_QuestionList
 
       ' Find list of Survey Items  (This off the same server as the management company)

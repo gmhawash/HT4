@@ -9,6 +9,7 @@ Namespace Hometastic
     '
     ' GET: /News
     Function Index() As ActionResult
+      ViewBag.SurveyList = CurrentAccount.SurveyList
       Return View()
     End Function
 
@@ -33,6 +34,7 @@ Namespace Hometastic
             surveyItem = Survey.FindById(CurrentAccount, item("Id").Replace("_", "*"))
           Else
             surveyItem = New Survey(CurrentAccount)
+            surveyItem.CreateNewMvItem(CurrentAccount)
           End If
           surveyItem.UpdateFromJson(item)
         Next

@@ -5,10 +5,14 @@ Namespace Models
     Inherits MVNetBase
 
     Public Enum Columns
-      QUESTIONTEXT
-      ANSWERTYPE
-      ANSWERTEXT
+      ACTIVATEDATE
+      CREATEDATE
+      QUESTION
       SEQ
+      ISCURRENT
+      VOTES
+      VOTESIPS
+      ANSWERS
     End Enum
 
     Shared Function FindById(ByRef CurrentAccount, ByVal Id)
@@ -17,9 +21,18 @@ Namespace Models
       Return item
     End Function
 
-    Public Property AnswerOptions()
+    Public Property QuestionText() As String
       Get
-        Dim answerList = Value("ANSWERTEXT").Split(DataBASIC.VM)
+        Return Value("QUESTION")
+      End Get
+      Set(ByVal value As String)
+        m_mvItem("QUESTION") = value
+      End Set
+    End Property
+
+    Public Property Answers()
+      Get
+        Dim answerList = Value("ANSWERS").Split(DataBASIC.VM)
         Return answerList
       End Get
       Set(ByVal value)
@@ -27,34 +40,34 @@ Namespace Models
         For Each item In value
           list.Add(item)
         Next
-        m_mvItem("ANSWERTEXT") = String.Join(DataBASIC.VM, list)
+        m_mvItem("ANSWERS") = String.Join(DataBASIC.VM, list)
       End Set
     End Property
 
-    Public Property AnswerType() As String
+    Public Property CreatedOn()
       Get
-        Dim optionTypes() As String = {"select", "checkbox", "radio"}
-        Return optionTypes(Convert.ToInt16(Value(Columns.ANSWERTYPE)) - 1)
+        Return Value(Columns.CREATEDATE)
       End Get
-
-      Set(ByVal value As String)
-        Select Case (value)
-          Case "select"
-            m_mvItem("ANSWERTYPE") = 1
-          Case "checkbox"
-            m_mvItem("ANSWERTYPE") = 2
-          Case "radio"
-            m_mvItem("ANSWERTYPE") = 3
-        End Select
+      Set(ByVal value)
+        Dim list As List(Of String) = New List(Of String)
+        For Each item In value
+          list.Add(item)
+        Next
+        m_mvItem("ANSWERS") = String.Join(DataBASIC.VM, list)
       End Set
     End Property
 
-    Public Property QuestionText() As String
+    Public Property ActivatedOn()
       Get
-        Return Value("QUESTIONTEXT")
+        Dim activateDate = Value(Columns.ACTIVATEDATE)
+        Return If(activateDate = "01 Jan 1", "", activateDate)
       End Get
-      Set(ByVal value As String)
-        m_mvItem("QUESTIONTEXT") = value
+      Set(ByVal value)
+        Dim list As List(Of String) = New List(Of String)
+        For Each item In value
+          list.Add(item)
+        Next
+        m_mvItem("ANSWERS") = String.Join(DataBASIC.VM, list)
       End Set
     End Property
 
@@ -64,28 +77,22 @@ Namespace Models
       End Get
     End Property
 
-    Shared Function AnswerTypeOptions() As List(Of SelectListItem)
-      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
-      list.Add(New SelectListItem With {.Value = "checkbox", .Text = "Check boxes"})
-      list.Add(New SelectListItem With {.Value = "radio", .Text = "Radio buttons"})
-      list.Add(New SelectListItem With {.Value = "select", .Text = "Dropdown List"})
-      Return list
-    End Function
-
     Sub UpdateFromJson(ByVal json)
       QuestionText = json("QuestionText")
-      AnswerType = json("AnswerType")
-      AnswerOptions = json("AnswerOptions")
+      Answers = json("Answers")
       If m_mvItem.ID = "" Then m_mvItem.ID = NextId()
       Write()
     End Sub
 
     Sub New(Optional ByVal CurrentUser = Nothing)
-      m_TableName = "DWQUESTIONS"
+      m_TableName = "HOASURVEY"
       If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
       m_CurrentUser = CurrentUser
       ParseColumns([Enum].GetValues(GetType(Columns)))
-      m_WriteableColumnList = New List(Of String)(New String() {"QUESTIONTEXT", "ANSWERTYPE", "ANSWERTEXT"})
+      m_WriteableColumnList = New List(Of String)(New String() {
+          "ACTIVATEDATE", "CREATEDATE", "QUESTION",
+          "ISCURRENT", "VOTES", "VOTESIPS", "ANSWERS"
+          })
     End Sub
 
     Overloads Function Id()
@@ -98,7 +105,7 @@ Namespace Models
     End Sub
 
     Overloads Function NextId()
-      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH MGMTCONO = ""{0}""", m_CurrentUser.Id)))
+      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH HOANO = ""{0}""", m_CurrentUser.Id)))
     End Function
 
     Overloads Sub Write(ByVal record As FormCollection)

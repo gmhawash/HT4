@@ -5,6 +5,7 @@ Namespace Models
     Dim m_documentList As List(Of Document) = Nothing
     Dim m_categoryList As List(Of Category) = Nothing
     Dim m_NewsList As List(Of News) = Nothing
+    Dim m_SurveyList As List(Of Survey) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -129,7 +130,7 @@ Namespace Models
       Return m_categoryList
     End Function
 
-    ' Build list of news for this management comapany
+    ' Build list of news for this hoauser
     Overrides Function NewsList()
       If Not m_NewsList Is Nothing Then Return m_NewsList
 
@@ -142,6 +143,21 @@ Namespace Models
       Next
 
       Return m_NewsList
+    End Function
+
+    ' Build list of survey questions for this hoauser
+    Overrides Function SurveyList()
+      If Not m_SurveyList Is Nothing Then Return m_SurveyList
+
+      ' Find list of Survey Items  (This off the same server as the management company)
+      Dim finder = New Survey(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id()), "BY @ID")
+      m_SurveyList = New List(Of Survey)
+      For Each item As mvItem In itemList
+        m_SurveyList.Add(New Survey(item))
+      Next
+
+      Return m_SurveyList
     End Function
 
     Function AssetFolder()

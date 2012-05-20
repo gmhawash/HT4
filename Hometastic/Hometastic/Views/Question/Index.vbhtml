@@ -46,8 +46,8 @@ End Code
         var question_group = $(this).closest("div.question-group");
         var id = question_group.attr("id");
         if (id != "") {
-          $.post('/survey/delete/' + id, function () {
-         //   document.location.href = '@Url.Action("Index", "survey")';
+          $.post('/question/delete/' + id, function () {
+         //   document.location.href = '@Url.Action("Index")';
           });
         }
         question_group.remove();

@@ -14,3 +14,6 @@
 #target .button span, .button span {padding: 2px; font-size: 0.8em;}
 #target .float_right {float: right;}
 #target .question_type {display:block; clear:both;}
+table.dataTable {font-size: 12px;}
+table.dataTable thead th {padding: 2px 0px 2px 5px;}
+table.dataTable td{padding: 2px 0px 2px 2px; text-align: center;}

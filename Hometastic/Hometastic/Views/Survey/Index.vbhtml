@@ -12,11 +12,9 @@ End Code
     var jsonResponse = $.get('@Url.Action("Surveylist")', function (data) {
       var questions = eval(data);
       $.each(questions, function (i, e) {
-        var templateId = e.AnswerType == 'select' ? '#selectTemplate' : '#multiTemplate';
+        var templateId = '#selectTemplate'
         var html = Mustache.to_html($(templateId).html(), e);
         $("#target").append(html);
-        // set selected option in select box.
-        $('#target #' + e.QuestionId + ' select').val(e.AnswerType);
         LinkToButton();
       });
     });
@@ -34,9 +32,8 @@ End Code
     });
 
     $('a.add_question').click(function () {
-      var answerType = $('#AnswerType option:selected').val();
-      var templateId = answerType == 'select' ? '#selectTemplate' : '#multiTemplate';
-      var html = Mustache.to_html($(templateId).html(), { QuestionText: "", AnswerOptions: [], AnswerType: answerType });
+      var templateId = '#selectTemplate';
+      var html = Mustache.to_html($(templateId).html(), { QuestionText: "", AnswerOptions: [] });
       $("#target").append(html);
       LinkToButton();
     });
@@ -63,7 +60,7 @@ End Code
         result.AnswerType = me.find("select.question_type").val();
         result.QuestionText = me.find(".question").val();
         var answers = me.find(".target").find("input[type=text]");
-        result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();
+        result.Answers = answers.map(function (i, e) { return $(e).val(); }).toArray();
         result.Id = me.attr("id") || "";
         results.push(result);
       });
@@ -92,7 +89,7 @@ End Code
       result.AnswerType = me.find("select.question_type").val();
       result.QuestionText = me.find(".question").val();
       var answers = me.find(".target").find("input[type=text]");
-      result.AnswerOptions = answers.map(function (i, e) { return $(e).val(); }).toArray();
+      result.Answers = answers.map(function (i, e) { return $(e).val(); }).toArray();
       result.QuestionId = me.attr("id");
       return result;
     }
@@ -101,8 +98,6 @@ End Code
 
 @Using Html.BeginForm("Create", "Survey")
   @<div class="field">
-    @Html.Label("Question Type")
-    @Html.DropDownList("AnswerType", Hometastic.Models.Survey.AnswerTypeOptions)
     <a href="#" class="add_question button">Add New Question</a>
   </div>
   @<div id="target">
@@ -114,3 +109,38 @@ End Code
     <input type="submit" value="Save" />
   </div>
 End Using
+
+  <div class="demo_jui">
+    <table class="dataTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Question</th>
+          <th>Created On</th>
+          <th>Activated On</th>
+          <th># of Votes</th>
+          <th>Current?</th>
+          <th>Active?</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @For Each item As Hometastic.Models.Survey In ViewBag.SurveyList
+          @<tr>
+              <td>@item.Id</td>
+              <td>@item.QuestionText</td>
+              <td>@item.CreatedOn</td>
+              <td>@item.ActivatedOn</td>
+              <td>@item.Value("VOTES")</td>
+              <td>Current?</td>
+              <td>Active?</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Document", New With {.id = item.Id}, New With {.class = "button"}) </td>
+            <td>@Html.ActionLink("Delete", "Delete", "Document", New With {.id = item.Id}, New With {.class = "button delete_item"}) </td>
+          </tr>
+        Next
+      </tbody>
+    </table>
+    @Html.ActionLink("New Document", "Create", "Document", New With {.class = "button"})
+  </div>
+</div>
