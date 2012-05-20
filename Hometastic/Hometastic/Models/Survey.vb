@@ -30,35 +30,40 @@ Namespace Models
       End Set
     End Property
 
-    Public Property Active() As Boolean
-      Get
-        Return Not ActivatedOn.ToString() = "01 Jan 01"
-      End Get
-      Set(ByVal value As Boolean)
-        m_mvItem("QUESTION") = value
-      End Set
-    End Property
 
 
     Public Property Current() As Boolean
       Get
         Return Value("ISCURRENT") = "1"
       End Get
-      Set(ByVal value As String)
-        m_mvItem("QUESTION") = value
+      Set(ByVal value As Boolean)
+        m_mvItem("ISCURRENT") = If(value, "1", "0")
       End Set
     End Property
-    Public Property Answers()
+
+    Public Property Active() As Boolean
       Get
-        Dim answerList = Value("ANSWERS").Split(DataBASIC.VM)
-        Return answerList
+        Return Not String.IsNullOrEmpty(ActivatedOn)
+      End Get
+      Set(ByVal value As Boolean)
+        If (value And ActivatedOn = "") Then
+          Dim ts As TimeSpan = Date.Today - New Date(1967, 12, 31)
+          ActivatedOn = ts.Days.ToString()
+        ElseIf (value = False And Not String.IsNullOrEmpty(ActivatedOn)) Then
+          Dim ts As TimeSpan = Date.MinValue - New Date(1967, 12, 31)
+          ActivatedOn = ts.Days.ToString()
+        End If
+      End Set
+    End Property
+
+    Public Property ActivatedOn()
+      Get
+        Dim activateDate As Date
+        Date.TryParse(Value(Columns.ACTIVATEDATE), activateDate)
+        Return If(activateDate < New Date(2002, 12, 31), "", Value(Columns.ACTIVATEDATE))
       End Get
       Set(ByVal value)
-        Dim list As List(Of String) = New List(Of String)
-        For Each item In value
-          list.Add(item)
-        Next
-        m_mvItem("ANSWERS") = String.Join(DataBASIC.VM, list)
+        m_mvItem(2) = value
       End Set
     End Property
 
@@ -67,18 +72,14 @@ Namespace Models
         Return Value(Columns.CREATEDATE)
       End Get
       Set(ByVal value)
-        Dim list As List(Of String) = New List(Of String)
-        For Each item In value
-          list.Add(item)
-        Next
-        m_mvItem("ANSWERS") = String.Join(DataBASIC.VM, list)
+        m_mvItem(Columns.CREATEDATE) = value
       End Set
     End Property
 
-    Public Property ActivatedOn()
+    Public Property Answers()
       Get
-        Dim activateDate = Value(Columns.ACTIVATEDATE)
-        Return If(activateDate = "01 Jan 1", "", activateDate)
+        Dim answerList = Value("ANSWERS").Split(DataBASIC.VM)
+        Return answerList
       End Get
       Set(ByVal value)
         Dim list As List(Of String) = New List(Of String)
@@ -98,6 +99,8 @@ Namespace Models
     Sub UpdateFromJson(ByVal json)
       QuestionText = json("QuestionText")
       Answers = json("Answers")
+      Active = json("Active")
+      Current = json("Current")
       If m_mvItem.ID = "" Then m_mvItem.ID = NextId()
       Write()
     End Sub

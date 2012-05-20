@@ -59,6 +59,8 @@ End Code
         var result = {}
         result.AnswerType = me.find("select.question_type").val();
         result.QuestionText = me.find(".question").val();
+        result.Current = me.find(".current:checked").length == 1;
+        result.Active = me.find(".active:checked").length == 1;
         var answers = me.find(".target").find("input[type=text]");
         result.Answers = answers.map(function (i, e) { return $(e).val(); }).toArray();
         result.Id = me.attr("id") || "";
@@ -66,33 +68,6 @@ End Code
       });
       $('#questions').val(JSON.stringify(results));
     });
-
-    $('select.question_type').live('change', function () {
-      var group = $(this).closest('div.question-group');
-      var answer = CollectAnswer(group);
-      RenderTemplate($(this), answer, group);
-      LinkToButton();
-    });
-
-    function RenderTemplate(me, answer, group) {
-      var templateId = me.val() == 'select' ? '#selectTemplate' : '#multiTemplate';
-      answer.AnswerType = me.val();
-      var html = Mustache.to_html($(templateId).html(), answer);
-      group.children().replaceWith($(html).children());
-
-      // set selected option in select box.
-      group.find('select').val(answer.AnswerType);
-    }
-
-    function CollectAnswer(me) {
-      var result = {}
-      result.AnswerType = me.find("select.question_type").val();
-      result.QuestionText = me.find(".question").val();
-      var answers = me.find(".target").find("input[type=text]");
-      result.Answers = answers.map(function (i, e) { return $(e).val(); }).toArray();
-      result.QuestionId = me.attr("id");
-      return result;
-    }
   });
 </script>
 

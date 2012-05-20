@@ -17,15 +17,15 @@
       </ol>
       </div>
     <a href="#" class="add button" >Add answer</a>
-    <div class="dates">
-      <label>Created On: </label><span>{{CreatedOn}}</span>
-      <label>Activated On: </label><span>{{ActivatedOn}}</span>
-    </div>
     <div class="hidden" target="ol">
       <li>
         <input type="text" />
         <a href="#" class="delete button" >Delete</a>
       </li>
+    </div>
+    <div class="dates">
+      <label>Created On: </label><span>{{CreatedOn}}</span>
+      <label>Activated On: </label><span>{{ActivatedOn}}</span>
     </div>
   </div>
 </script>
