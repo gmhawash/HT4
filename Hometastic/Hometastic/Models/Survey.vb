@@ -56,6 +56,16 @@ Namespace Models
       End Set
     End Property
 
+    ' NOTE: I am not sure what's going with the dates, but it appears that the 
+    ' date values are being interpreted by someone (MV.NET or backend).  The db
+    ' returns a date (which is supposed to be the date 1/1/0001), but .net
+    ' interprets it as 1/1/2001, so any date before that is considered inactive.
+    '
+
+    ' We are also forced to write directly to item(2) which is the index of the
+    ' activation date in raw format, because writing through MV.NET dictionary 
+    ' fails as it tries to interpret it somehow.
+    '
     Public Property ActivatedOn()
       Get
         Dim activateDate As Date
