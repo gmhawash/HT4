@@ -21,7 +21,7 @@ Public Class MvcApplication
     provider.Add("Hoa", "*", New HoaInitializeFilter)
     provider.Add("Survey", "*", New HoaInitializeFilter)
     provider.Add("News", "*", New HoaInitializeFilter)
-    provider.Add("HoaDocument", "*", New HoaInitializeFilter)
+    provider.Add("Document", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
 
