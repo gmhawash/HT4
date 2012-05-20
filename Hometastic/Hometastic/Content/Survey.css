@@ -17,3 +17,7 @@
 table.dataTable {font-size: 12px;}
 table.dataTable thead th {padding: 2px 0px 2px 5px;}
 table.dataTable td{padding: 2px 0px 2px 2px; text-align: center;}
+#target .question-group .select-options {width: 50%;}
+#target .dates {font-size: 0.8em; float:right; }
+#target .dates  label{font-weight:  bold;  display: block; float: left; clear:left; width: 10em; text-align:right;}
+#target .dates  span{ display: block; float:left; padding-left: 1em;}

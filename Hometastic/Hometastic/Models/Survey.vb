@@ -30,6 +30,24 @@ Namespace Models
       End Set
     End Property
 
+    Public Property Active() As Boolean
+      Get
+        Return Not ActivatedOn.ToString() = "01 Jan 01"
+      End Get
+      Set(ByVal value As Boolean)
+        m_mvItem("QUESTION") = value
+      End Set
+    End Property
+
+
+    Public Property Current() As Boolean
+      Get
+        Return Value("ISCURRENT") = "1"
+      End Get
+      Set(ByVal value As String)
+        m_mvItem("QUESTION") = value
+      End Set
+    End Property
     Public Property Answers()
       Get
         Dim answerList = Value("ANSWERS").Split(DataBASIC.VM)

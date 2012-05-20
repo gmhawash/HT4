@@ -1,6 +1,8 @@
 ﻿<script type='text/template' id='selectTemplate'>
   <div class="question-group" id="{{QuestionId}}">
     <div class="float_right">
+        <input type="checkbox" class="active"  {{#Active}}checked{{/Active}}/><span>Active?</span>
+        <input type="checkbox" class="current" {{#Current}}checked{{/Current}}/><span>Current?</span>
         <a href="#" class="delete_question button">Delete Question</a>
     </div>
     Question: <input type="text" class="question" value="{{QuestionText}}" />
@@ -13,8 +15,12 @@
           </li>
         {{/Answers}}
       </ol>
-    </div>
+      </div>
     <a href="#" class="add button" >Add answer</a>
+    <div class="dates">
+      <label>Created On: </label><span>{{CreatedOn}}</span>
+      <label>Activated On: </label><span>{{ActivatedOn}}</span>
+    </div>
     <div class="hidden" target="ol">
       <li>
         <input type="text" />

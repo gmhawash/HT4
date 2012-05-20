@@ -44,7 +44,7 @@ End Code
         var id = question_group.attr("id");
         if (id != "") {
           $.post('/survey/delete/' + id, function () {
-         //   document.location.href = '@Url.Action("Index", "survey")';
+            //   document.location.href = '@Url.Action("Index", "survey")';
           });
         }
         question_group.remove();
@@ -109,38 +109,3 @@ End Code
     <input type="submit" value="Save" />
   </div>
 End Using
-
-  <div class="demo_jui">
-    <table class="dataTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Question</th>
-          <th>Created On</th>
-          <th>Activated On</th>
-          <th># of Votes</th>
-          <th>Current?</th>
-          <th>Active?</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        @For Each item As Hometastic.Models.Survey In ViewBag.SurveyList
-          @<tr>
-              <td>@item.Id</td>
-              <td>@item.QuestionText</td>
-              <td>@item.CreatedOn</td>
-              <td>@item.ActivatedOn</td>
-              <td>@item.Value("VOTES")</td>
-              <td>Current?</td>
-              <td>Active?</td>
-            <td>@Html.ActionLink("Edit", "Edit", "Document", New With {.id = item.Id}, New With {.class = "button"}) </td>
-            <td>@Html.ActionLink("Delete", "Delete", "Document", New With {.id = item.Id}, New With {.class = "button delete_item"}) </td>
-          </tr>
-        Next
-      </tbody>
-    </table>
-    @Html.ActionLink("New Document", "Create", "Document", New With {.class = "button"})
-  </div>
-</div>
