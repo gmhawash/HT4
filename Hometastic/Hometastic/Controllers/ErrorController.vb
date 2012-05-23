@@ -13,13 +13,13 @@
         ' GET: /Error/Details/5
 
     Function HttpError() As ActionResult
-      Dim ex As Exception
+      Dim ex As Exception = New Exception
       Try
         ex = HttpContext.Application(Request.UserHostAddress.ToString())
       Catch
       End Try
 
-      ViewBag.ErrorMessage = "What up doc; something went wrong"
+      ViewBag.ErrorMessage = "What up doc; something went wrong: " & ex.Message
       Return View()
     End Function
 

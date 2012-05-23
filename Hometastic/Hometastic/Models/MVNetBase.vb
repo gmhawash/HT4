@@ -107,6 +107,14 @@ Public Class MVNetBase
     Return Nothing
   End Function
 
+  Overridable Function EventsList()
+    Return Nothing
+  End Function
+
+  Overridable Function ProviderList()
+    Return Nothing
+  End Function
+
   Sub Connect()
     If Not m_AccountName Is Nothing Then
       m_mvAccount = New mvAccount(m_AccountName)

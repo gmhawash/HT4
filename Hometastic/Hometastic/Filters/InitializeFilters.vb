@@ -34,7 +34,7 @@ Namespace Models
                       ({"News", "/Hoa/{hoa_id}/News/Index"}),
                       ({"Events", "/Hoa/{hoa_id}/Events/Index"}),
                       ({"Surveys", "/Hoa/{hoa_id}/Survey/Index"}),
-                      ({"Providers", "/Hoa/{hoa_id}/Providers/Index"}),
+                      ({"Providers", "/Hoa/{hoa_id}/Provider/Index"}),
                       ({"Documents", "/Hoa/{hoa_id}/Document/Index"})
                      }
 

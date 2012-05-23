@@ -119,12 +119,13 @@
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.vb" />
     <Compile Include="Controllers\CategoryController.vb" />
+    <Compile Include="Controllers\EventsController.vb" />
     <Compile Include="Controllers\QuestionController.vb" />
     <Compile Include="Controllers\DocumentController.vb" />
     <Compile Include="Controllers\ErrorController.vb" />
     <Compile Include="Controllers\SurveyController.vb" />
     <Compile Include="Controllers\NewsController.vb" />
-    <Compile Include="Controllers\VendorController.vb" />
+    <Compile Include="Controllers\ProviderController.vb" />
     <Compile Include="Controllers\HoaController.vb" />
     <Compile Include="Controllers\ManagementCompanyController.vb" />
     <Compile Include="Filters\FilterProvider.vb" />
@@ -135,6 +136,8 @@
     </Compile>
     <Compile Include="Models\Account.vb" />
     <Compile Include="Models\Category.vb" />
+    <Compile Include="Models\Provider.vb" />
+    <Compile Include="Models\Events.vb" />
     <Compile Include="Models\Question.vb" />
     <Compile Include="Models\Document.vb" />
     <Compile Include="Models\Log.Designer.vb">
@@ -145,8 +148,8 @@
     <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
-    <Compile Include="Support\Helper.vb" />
-    <Compile Include="Support\MyConfiguration.vb" />
+    <Compile Include="Views\Support\Helper.vb" />
+    <Compile Include="Views\Support\MyConfiguration.vb" />
     <Compile Include="Models\VendorUser.vb" />
     <Compile Include="Models\HoaUser.vb" />
     <Compile Include="Models\ManagementCompanyUser.vb" />
@@ -294,8 +297,8 @@
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
     <Content Include="Scripts\mustache.js" />
-    <Content Include="Support\YamlSerializer\YamlSerializer.dll" />
-    <Content Include="Support\YamlSerializer\YamlSerializer.XML" />
+    <Content Include="Views\Support\YamlSerializer\YamlSerializer.dll" />
+    <Content Include="Views\Support\YamlSerializer\YamlSerializer.XML" />
     <Content Include="TextFile1.txt" />
     <Content Include="Views\ManagementCompany\Index.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_contact_info.vbhtml" />
@@ -319,7 +322,12 @@
     <Content Include="Views\Hoa\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\Edit.vbhtml" />
     <Content Include="Views\ManagementCompany\_edit_images.vbhtml" />
-    <None Include="Support\YamlSerializer\YAML Serializer.chm" />
+    <Content Include="Views\Events\_Form.vbhtml" />
+    <Content Include="Views\Events\Create.vbhtml" />
+    <Content Include="Views\Events\Edit.vbhtml" />
+    <Content Include="Views\Events\Index.vbhtml" />
+    <Content Include="Views\Provider\Index.vbhtml" />
+    <None Include="Views\Support\YamlSerializer\YAML Serializer.chm" />
     <Content Include="Views\ManagementCompany\News.vbhtml" />
     <Content Include="Views\News\Index.vbhtml" />
     <Content Include="Views\News\Create.vbhtml" />
@@ -349,7 +357,7 @@
     <None Include="Views\Shared\Flash.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Survey\_templates.vbhtml" />
-    <Content Include="Views\Vendor\Edit.vbhtml" />
+    <Content Include="Views\Provider\Edit.vbhtml" />
     <Content Include="Views\Survey\Index.vbhtml" />
     <Content Include="Views\Survey\Create.vbhtml" />
   </ItemGroup>
@@ -391,7 +399,6 @@
     <Content Include="Views\Account\Register.vbhtml" />
     <Content Include="Views\Home\About.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
-    <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\_LogOnPartial.vbhtml" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>

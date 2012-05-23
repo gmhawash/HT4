@@ -3,4 +3,4 @@
     Layout = "~/Views/Shared/_Plain.vbhtml"
 End Code
 
-<h2>Something really got rotton somewhere.</h2>
+<h2>@ViewBag.ErrorMessage</h2>

@@ -21,7 +21,9 @@ Public Class MvcApplication
     provider.Add("Hoa", "*", New HoaInitializeFilter)
     provider.Add("Survey", "*", New HoaInitializeFilter)
     provider.Add("News", "*", New HoaInitializeFilter)
+    provider.Add("Events", "*", New HoaInitializeFilter)
     provider.Add("Document", "*", New HoaInitializeFilter)
+    provider.Add("Provider", "*", New HoaInitializeFilter)
     FilterProviders.Providers.Add(provider)
   End Sub
 
@@ -43,15 +45,16 @@ Public Class MvcApplication
     'routes.MapRoute("LogOn", "", New With {.controller = "Home", .action = "LogOn", .path = UrlParameter.Optional})
     routes.MapRoute("LogOn", "", New With {.controller = "ManagementCompany", .action = "Edit", .path = UrlParameter.Optional})
     routes.MapRoute("Hoa", "Hoa/{action}/{hoa_id}", New With {.controller = "Hoa"})
-    MapResource("Hoa", "Document")
-    MapResource("Hoa", "Category")
-    MapResource("Hoa", "News")
-    MapResource("Hoa", "Survey")
 
-    MapResource("ManagementCompany")
-    MapResource("Vendor")
-    MapResource("News")
-    MapResource("Question")
+    Dim hoaControllers = {"Document", "Category", "News", "Survey", "Events", "Provider"}
+    For Each Controller In hoaControllers
+      MapResource("Hoa", Controller)
+    Next
+
+    Dim mgmtCoControllers = {"ManagementCompany", "News", "Question"}
+    For Each Controller In mgmtCoControllers
+      MapResource(Controller)
+    Next
 
     routes.MapRoute("Error",
                     "Error/{action}",

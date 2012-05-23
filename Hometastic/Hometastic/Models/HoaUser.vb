@@ -5,7 +5,9 @@ Namespace Models
     Dim m_documentList As List(Of Document) = Nothing
     Dim m_categoryList As List(Of Category) = Nothing
     Dim m_NewsList As List(Of News) = Nothing
+    Dim m_EventsList As List(Of Events) = Nothing
     Dim m_SurveyList As List(Of Survey) = Nothing
+    Dim m_ProviderList As List(Of Provider) = Nothing
 
     Public Enum Columns
       DISKQUOTA
@@ -145,6 +147,20 @@ Namespace Models
       Return m_NewsList
     End Function
 
+    ' Build list of news for this hoauser
+    Overrides Function EventsList()
+      If Not m_EventsList Is Nothing Then Return m_EventsList
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim finder = New Events(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY CREATEDATE")
+      m_EventsList = New List(Of Events)
+      For Each item As mvItem In itemList
+        m_EventsList.Add(New Events(item))
+      Next
+
+      Return m_EventsList
+    End Function
     ' Build list of survey questions for this hoauser
     Overrides Function SurveyList()
       If Not m_SurveyList Is Nothing Then Return m_SurveyList
@@ -160,6 +176,19 @@ Namespace Models
       Return m_SurveyList
     End Function
 
+    Overrides Function ProviderList()
+      If Not m_ProviderList Is Nothing Then Return m_ProviderList
+
+      ' Find list of Provider Items  (This off the same server as the management company)
+      Dim finder = New Provider(Me)
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id()), "BY @ID")
+      m_ProviderList = New List(Of Provider)
+      For Each item As mvItem In itemList
+        m_ProviderList.Add(New Provider(item))
+      Next
+
+      Return m_ProviderList
+    End Function
     Function AssetFolder()
       Return PhysicalAssetFolder(Account.ManagementCompany.Path & "\\" & Value(Columns.WEBSITEPATH))
     End Function

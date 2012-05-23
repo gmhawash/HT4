@@ -1,4 +1,4 @@
-﻿@ModelType Hometastic.Models.VendorUser
+﻿@ModelType Hometastic.Models.Provider
 
 @Code
     ViewData("Title") = "Edit"
