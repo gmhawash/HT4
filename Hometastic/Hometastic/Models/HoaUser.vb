@@ -153,7 +153,7 @@ Namespace Models
 
       ' Find list of News Items  (This off the same server as the management company)
       Dim finder = New Events(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY CREATEDATE")
+      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY EVENTDATE")
       m_EventsList = New List(Of Events)
       For Each item As mvItem In itemList
         m_EventsList.Add(New Events(item))
