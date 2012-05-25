@@ -43,7 +43,7 @@ End Code
       <tbody>
         @For Each item As Hometastic.Models.Provider In ViewBag.NewsList
           @<tr>
-            <td>@item.Value("ID") </td>
+            <td>@item.DisplayId</td>
             <td>@item.Value("NAME") </td>
             <td>@item.Value("TITLE") </td>
             <td>@Html.ActionLink("Edit", "Edit", New With {.id = item.Id}, New With {.class = "button"}) </td>

@@ -327,6 +327,8 @@
     <Content Include="Views\Events\Edit.vbhtml" />
     <Content Include="Views\Events\Index.vbhtml" />
     <Content Include="Views\Provider\Index.vbhtml" />
+    <Content Include="Views\Provider\_Form.vbhtml" />
+    <Content Include="Views\Shared\_text_fields.vbhtml" />
     <None Include="Views\Support\YamlSerializer\YAML Serializer.chm" />
     <Content Include="Views\ManagementCompany\News.vbhtml" />
     <Content Include="Views\News\Index.vbhtml" />

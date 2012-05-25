@@ -29,7 +29,7 @@ Namespace Hometastic
     Function Edit(ByVal id As String) As ActionResult
       Dim item = New Provider(CurrentAccount)
       item.Read(id.Replace("_", "*")) ' Well the browser does not like splat(*), so we pacifiy it.
-      Return View()
+      Return View(item)
     End Function
 
     <HttpPost()> _

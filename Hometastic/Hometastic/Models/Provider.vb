@@ -32,13 +32,17 @@ Namespace Models
       m_CurrentUser = CurrentUser
       ParseColumns([Enum].GetValues(GetType(Columns)))
       m_WriteableColumnList = New List(Of String)(New String() {"DESC", "TITLE", "NAME",
-          "ADDR1", "ADDR2", "CSZ", "CONTACTINFO", "EMAIL", "PHONENO", "CELLNO", "SERVICENO",
-          "VENDNO", "WEBSITEURL"
+          "ADDR1", "ADDR2", "CSZ", "CONTACTINFO", "EMAIL", "PHONENO", "CELLNO",
+          "SERVICENO", "VENDNO", "WEBSITEURL"
            })
     End Sub
 
     Overloads Function Id()
       Return m_mvItem.ID.Replace("*", "_")
+    End Function
+
+    Overloads Function DisplayId()
+      Return m_mvItem.ID
     End Function
 
     Sub New(ByVal item As mvItem)
