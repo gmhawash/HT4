@@ -1,9 +1,11 @@
 ﻿Imports System
 Imports BlueFinity.mvNET.CoreObjects
+
 Namespace Models
   Public Class Provider
     Inherits MVNetBase
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       DESC
       TITLE
@@ -20,22 +22,26 @@ Namespace Models
       WEBSITEURL
     End Enum
 
-    Shared Function FindById(ByVal CurrentAccount, ByVal Id)
-      Dim item = New Provider(CurrentAccount)
-      item.Read(Id)
-      Return item
-    End Function
-
-    Sub New(Optional ByVal CurrentUser = Nothing)
+    Overrides Function TableColumns()
       m_TableName = "HOASERVICES"
-      If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
-      m_CurrentUser = CurrentUser
-      ParseColumns([Enum].GetValues(GetType(Columns)))
       m_WriteableColumnList = New List(Of String)(New String() {"DESC", "TITLE", "NAME",
           "ADDR1", "ADDR2", "CSZ", "CONTACTINFO", "EMAIL", "PHONENO", "CELLNO",
           "SERVICENO", "VENDNO", "WEBSITEURL"
            })
+      Return [Enum].GetValues(GetType(Columns))
+    End Function
+
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
     End Sub
+
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
+
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New Provider(CurrentAccount), Id)
+    End Function
 
     Overloads Function Id()
       Return m_mvItem.ID.Replace("*", "_")
@@ -44,11 +50,6 @@ Namespace Models
     Overloads Function DisplayId()
       Return m_mvItem.ID
     End Function
-
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
 
     Overloads Function NextId()
       Return NextId(String.Format("WITH HOANO = ""{0}""", m_CurrentUser.Id))
@@ -59,11 +60,14 @@ Namespace Models
       MyBase.Write(record)
     End Sub
 
+#End Region
+#Region "***** Model Specific Properties ***********"
     Function Desc() As String
       Dim val = Value(Columns.DESC)
       If val Is Nothing Then Return ""
       Return val.Replace(DataBASIC.VM, DataBASIC.CRLF)
     End Function
+#End Region
   End Class
 End Namespace
 

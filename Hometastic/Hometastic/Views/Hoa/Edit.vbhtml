@@ -7,15 +7,10 @@ End Code
 @Section JavaScript
 <script type="text/javascript">
   $(function () {
-    var icons = {
-      header: "ui-icon-circle-arrow-e",
-      headerSelected: "ui-icon-circle-arrow-s"
-    };
-    $("#accordion").accordion({
-      icons: icons,
-      active: 0,
-      autoHeight: false
-    });
+    $("#accordion").accordion({ 
+                    icons: { header: "ui-icon-circle-arrow-e", headerSelected: "ui-icon-circle-arrow-s" }, 
+                    active: 0, autoHeight: false
+                    });
   });
 </script>
 End Section

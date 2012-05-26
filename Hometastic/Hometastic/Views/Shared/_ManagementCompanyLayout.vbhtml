@@ -15,6 +15,7 @@
   <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/fileuploader.js")" type="text/javascript"></script>
   <script src="@Url.Content("~/Scripts/mustache.js")" type="text/javascript"></script>
+  <script src="@Url.Content("~/Scripts/server_callbacks.js")" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function () {
@@ -24,12 +25,14 @@
         "bSort": false
       });
       LinkToButton();
+
     });
 
    function LinkToButton() {
       $("input:submit, div.button, a.button, button").button();
     }
     
+  $(InitializeCallbacks);
   </script>
   @RenderSection("JavaScript", False)
 </head>

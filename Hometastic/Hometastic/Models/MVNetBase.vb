@@ -4,11 +4,10 @@ Imports BlueFinity.mvNET.CoreObjects
 
 Public Class MVNetBase
   Shared AccountName As String = Nothing
-  Shared TableName As String = Nothing
   Shared Account As mvAccount = Nothing
 
   Protected Friend m_mvAccount As mvAccount
-  Protected Friend m_TableName As String = Nothing
+  Protected Shadows m_TableName As String = Nothing
   Public m_AccountName As String = "AsiAr"
   Protected Friend m_ColumnNames As String = Nothing
   Protected m_ColumnNamesList As List(Of String) = New List(Of String)
@@ -48,6 +47,30 @@ Public Class MVNetBase
   '    Return Nothing
   '  End Try
   'End Function
+
+  Overridable Function TableColumns()
+    Throw New Exception("Must override")
+  End Function
+
+  Sub New()
+    ParseColumns(TableColumns)
+  End Sub
+
+  Sub New(ByRef CurrentAccount As MVNetBase)
+    If Not CurrentAccount Is Nothing Then m_AccountName = CurrentAccount.m_AccountName
+    m_CurrentUser = CurrentAccount
+    ParseColumns(TableColumns)
+  End Sub
+
+  Sub New(ByRef item As mvItem)
+    m_mvItem = item
+    ParseColumns(TableColumns)
+  End Sub
+
+  Shared Function FindById(ByRef item, ByVal Id)
+    item.Read(Id)
+    Return item
+  End Function
 
   Shared Function Create(Of T)(Optional ByVal CurrentUser As MVNetBase = Nothing)
     Try
@@ -248,7 +271,12 @@ Public Class MVNetBase
       query.SelectionClause = selectionClause
       query.SortClause = sortClause
       query.DictionaryList = m_ColumnNames
-      Return file.Select(query)
+
+      If (file.Count(selectionClause) > 0) Then
+        Return file.Select(query)
+      Else
+        Return New mvItemList()
+      End If
     Catch ex As Exception
       ' TODO: Exception Handling
       Throw ex

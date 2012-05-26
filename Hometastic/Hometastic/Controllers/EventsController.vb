@@ -12,7 +12,7 @@ Namespace Hometastic
 
     ' GET: /Event/Create
     Function Create() As ActionResult
-      Return View(New Events())
+      Return View(New Events(CurrentAccount))
     End Function
 
     ' POST: /Event/Create

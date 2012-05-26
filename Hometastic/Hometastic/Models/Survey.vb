@@ -4,6 +4,7 @@ Namespace Models
   Public Class Survey
     Inherits MVNetBase
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       ACTIVATEDATE
       CREATEDATE
@@ -15,12 +16,43 @@ Namespace Models
       ANSWERS
     End Enum
 
-    Shared Function FindById(ByRef CurrentAccount, ByVal Id)
-      Dim item = New Survey(CurrentAccount)
-      item.Read(Id)
-      Return item
+    Overrides Function TableColumns()
+      m_TableName = "HOASURVEY"
+      m_WriteableColumnList = New List(Of String)(New String() {
+          "ACTIVATEDATE", "CREATEDATE", "QUESTION",
+          "ISCURRENT", "VOTES", "VOTESIPS", "ANSWERS"
+          })
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
+    End Sub
+
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
+
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New Survey(CurrentAccount), Id)
+    End Function
+
+    Overloads Function Id()
+      Return m_mvItem.ID.Replace("*", "_")
+    End Function
+
+    Overloads Function NextId()
+      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH HOANO = ""{0}""", m_CurrentUser.Id)))
+    End Function
+
+    Overloads Sub Write(ByVal record As FormCollection)
+      If m_mvItem.ID Is Nothing Then record("ID") = m_CurrentUser.Id & "*" & NextId()
+      MyBase.Write(record)
+    End Sub
+
+#End Region
+
+#Region "***** Model Specific Properties ***********"
     Public Property QuestionText() As String
       Get
         Return Value("QUESTION")
@@ -29,8 +61,6 @@ Namespace Models
         m_mvItem("QUESTION") = value
       End Set
     End Property
-
-
 
     Public Property Current() As Boolean
       Get
@@ -55,6 +85,7 @@ Namespace Models
         End If
       End Set
     End Property
+
 
     ' NOTE: I am not sure what's going with the dates, but it appears that the 
     ' date values are being interpreted by someone (MV.NET or backend).  The db
@@ -106,6 +137,9 @@ Namespace Models
       End Get
     End Property
 
+#End Region
+
+#Region "***** Model Specific Functions ***********"
     Sub UpdateFromJson(ByVal json)
       QuestionText = json("QuestionText")
       Answers = json("Answers")
@@ -115,34 +149,8 @@ Namespace Models
       Write()
     End Sub
 
-    Sub New(Optional ByVal CurrentUser = Nothing)
-      m_TableName = "HOASURVEY"
-      If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
-      m_CurrentUser = CurrentUser
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-      m_WriteableColumnList = New List(Of String)(New String() {
-          "ACTIVATEDATE", "CREATEDATE", "QUESTION",
-          "ISCURRENT", "VOTES", "VOTESIPS", "ANSWERS"
-          })
-    End Sub
-
-    Overloads Function Id()
-      Return m_mvItem.ID.Replace("*", "_")
-    End Function
-
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
-
-    Overloads Function NextId()
-      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH HOANO = ""{0}""", m_CurrentUser.Id)))
-    End Function
-
-    Overloads Sub Write(ByVal record As FormCollection)
-      If m_mvItem.ID Is Nothing Then record("ID") = m_CurrentUser.Id & "*" & NextId()
-      MyBase.Write(record)
-    End Sub
+#End Region
   End Class
+
 End Namespace
 

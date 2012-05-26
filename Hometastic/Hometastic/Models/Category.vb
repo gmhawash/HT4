@@ -5,32 +5,36 @@ Namespace Models
     Inherits MVNetBase
     Dim m_hoaUser As HoaUser
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       CODE
       DESCRIPTION
     End Enum
 
-    Shared Function FindById(ByVal hoaUser As HoaUser, ByVal Id As String)
-      Dim item = New Category(hoaUser)
-      item.Read(hoaUser.id & "*" & Id)
-      Return item
+    Overrides Function TableColumns()
+      m_TableName = "HOACATEGORIES"
+      m_WriteableColumnList = New List(Of String)(New String() {"DESCRIPTION"})
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
-    Sub New(Optional ByVal hoaUser As HoaUser = Nothing)
-      m_hoaUser = hoaUser
-      m_TableName = "HOACATEGORIES"
-      If Not hoaUser Is Nothing Then m_AccountName = hoaUser.m_AccountName
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-
-      m_WriteableColumnList = New List(Of String)(New String() _
-        {"DESCRIPTION"})
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
     End Sub
 
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
     End Sub
 
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New Category(CurrentAccount), CurrentAccount.id & "*" & Id)
+    End Function
+
+    'TODO: Can we move this to base class?
+    Overloads Function id()
+      Return Value("ID")
+    End Function
+
+    ' TODO: Can we move this to base class?
     Overloads Function NextId(Optional ByVal SelectClause As String = Nothing)
       Dim Ids = m_hoaUser.Categories().Select(Function(s) Convert.ToInt32(s.Value("CODE")))
 
@@ -40,9 +44,7 @@ Namespace Models
       Return m_hoaUser.id & "*" & catId
     End Function
 
-    Overloads Function id()
-      Return Value("ID")
-    End Function
+#End Region
   End Class
 End Namespace
 

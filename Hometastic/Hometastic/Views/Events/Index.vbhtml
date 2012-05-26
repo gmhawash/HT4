@@ -4,22 +4,6 @@
   Layout = "~/Views/Shared/_ManagementCompanyLayout.vbhtml"
 End Code
 
-<script type="text/javascript">
-  $(function () {
-    $('a.delete_item').live('click', function (event) {
-      event.preventDefault();
-      if (confirm("Are you sure you want to delete this news item? Click 'OK' to confirm, 'Cancel' otherwise.")) {
-        var href = $(this).attr("href");
-        if (href != "") {
-          $('#spinner').show();
-          $.post(href, function () {
-            document.location.href = '@Url.Action("Index")';
-          });
-        }
-      }
-    });
-  });
-    </script>
 <div id="main-body" class="management-company index">
   <h2 class="clear"> Manage Events</h2>
   <p>

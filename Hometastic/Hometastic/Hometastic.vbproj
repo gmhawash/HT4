@@ -145,7 +145,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Log.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ManagementCompany\Survey.vb" />
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
     <Compile Include="Views\Support\Helper.vb" />
@@ -297,6 +296,9 @@
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
     <Content Include="Scripts\mustache.js" />
+    <Content Include="Scripts\server_callbacks.js">
+      <DependentUpon>server_callbacks.coffee</DependentUpon>
+    </Content>
     <Content Include="Views\Support\YamlSerializer\YamlSerializer.dll" />
     <Content Include="Views\Support\YamlSerializer\YamlSerializer.XML" />
     <Content Include="TextFile1.txt" />
@@ -329,6 +331,7 @@
     <Content Include="Views\Provider\Index.vbhtml" />
     <Content Include="Views\Provider\_Form.vbhtml" />
     <Content Include="Views\Shared\_text_fields.vbhtml" />
+    <None Include="Scripts\server_callbacks.coffee" />
     <None Include="Views\Support\YamlSerializer\YAML Serializer.chm" />
     <Content Include="Views\ManagementCompany\News.vbhtml" />
     <Content Include="Views\News\Index.vbhtml" />

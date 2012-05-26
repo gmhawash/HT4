@@ -3,6 +3,7 @@ Namespace Models
   Public Class VendorUser
     Inherits MVNetBase
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       SERVICESCONTACTINFO
       SERVICESDESC
@@ -18,28 +19,36 @@ Namespace Models
       VFAX
     End Enum
 
-    Sub New(ByVal accountName As String)
+    Overrides Function TableColumns()
       m_TableName = "DWVENDOR"
-      m_AccountName = accountName
-      ParseColumns([Enum].GetValues(GetType(Columns)))
+      Return [Enum].GetValues(GetType(Columns))
+    End Function
+
+    Sub New(ByRef CurrentAccount As ManagementCompanyUser)
+      MyBase.New(CurrentAccount)
+      m_AccountName = CurrentAccount.HoaAccount
     End Sub
 
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
     End Sub
 
-    Function name()
+    ' TODO: Why is this differnet? Can we move to base?
+    Overloads Function Id()
+      Return m_mvItem.ID
+    End Function
+#End Region
+
+#Region "***** Model Specific Properties ***********"
+
+    Function Name()
       Return Value(Columns.VNAME)
     End Function
 
-    Function formattedAddress()
+    Function FormattedAddress()
       Return String.Format("{0} {1}", Value(Columns.VADD1), Value(Columns.VCSZ))
     End Function
-
-    Overloads Function id()
-      Return m_mvItem.ID
-    End Function
+#End Region
   End Class
 End Namespace
 

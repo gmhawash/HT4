@@ -10,7 +10,7 @@ Namespace Hometastic
     ' Determines which area on the site we are in, HOA or Managmenet company and
     ' returns the proper model for accessing account information.
     '
-    Function CurrentAccount()
+    Function CurrentAccount() As MVNetBase
       Dim routeParams = Request.RequestContext.RouteData.Values
       If routeParams("hoa_id") Is Nothing Then
         Return CurrentUser()
@@ -32,7 +32,7 @@ Namespace Hometastic
       Account.Authenticate("6400", "pmsi", "605", "ManagementCompany")
 
       Dim routeParams = Request.RequestContext.RouteData.Values
-      m_HoaUser = New HoaUser(Account.ManagementCompany.HoaAccount())
+      m_HoaUser = New HoaUser(Account.ManagementCompany)
 
       If routeParams("hoa_id") Is Nothing Then
         m_HoaUser.Read(routeParams("id"))

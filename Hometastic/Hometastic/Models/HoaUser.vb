@@ -9,6 +9,7 @@ Namespace Models
     Dim m_SurveyList As List(Of Survey) = Nothing
     Dim m_ProviderList As List(Of Provider) = Nothing
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       DISKQUOTA
       HOANO
@@ -49,61 +50,31 @@ Namespace Models
       THEMENAME
     End Enum
 
-    Sub New(ByVal accountName As String)
+    Overrides Function TableColumns()
       m_TableName = "DWMASTER"
-      m_AccountName = accountName
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-
       m_WriteableColumnList = New List(Of String)(New String() _
       {"DISKQUOTA", "CADD1", "CADD2", "CCITY", "CST", "CONTACTPHONE", "CONTACTFAX",
       "CONTACTZIPCODE", "CONTACTEMAIL", "SHOWEMAIL", "SHOWMGMTCOLOGO", "WEBMASTEREMAIL",
       "CREDITCARDLINKURL", "ECHECKLINKURL", "DOCUMENTSLINKURL", "OTHERLINKURL", "WEBSITEPATH",
        "WEBSITEURL", "TEXTWELCOME", "THEMENAME"})
-    End Sub
-
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
-
-    Function name()
-      Return Value(Columns.HOANAME)
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
-    Function formattedAddress()
-      Return String.Format("{0} {1}", Value(Columns.HOAADD1), Value(Columns.HOACSZ))
-    End Function
+    Sub New(ByRef CurrentAccount As ManagementCompanyUser)
+      MyBase.New(CurrentAccount)
+      m_AccountName = CurrentAccount.HoaAccount
+    End Sub
+
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
 
     Overloads Function id()
       Return Value(Columns.HOANO)
     End Function
+#End Region
 
-    ' Special case to substitute special CRLF character with normal CRLF for display
-    Function WelcomeText() As String
-      Return Value(Columns.TEXTWELCOME).Replace(DataBASIC.VM, DataBASIC.CRLF)
-    End Function
-
-    Function WebsitePrefix() As String
-      Return Account.ManagementCompany.WebsitePath
-    End Function
-
-    Function ShowEmail() As Boolean
-      Return Value(Columns.SHOWEMAIL) = "1"
-    End Function
-
-    Function ShowManagementLogo() As Boolean
-      Return Value(Columns.SHOWMGMTCOLOGO) = "1"
-    End Function
-
-    Function Themes() As List(Of SelectListItem)
-      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
-      For Each item In {"Default", "Antiquity", "Grayscale", "Mocha", "Seafoam", "Zeitgeist"}
-        Dim selected As Boolean = Value(Columns.THEMENAME) = item
-        list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
-      Next
-      Return list
-    End Function
-
+#Region "***** Association Lists ***********"
     Function Documents() As List(Of Document)
       If Not m_documentList Is Nothing Then Return m_documentList
 
@@ -189,6 +160,46 @@ Namespace Models
 
       Return m_ProviderList
     End Function
+#End Region
+
+#Region "***** Model Specific Properties ***********"
+    Function Name()
+      Return Value(Columns.HOANAME)
+    End Function
+
+    Function FormattedAddress()
+      Return String.Format("{0} {1}", Value(Columns.HOAADD1), Value(Columns.HOACSZ))
+    End Function
+
+    ' Special case to substitute special CRLF character with normal CRLF for display
+    Function WelcomeText() As String
+      Return Value(Columns.TEXTWELCOME).Replace(DataBASIC.VM, DataBASIC.CRLF)
+    End Function
+
+    Function WebsitePrefix() As String
+      Return Account.ManagementCompany.WebsitePath
+    End Function
+
+    Function ShowEmail() As Boolean
+      Return Value(Columns.SHOWEMAIL) = "1"
+    End Function
+
+    Function ShowManagementLogo() As Boolean
+      Return Value(Columns.SHOWMGMTCOLOGO) = "1"
+    End Function
+
+    Function Themes() As List(Of SelectListItem)
+      Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
+      For Each item In {"Default", "Antiquity", "Grayscale", "Mocha", "Seafoam", "Zeitgeist"}
+        Dim selected As Boolean = Value(Columns.THEMENAME) = item
+        list.Add(New SelectListItem With {.Selected = selected, .Text = item, .Value = item})
+      Next
+      Return list
+    End Function
+
+#End Region
+
+#Region "***** Paths and filenames ***********"
     Function AssetFolder()
       Return PhysicalAssetFolder(Account.ManagementCompany.Path & "\\" & Value(Columns.WEBSITEPATH))
     End Function
@@ -215,6 +226,8 @@ Namespace Models
     Function LogoUrl()
       Return AssetPath("logo")
     End Function
+
+#End Region
 
   End Class
 End Namespace

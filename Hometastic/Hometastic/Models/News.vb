@@ -4,6 +4,7 @@ Namespace Models
   Public Class News
     Inherits MVNetBase
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       CREATEDATE
       TITLE
@@ -18,30 +19,32 @@ Namespace Models
       SEQ
     End Enum
 
-    Shared Function FindById(ByVal CurrentAccount, ByVal Id)
-      Dim item = New News(CurrentAccount)
-      item.Read(Id)
-      Return item
+    Overrides Function TableColumns()
+      m_TableName = "DWNEWS"
+      m_WriteableColumnList = New List(Of String)(New String() {"TITLE", "HEADLINE", "BODY", "MGMTCONO"})
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
-    Sub New(Optional ByVal CurrentUser = Nothing)
-      m_TableName = "DWNEWS"
-      If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
-      m_CurrentUser = CurrentUser
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-      m_WriteableColumnList = New List(Of String)(New String() {"TITLE", "HEADLINE", "BODY", "MGMTCONO"})
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
     End Sub
 
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
+
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New News(CurrentAccount), Id)
+    End Function
+
+    ' TODO: Can this be moved to base class?
     Overloads Function Id()
       Return m_mvItem.ID.Replace("*", "_")
     End Function
 
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
-
+    ' TODO: Can this be moved to base class?
     Overloads Function NextId()
+      ' WARNING: This should depend on the type of user (HoaUser vs Management Company)
       Return NextId(String.Format("WITH MGMTCONO = ""{0}""", m_CurrentUser.Id))
     End Function
 
@@ -50,6 +53,9 @@ Namespace Models
       MyBase.Write(record)
     End Sub
 
+#End Region
+
+#Region "******** Model Specific Methods ********"
     Function CreatedDate()
       Return Value(Columns.CREATEDATE)
     End Function
@@ -59,6 +65,7 @@ Namespace Models
       If val Is Nothing Then Return ""
       Return val.Replace(DataBASIC.VM, DataBASIC.CRLF)
     End Function
+#End Region
   End Class
 End Namespace
 

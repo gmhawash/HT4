@@ -4,6 +4,7 @@ Namespace Models
   Public Class Question
     Inherits MVNetBase
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       QUESTIONTEXT
       ANSWERTYPE
@@ -11,12 +12,40 @@ Namespace Models
       SEQ
     End Enum
 
-    Shared Function FindById(ByRef CurrentAccount, ByVal Id)
-      Dim item = New Question(CurrentAccount)
-      item.Read(Id)
-      Return item
+    Overrides Function TableColumns()
+      m_TableName = "DWQUESTIONS"
+      m_WriteableColumnList = New List(Of String)(New String() {"QUESTIONTEXT", "ANSWERTYPE", "ANSWERTEXT"})
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
+
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
+    End Sub
+
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
+
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New Question(CurrentAccount), Id)
+    End Function
+
+    Overloads Function Id()
+      Return m_mvItem.ID.Replace("*", "_")
+    End Function
+
+    Overloads Function NextId()
+      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH MGMTCONO = ""{0}""", m_CurrentUser.Id)))
+    End Function
+
+    Overloads Sub Write(ByVal record As FormCollection)
+      If m_mvItem.ID Is Nothing Then record("ID") = m_CurrentUser.Id & "*" & NextId()
+      MyBase.Write(record)
+    End Sub
+#End Region
+
+#Region "***** Model Specific Properties ***********"
     Public Property AnswerOptions()
       Get
         Dim answerList = Value("ANSWERTEXT").Split(DataBASIC.VM)
@@ -71,7 +100,9 @@ Namespace Models
       list.Add(New SelectListItem With {.Value = "select", .Text = "Dropdown List"})
       Return list
     End Function
+#End Region
 
+#Region "***** Model Specific Functions ***********"
     Sub UpdateFromJson(ByVal json)
       QuestionText = json("QuestionText")
       AnswerType = json("AnswerType")
@@ -79,32 +110,8 @@ Namespace Models
       If m_mvItem.ID = "" Then m_mvItem.ID = NextId()
       Write()
     End Sub
+#End Region
 
-    Sub New(Optional ByVal CurrentUser = Nothing)
-      m_TableName = "DWQUESTIONS"
-      If Not CurrentUser Is Nothing Then m_AccountName = CurrentUser.m_AccountName
-      m_CurrentUser = CurrentUser
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-      m_WriteableColumnList = New List(Of String)(New String() {"QUESTIONTEXT", "ANSWERTYPE", "ANSWERTEXT"})
-    End Sub
-
-    Overloads Function Id()
-      Return m_mvItem.ID.Replace("*", "_")
-    End Function
-
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
-
-    Overloads Function NextId()
-      Return String.Format("{0}*{1}", m_CurrentUser.Id, NextId(String.Format("WITH MGMTCONO = ""{0}""", m_CurrentUser.Id)))
-    End Function
-
-    Overloads Sub Write(ByVal record As FormCollection)
-      If m_mvItem.ID Is Nothing Then record("ID") = m_CurrentUser.Id & "*" & NextId()
-      MyBase.Write(record)
-    End Sub
   End Class
 End Namespace
 

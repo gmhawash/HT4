@@ -11,6 +11,7 @@ Namespace Models
     Dim m_NewsList As List(Of News) = Nothing
     Dim m_QuestionList As List(Of Survey) = Nothing
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       DISKQUOTA
       DBMSACCOUNT
@@ -47,28 +48,38 @@ Namespace Models
       THEMENAME
     End Enum
 
-    ' Setup Management Company Database table name and account
-    ' Initialize list of writable fields
-    '
-    Sub New(ByVal id As String)
-      m_TableName = "DWMASTER"
+    Overrides Function TableColumns()
       m_AccountName = "AsiAr"
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-      Read(id)
-
+      m_TableName = "DWMASTER"
       m_WriteableColumnList = New List(Of String)(New String() _
         {"TEXTINTRO", "TEXTINTRO", "CCITY", "CST", "CONTACTZIPCODE",
          "CONTACTEMAIL", "WEBMASTEREMAIL", "CONTACTPHONE",
          "MGMTCOFAX", "CONTACTNAME", "WEBSITEURL", "CADD1",
          "CADD1", "THEMENAME", "SHOWEMAIL", "PASSPROTECTPROPERTIES"})
+      Return [Enum].GetValues(GetType(Columns))
+    End Function
+
+    Sub New(ByVal id As String)
+      MyBase.New()
+      Read(Id)
     End Sub
 
+    ' Override Write to substitute special CRLF characters on save.
+    Overloads Sub Write(ByVal record As FormCollection)
+      record("TEXTINTRO") = record("TEXTINTRO").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      record("TEXTABOUT") = record("TEXTABOUT").Replace(DataBASIC.CRLF, DataBASIC.VM)
+      MyBase.Write(record)
+    End Sub
+
+#End Region
+
+#Region "***** Association Lists ***********"
     ' Build list of HOA for this management company
     Function HoaList()
       If Not m_hoaUsers Is Nothing Then Return m_hoaUsers
 
       ' Find list of HOA Users
-      Dim finder = New HoaUser(Value(ManagementCompanyUser.Columns.MVNETLOGIN))
+      Dim finder = New HoaUser(Me)
       Dim itemList = finder.Find("WITH HOADPASSWORD # "" AND WITH HOANAME # """, "")
       m_hoaUsers = New List(Of HoaUser)
       For Each item As mvItem In itemList
@@ -83,7 +94,7 @@ Namespace Models
       If Not m_vendorUsers Is Nothing Then Return m_vendorUsers
 
       ' Find list of HOA Users
-      Dim finder = New VendorUser(Value(ManagementCompanyUser.Columns.MVNETLOGIN))
+      Dim finder = New VendorUser(Me)
       Dim itemList = finder.Find("", "BY VNAME")
       m_vendorUsers = New List(Of VendorUser)
       For Each item As mvItem In itemList
@@ -123,12 +134,12 @@ Namespace Models
       Return m_QuestionList
     End Function
 
-    ' Override Write to substitute special CRLF characters on save.
-    Overloads Sub Write(ByVal record As FormCollection)
-      record("TEXTINTRO") = record("TEXTINTRO").Replace(DataBASIC.CRLF, DataBASIC.VM)
-      record("TEXTABOUT") = record("TEXTABOUT").Replace(DataBASIC.CRLF, DataBASIC.VM)
-      MyBase.Write(record)
-    End Sub
+#End Region
+
+#Region "***** Model Specific Properties ***********"
+    Function HoaAccount() As String
+      Return Value(Columns.MVNETLOGIN)
+    End Function
 
     ' Special case to substitute special CRLF character with normal CRLF for display
     Function Introduction() As String
@@ -178,6 +189,9 @@ Namespace Models
       Return list
     End Function
 
+#End Region
+
+#Region "***** Path and Filenames ***********"
     Function GetFileName(ByVal filePattern As String)
       Dim path = MyConfiguration.PhysicalAssetFolder(Value("WEBSITEPATH"))
       Dim dirInfo As System.IO.DirectoryInfo = New DirectoryInfo(path)
@@ -204,9 +218,7 @@ Namespace Models
       Return MyConfiguration.AssetUrl("front-image", Path, GetFileName(Id() & "_front_image.*"))
     End Function
 
-    Function HoaAccount() As String
-      Return Value(Columns.MVNETLOGIN)
-    End Function
+#End Region
   End Class
 End Namespace
 

@@ -4,6 +4,7 @@ Namespace Models
     Inherits MVNetBase
     Dim m_hoaUser As HoaUser
 
+#Region "***** Table Definition ***********"
     Public Enum Columns
       CATEGORY
       CATEGORYID
@@ -13,27 +14,33 @@ Namespace Models
       SEQ
     End Enum
 
-    Sub New(ByVal hoaUser As HoaUser)
-      m_hoaUser = hoaUser
+    Overrides Function TableColumns()
       m_TableName = "HOADOCUMENTS"
-      m_AccountName = hoaUser.m_AccountName
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-
       m_WriteableColumnList = New List(Of String)(New String() _
         {"CATEGORYID", "DESCRIPTION", "NAME", "PASSPROTECT", "SEQ"})
-    End Sub
-
-    Sub New(ByVal item As mvItem)
-      m_mvItem = item
-      ParseColumns([Enum].GetValues(GetType(Columns)))
-    End Sub
-
-    Shared Function FindById(ByVal hoaUser As HoaUser, ByVal Id As String)
-      Dim item = New Document(hoaUser)
-      item.Read(String.Format("{0}*{1}", hoaUser.id, Id))
-      Return item
+      Return [Enum].GetValues(GetType(Columns))
     End Function
 
+    Sub New(ByRef CurrentAccount As MVNetBase)
+      MyBase.New(CurrentAccount)
+    End Sub
+
+    Sub New(ByRef item As mvItem)
+      MyBase.New(item)
+    End Sub
+
+    Overloads Shared Function FindById(ByRef CurrentAccount As HoaUser, ByVal Id As String)
+      Return MVNetBase.FindById(New Document(CurrentAccount), String.Format("{0}*{1}", CurrentAccount.id, Id))
+    End Function
+
+    Overloads Function id()
+      Return Value("SEQ")
+    End Function
+
+#End Region
+
+
+#Region "***** Association Lists ***********"
     Function Categories() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
       For Each cat In m_hoaUser.Categories()
@@ -44,10 +51,9 @@ Namespace Models
       Return list
     End Function
 
-    Overloads Function id()
-      Return Value("SEQ")
-    End Function
+#End Region
 
+#Region "***** Model Specific Properties ***********"
     Function AuthorizationLevels() As List(Of SelectListItem)
       Dim list As List(Of SelectListItem) = New List(Of SelectListItem)
       Dim level = Value(Columns.PASSPROTECT)
@@ -67,6 +73,8 @@ Namespace Models
       Set(ByVal value As String)
       End Set
     End Property
+#End Region
+
   End Class
 End Namespace
 

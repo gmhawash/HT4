@@ -12,7 +12,7 @@ Namespace Hometastic
 
     ' GET: /News/Create
     Function Create() As ActionResult
-      Return View(New News())
+      Return View(New News(CurrentAccount))
     End Function
 
     ' POST: /News/Create

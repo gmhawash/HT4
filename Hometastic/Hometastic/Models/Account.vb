@@ -19,7 +19,7 @@ Namespace Models
           HttpContext.Current.Session("CurrentUser") = mgmtCompany
         End If
       ElseIf (entityType = "Hoa") Then
-        Dim model = New HoaUser(mgmtCompany.HoaAccount())
+        Dim model = New HoaUser(mgmtCompany)
         If (model.Authenticate(UserName, clientNumber, 1, Password)) Then
           HttpContext.Current.Session("CurrentUser") = model
         End If
