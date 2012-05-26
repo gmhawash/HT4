@@ -78,14 +78,17 @@ Namespace Models
     Function AssociationList(Of T)(ByVal Model As MVNetBase, ByVal SearchClause As String, ByVal SortClause As String)
       Dim AssocationTarget As List(Of T)
 
-      ' Find list of News Items  (This off the same server as the management company)
-      Dim constructor = GetType(T).GetConstructor({GetType(MVNetBase)})
-      Dim constructor2 = GetType(T).GetConstructor({GetType(mvItem)})
-      Dim finder = constructor.Invoke({Model})
+      ' NOTE: that the GetConstructor functions expect the target New() to have an MVNetBase, and mvItem defined "ByVal" and not "ByRef"
+      Dim mvNetBaseConstructor = GetType(T).GetConstructor({GetType(MVNetBase)})
+      Dim mvItemConstructor = GetType(T).GetConstructor({GetType(mvItem)})
+
+      ' Call the New() on the specific type and call database to find items.
+      Dim finder = mvNetBaseConstructor.Invoke({Model})
       Dim itemList = finder.Find(SearchClause, SortClause)
+
       AssocationTarget = New List(Of T)
       For Each item As mvItem In itemList
-        AssocationTarget.Add(constructor2.Invoke({item}))
+        AssocationTarget.Add(mvItemConstructor.Invoke({item}))
       Next
 
       Return AssocationTarget
