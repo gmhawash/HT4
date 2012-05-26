@@ -56,7 +56,7 @@ Public Class MVNetBase
     ParseColumns(TableColumns)
   End Sub
 
-  Sub New(ByRef CurrentAccount As MVNetBase)
+  Sub New(ByVal CurrentAccount As MVNetBase)
     If Not CurrentAccount Is Nothing Then m_AccountName = CurrentAccount.m_AccountName
     m_CurrentUser = CurrentAccount
     ParseColumns(TableColumns)

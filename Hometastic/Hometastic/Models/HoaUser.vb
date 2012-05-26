@@ -60,7 +60,7 @@ Namespace Models
       Return [Enum].GetValues(GetType(Columns))
     End Function
 
-    Sub New(ByRef CurrentAccount As ManagementCompanyUser)
+    Sub New(ByVal CurrentAccount As ManagementCompanyUser)
       MyBase.New(CurrentAccount)
       m_AccountName = CurrentAccount.HoaAccount
     End Sub
@@ -75,31 +75,33 @@ Namespace Models
 #End Region
 
 #Region "***** Association Lists ***********"
+    Function AssociationList(Of T)(ByVal Model As MVNetBase, ByVal SearchClause As String, ByVal SortClause As String)
+      Dim AssocationTarget As List(Of T)
+
+      ' Find list of News Items  (This off the same server as the management company)
+      Dim constructor = GetType(T).GetConstructor({GetType(MVNetBase)})
+      Dim constructor2 = GetType(T).GetConstructor({GetType(mvItem)})
+      Dim finder = constructor.Invoke({Model})
+      Dim itemList = finder.Find(SearchClause, SortClause)
+      AssocationTarget = New List(Of T)
+      For Each item As mvItem In itemList
+        AssocationTarget.Add(constructor2.Invoke({item}))
+      Next
+
+      Return AssocationTarget
+    End Function
+
     Function Documents() As List(Of Document)
       If Not m_documentList Is Nothing Then Return m_documentList
 
-      ' Find list of News Items  (This off the same server as the management company)
-      Dim finder = New Document(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY NAMEUC BY CREATEDATE BY CREATETIME")
-      m_documentList = New List(Of Document)
-      For Each item As mvItem In itemList
-        m_documentList.Add(New Document(item))
-      Next
-
+      m_documentList = AssociationList(Of Document)(Me, String.Format("WITH HOANO = ""{0}""", id), "BY NAMEUC BY CREATEDATE BY CREATETIME")
       Return m_documentList
     End Function
 
     Function Categories() As List(Of Category)
       If Not m_categoryList Is Nothing Then Return m_categoryList
 
-      ' Find list of News Items  (This off the same server as the management company)
-      Dim finder = New Category(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "")
-      m_categoryList = New List(Of Category)
-      For Each item As mvItem In itemList
-        m_categoryList.Add(New Category(item))
-      Next
-
+      m_categoryList = AssociationList(Of Category)(Me, String.Format("WITH HOANO = ""{0}""", id), "")
       Return m_categoryList
     End Function
 
@@ -107,14 +109,7 @@ Namespace Models
     Overrides Function NewsList()
       If Not m_NewsList Is Nothing Then Return m_NewsList
 
-      ' Find list of News Items  (This off the same server as the management company)
-      Dim finder = New News(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY CREATEDATE")
-      m_NewsList = New List(Of News)
-      For Each item As mvItem In itemList
-        m_NewsList.Add(New News(item))
-      Next
-
+      m_NewsList = AssociationList(Of News)(Me, String.Format("WITH HOANO = ""{0}""", id), "BY CREATEDATE")
       Return m_NewsList
     End Function
 
@@ -122,42 +117,21 @@ Namespace Models
     Overrides Function EventsList()
       If Not m_EventsList Is Nothing Then Return m_EventsList
 
-      ' Find list of News Items  (This off the same server as the management company)
-      Dim finder = New Events(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id), "BY EVENTDATE")
-      m_EventsList = New List(Of Events)
-      For Each item As mvItem In itemList
-        m_EventsList.Add(New Events(item))
-      Next
-
+      m_EventsList = AssociationList(Of Events)(Me, String.Format("WITH HOANO = ""{0}""", id), "BY EVENTDATE")
       Return m_EventsList
     End Function
     ' Build list of survey questions for this hoauser
     Overrides Function SurveyList()
       If Not m_SurveyList Is Nothing Then Return m_SurveyList
 
-      ' Find list of Survey Items  (This off the same server as the management company)
-      Dim finder = New Survey(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id()), "BY @ID")
-      m_SurveyList = New List(Of Survey)
-      For Each item As mvItem In itemList
-        m_SurveyList.Add(New Survey(item))
-      Next
-
+      m_SurveyList = AssociationList(Of Survey)(Me, String.Format("WITH HOANO = ""{0}""", id), "BY @ID")
       Return m_SurveyList
     End Function
 
     Overrides Function ProviderList()
       If Not m_ProviderList Is Nothing Then Return m_ProviderList
 
-      ' Find list of Provider Items  (This off the same server as the management company)
-      Dim finder = New Provider(Me)
-      Dim itemList = finder.Find(String.Format("WITH HOANO = ""{0}""", id()), "BY @ID")
-      m_ProviderList = New List(Of Provider)
-      For Each item As mvItem In itemList
-        m_ProviderList.Add(New Provider(item))
-      Next
-
+      m_ProviderList = AssociationList(Of Provider)(Me, String.Format("WITH HOANO = ""{0}""", id), "BY @ID")
       Return m_ProviderList
     End Function
 #End Region

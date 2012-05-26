@@ -19,11 +19,11 @@ Namespace Models
     End Function
 
 
-    Sub New(ByRef CurrentAccount As MVNetBase)
+    Sub New(ByVal CurrentAccount As MVNetBase)
       MyBase.New(CurrentAccount)
     End Sub
 
-    Sub New(ByRef item As mvItem)
+    Sub New(ByVal item As mvItem)
       MyBase.New(item)
     End Sub
 
