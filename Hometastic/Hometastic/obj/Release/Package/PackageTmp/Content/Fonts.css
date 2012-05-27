@@ -1,9 +1,0 @@
-﻿body { font-family: Verdana, Sans-Serif; }
-.bold {font-weight: bold; }
-.clear {clear: both;}
-.spacer {display:block; min-height: 0.5em;}
-.title-large {color: #C60; font-size: 95%; font-weight: bold;}
-.title-green {color: #7CB326; font-size: 80%; font-weight: bold;}
-.small { font-size: 70%; }
-.normal { font-size: 75%; }
-#spinner { left: 50%; line-height: 1px; position: absolute; top: 30%; margin-top: -38px; margin-left: -58px; }
