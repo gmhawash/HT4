@@ -1,0 +1,11 @@
+c:\src\hometast4\Hometastic\Hometastic\bin\Hometastic.dll
+c:\src\hometast4\Hometastic\Hometastic\bin\Hometastic.pdb
+c:\src\hometast4\Hometastic\Hometastic\bin\Hometastic.xml
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\ResolveAssemblyReference.cache
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\Hometastic.Resources.resources
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\GenerateResource.read.1.tlog
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\GenerateResource.write.1.tlog
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\Hometastic.dll
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\Hometastic.xml
+c:\src\hometast4\Hometastic\Hometastic\obj\Release\Hometastic.pdb
+c:\src\hometast4\Hometastic\Hometastic\bin\Configuration.Yaml

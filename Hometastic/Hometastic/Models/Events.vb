@@ -49,8 +49,8 @@ Namespace Models
 #End Region
 
 #Region "***** Model Specific Functions ***********"
-    Function ShortDescription() As String
-      Dim val = Value(Columns.SHORTDESCRIPTION)
+    Function Body() As String
+      Dim val = Value(Columns.COMPLETEINFO)
       If val Is Nothing Then Return ""
       Return val.Replace(DataBASIC.VM, DataBASIC.CRLF)
     End Function

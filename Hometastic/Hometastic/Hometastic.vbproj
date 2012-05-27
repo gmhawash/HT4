@@ -26,6 +26,8 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Hometastic.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,9 +42,6 @@
     <Reference Include="BlueFinity.mvNET.CoreObjects, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0e042501bcaf5804, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\BlueFinity\mv.NET\Version4.0\bin\Public Assemblies\BlueFinity.mvNET.CoreObjects.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
@@ -140,11 +139,6 @@
     <Compile Include="Models\Events.vb" />
     <Compile Include="Models\Question.vb" />
     <Compile Include="Models\Document.vb" />
-    <Compile Include="Models\Log.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Log.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Survey.vb" />
     <Compile Include="Models\News.vb" />
     <Compile Include="Views\Support\Helper.vb" />
@@ -181,11 +175,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration.Yaml" />
-    <EntityDeploy Include="Models\Log.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Log.Designer.vb</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="Configuration.Yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -195,13 +187,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="App_Data\LocalDatabase.mdf" />
-    <Content Include="App_Data\LocalDatabase_log.ldf">
-      <DependentUpon>LocalDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Readme\glimpse.readme.txt" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\EntityFramework.xml" />
     <Content Include="bin\Glimpse.Core.dll" />
     <Content Include="bin\Hometastic.dll" />
     <Content Include="bin\Hometastic.pdb" />
@@ -210,7 +196,6 @@
     <Content Include="bin\RouteDebug.dll" />
     <Content Include="bin\Yaml.dll" />
     <Content Include="bin\YamlSerializer.dll" />
-    <Content Include="bin\YamlSerializer.xml" />
     <Content Include="Content\Survey.css" />
     <Content Include="Content\demo_page.css" />
     <Content Include="Content\demo_table_jui.css" />
@@ -291,7 +276,9 @@
     <Content Include="Images\site2.gif" />
     <Content Include="Images\ven.jpg" />
     <Content Include="Images\waves.gif" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
@@ -409,7 +396,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>

@@ -1,0 +1,269 @@
+﻿@import url("Fonts.css");
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body{
+margin:0;
+padding:0;
+}
+
+#container 
+{
+margin:auto;
+width: 760px;
+}
+
+#menu-container #left
+{
+display:block;
+float: left;
+width:30%;
+}
+#menu-container #left img
+{
+  float:right;
+}
+
+#menu-container #left img.corner
+{
+  width: 230px;
+  height: 20px;
+  border: 0px;
+}
+
+#menu-container #left img.logo
+{
+  width: 166px;
+  height: 53px;
+  border: 0px;
+  display:block;
+  clear: both;
+}
+
+#menu-container #right
+{
+  width: 70%;
+  display :block;
+  float: left;
+    margin-bottom: 1em;
+}
+  
+#menu-container .menu 
+{
+  background-color: #47A2DA;
+  margin-top: -1em;
+  height: 6em;
+}
+
+#menu-container .menu ul
+{
+  padding-top: 4.2em;
+}
+#menu-container .menu li
+{
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 3px;
+  color: White;
+}
+
+#menu-container a.menu
+{
+  border-left: 1px white solid;
+  padding-left: 3px;
+  color: White;
+  font-weight: bold;
+  font: 75% veranda, sans-serif;
+  vertical-align: top;
+}
+
+#menu-container a.menu.active
+{
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  background-color: White;
+  color: #47A2DA;
+}
+#menu-container .menu li:first-child a
+{
+  border: 0px;
+}
+
+#services-menu ul
+{
+  background-color: #ecf5fc;
+  min-height: 1.3em;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#services-menu li
+{
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 3px;
+  color: black;
+}
+
+#services-menu a
+{
+  border-left: 3px white solid;
+  padding-left: 3px;
+  color: black;
+  font-weight: bold;
+  font: 75% veranda, sans-serif;
+  vertical-align: top;
+  text-decoration: none;  
+}
+
+#services-menu a:hover
+{
+   color: #C60;   
+}
+
+#services-menu li:first-child a
+{
+  border: 0px;
+}
+
+#services-menu a.active
+{
+  font-weight: bold;
+  color: #C60;
+}
+
+#main-body p 
+{
+  display: block;
+  clear: both;
+  margin-top: 1em;
+}
+
+#main-body p img
+{
+  float: left;    
+  padding: 0 1em 1em 0;
+}
+
+
+#main-body div span
+{
+  display: block;
+  float: left;
+}
+
+#main-body div span:last-child
+{
+  width: 80%;
+}
+
+#main-body #contact-us span
+{
+  padding: 1em;
+  display: block;
+  background-color: #ecf5fc;   
+  float:left;
+  font-weight: bold;
+}
+
+#main-body #contact-us span:first-child
+{
+  display: block;
+  background-color:   #47a2d9;
+}
+#main-body #contact-us span:first-child a
+{
+  color: White;  
+  text-decoration: none;
+}
+
+#main-body #contact-us span:last-child
+{
+  width: 55%; 
+}
+
+#main-body #contact-us span:first-child a:hover
+{
+  color: #c60; 
+}
+
+#menu-container .menu ul .my_account:before
+{
+  content: url("/Images/myacc_icon.gif") 
+}
+
+#menu-container #left #wave
+{
+  margin-top: 3em;
+  display :block;
+  text-align: right;
+}
+
+#menu-container #left #wave  img
+{
+width: 233px;
+height: 36px;
+
+padding-top: 3em;
+}
+
+#menu-container #left #message 
+{
+  display: block;
+  clear: both;  
+  text-align : right;
+  padding: 3em 2em 0 4em;
+  line-height: 1.7em;
+}
+
+#footer { padding-top: 1em; border-top: 3px solid  #47a2d9; width: 760px; display: block; clear: both; min-height: 4em; } 
+#footer div { width: 50%; display: block; float: left; }
+#footer .menu { margin-top: -1em; } 
+#footer .menu li { display: block; float: left; list-style-type: none; padding: 3px; }
+#footer a.menu { border-left: 1px black solid; padding-left: 3px; font-weight: bold; font: 75% veranda, sans-serif; vertical-align: top; }
+#footer .menu li:first-child a { border: 0px; }
+#footer .menu a.menu.active { pointer-events: none; cursor: default; text-decoration: none; color: Black; }
+
+#login { width: 100%; height: 7em;  background-color: #ecf5fc; display:block; clear:both; line-height: 1em; } 
+#login form { padding-left: 1.5em; } 
+#login ul { margin-top: 0px; margin-left: -3em; }
+#login ul li { list-style-type: none; float:left; }
+#login .input { display: block; float: left; padding-left: 0.5em; }
+#login .input label { display: block; }
+#login .input input { display: block; clear: both; width: 10em;  } 
+#login .clientNumber { display: none; }
+.service { width: 60%; background-color: White; display: block; float: left; }
+.service .right span { display: block; clear: both; font-size: 70%; line-height: 1.2em; }
+.service .left { width: 3em; vertical-align : top; }
+#right-sidebar { width: 206px; background-color: White; min-height: 100%; display: block; float: left; border-left: 3px solid #ECF5FC; border-right: 3px solid #ECF5FC; }
+#right-sidebar .description { display: block; clear: both;  margin: 1.8em 0 1em 0; padding: 0 0.5em; }
+.left-pad { padding-left: 0.5em; }
+#main { margin-top: -1em; }
+#main-body { padding-left: 1em; font-size: 75%; }
+#main-body form .edit .field span {width: 30em; display:block; float: left;}
+
+h2 { color: #C60; font-size: 1.3m; font-weight: bold; padding-top: 1em;   }
+
+#contact-us  { display: block; float: left; width: 55%; }
+#contact-us * { display: block; float: left; }
+#contact-us label {width: 6em; clear: both; text-align: right; padding-right: 1em;}
+#contact-us input { width: 13em;  }
+#contact-us textarea { width: 13em; height: 5em; }
+#contact-us input[type=submit] {width: 6em; }
+#contact-info  { display: block; float: left; width: 42%; border-left: 2px solid #ECF5FC; padding-left: 1em; }
+.edit .field {display:block; clear: both;}
+.edit .field textarea {width: 80%; height: 8em; margin-bottom: 1em; display: block; clear: both;}
+.edit .field label {font-weight: bolder; font-size: larger; margin-bottom: 0.5em; width: 10em; display:block; clear: both; float: left;}
+.edit .field input {width: 20em; display:block; float: left;}
+.edit .field.checkbox input {margin-left: 12em; width:10px;}
+
+.hidden {display:none;}
+#main-body div.file-uploader span.ui-button-text {width: 100%; }
+.ui-button-text-only .ui-button-text {padding: 0.3em 0.4em; }
+.authorization_level_1 {background: url(/images/lock.png) top right no-repeat; background-size: 17px;}
+.float_right {float:right;}
